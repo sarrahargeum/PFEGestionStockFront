@@ -1,0 +1,17 @@
+<button routerLink="/addarticle" class="btn btn-success">Ajouter article</button>
+<div class="row">
+  <div class="col-md-6 col-xl-4" *ngFor="let art of listArticle">
+    <div class="card mb-3">
+      <img class="card-img-top img-responsive"
+      [src]="'http://localhost:8099/StockMnager/api/article/Imgarticles/' + art.id" 
+        style = "height :200px;width:fil-content"
+       alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{art.code}}</h5>
+        <p class="card-text">{{art.designation}}</p>
+        <p class="card-text">Prix: {{art.prix}}</p>
+        <p class="card-text"><small class="text-muted">Taux de TVA: {{art.tauxTva}}</small></p>
+      </div>
+    </div>
+  </div>
+</div>

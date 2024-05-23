@@ -1,0 +1,25 @@
+<a routerLink="/addcategory" class="btn btn-success">Ajouter category</a>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Designation</th>
+        <th class="text-center">Action</th>
+       <!-- <th scope="col">Article</th>-->
+      </tr>
+    </thead>
+    <tbody *ngFor="let cat of listCategory ">
+      <tr>
+       <!-- <th scope="row">1</th>-->
+        <td>{{cat.code}}</td>
+        <td>{{cat.designation}}</td>
+        <td> 
+          <ul class="text-center">
+            <button   class="btn btn-info "  routerLink="/editcategory/{{cat.id}}" > edit </button>  &nbsp;          
+            <button   (click)="deleteClick(cat.id)"  class="btn btn-danger" > delete </button>
+          </ul>
+        </td>
+      </tr>
+     
+    </tbody>
+  </table>

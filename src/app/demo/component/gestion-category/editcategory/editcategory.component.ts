@@ -46,7 +46,7 @@ export class EditcategoryComponent implements OnInit{
 
     this.activatedRoute.paramMap.subscribe(paramMap=>{
       if(!paramMap.has('id')){
-         this.router.navigateByUrl('listproject');
+         this.router.navigateByUrl('/listcategory');
       }else{
         this.id = paramMap.get('id');
         console.log('id', this.id);
@@ -67,10 +67,10 @@ export class EditcategoryComponent implements OnInit{
         })
       }
     })
-    this.categoryService.getCategory().subscribe(data=>{
+   /* this.categoryService.getCategory().subscribe(data=>{
       this.listCategory=data;
       console.log(this.listCategory);
-    });
+    });*/
   
   }
 
@@ -78,9 +78,7 @@ export class EditcategoryComponent implements OnInit{
     this.categoryService.updateCategory( this.categoryForm.value).subscribe(
       ()=>{
         this.router.navigateByUrl('/listcategory');
-        
-
-      }
+          }
     );
    
   }

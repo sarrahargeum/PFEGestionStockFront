@@ -24,7 +24,7 @@ postCategory(cat: Category){
   return this.http.put("http://localhost:8099/StockMnager/api/category/update", cat);
 }
 retrieveCategory(id: any): Observable<Category> {
-  return this.http.get<Category>(`http://localhost:8099/StockMnager/api/user/retrieve-category/${id}`);
+  return this.http.get<Category>(`http://localhost:8099/StockMnager/api/category/retrieve-category/${id}`);
 }
 
 deleteCategory(id: any){

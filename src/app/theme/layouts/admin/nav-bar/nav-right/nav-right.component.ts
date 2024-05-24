@@ -18,47 +18,21 @@ export class NavRightComponent {
       routerLink: 'user-profil' 
     },
    /* {
-      icon: 'ti ti-user',
-      title: 'View Profile'
-    },
-    {
-      icon: 'ti ti-clipboard',
-      title: 'Social Profile'
-    },
-    {
-      icon: 'ti ti-edit-circle',
-      title: 'Billing'
-    },*/
-    {
       icon: 'ti ti-power',
       title: 'Logout',
       routerLink: 'login' 
-    }
+    }*/
   ];
 
-  /*setting = [
-    {
-      icon: 'ti ti-help',
-      title: 'Support'
-    },
-    {
-      icon: 'ti ti-user',
-      title: 'Account Settings'
-    },
-    {
-      icon: 'ti ti-lock',
-      title: 'Privacy Center'
-    },
-    {
-      icon: 'ti ti-messages',
-      title: 'Feedback'
-    },
-    {
-      icon: 'ti ti-list',
-      title: 'History'
-    }
-  ];*/
+ 
   navigateTo(route: string) {
     this.router.navigate([route]);
+  }
+
+
+  LogOut(){
+    console.log("test");
+    this.router.navigate(['login'])
+    localStorage.clear();
   }
 }

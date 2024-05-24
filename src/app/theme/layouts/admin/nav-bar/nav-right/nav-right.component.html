@@ -113,22 +113,18 @@
             }
           </ng-template>
         </li>
-      <!--  <li ngbNavItem="2">
-          <a ngbNavLink><i class="ti ti-settings"></i> Setting</a>
-          <ng-template ngbNavContent>
-            @for (task of setting; track task) {
-              <div>
-                <a href="javascript:" class="dropdown-item">
-                  <i class="{{ task.icon }}"></i>
-                  <span>{{ task.title }}</span>
-                </a>
-              </div>
-            }
-          </ng-template>
-        </li>-->
       </ul>
       <div [ngbNavOutlet]="nav"></div>
+      <a  href="#" (click)="LogOut()" class="dropdown-item">
+        <i class="ti ti-power"></i>
+        Logout
+      </a>
+    
+    
+      
     </div>
   </li>
+ 
 </ul>
+
 <!-- [Mobile Media Block end] -->

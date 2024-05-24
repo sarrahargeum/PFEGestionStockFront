@@ -16,8 +16,8 @@ export class UserService {
   }
 
 
-  public updateUser(user: any) {
-    return this.http.put("http://localhost:8099/StockMnager/api/user/updateUser", user);
+  public updateUser(id: number,user: User) {
+    return this.http.put(`http://localhost:8099/StockMnager/api/user/updateUser/${id}`, user);
   }
 
   deleteUser(id: any){

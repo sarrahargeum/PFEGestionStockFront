@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { CategoryService } from 'src/app/demo/service/category.service';
+import { CategoryService } from 'src/app/demo/service/CategoryService';
 import { UserService } from 'src/app/demo/service/user.service';
 
 @Component({
@@ -75,7 +75,7 @@ export class EditcategoryComponent implements OnInit{
   }
 
   save(){
-    this.categoryService.updateCategory( this.categoryForm.value).subscribe(
+    this.categoryService.updateCategory(this.id,this.categoryForm.value).subscribe(
       ()=>{
         this.router.navigateByUrl('/listcategory');
           }

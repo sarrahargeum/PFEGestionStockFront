@@ -76,16 +76,9 @@ ngOnInit(): void {
  get f() { return this.form.controls; }
 
  save(){
-  this.userService.updateUser( this.form.value).subscribe(
+  this.userService.updateUser(this.id, this.form.value).subscribe(
     ()=>{
-    /*  if(this.datauser?.IdFct==1){
-        this.router.navigateByUrl('/listuser');
-      }else if(this.datauser?.IdFct==2){
-        this.router.navigateByUrl('/listproject');
-      }else{
-        this.router.navigateByUrl('/listtache');
-      }*/
-      
+     
       this.router.navigateByUrl('/listuser');
     }
   );

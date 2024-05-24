@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { Article } from 'src/app/demo/modals/article';
 import { Category } from 'src/app/demo/modals/category';
 import { ArticleService } from 'src/app/demo/service/article.service';
-import { CategoryService } from 'src/app/demo/service/category.service';
+import { CategoryService } from 'src/app/demo/service/CategoryService';
 
 @Component({
   selector: 'app-listcategory',

@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Article } from 'src/app/demo/modals/article';
 import { Category } from 'src/app/demo/modals/category';
+import { CategoryService } from 'src/app/demo/service/CategoryService';
 import { ArticleService } from 'src/app/demo/service/article.service';
-import { CategoryService } from 'src/app/demo/service/category.service';
 
 @Component({
   selector: 'app-addarticle',

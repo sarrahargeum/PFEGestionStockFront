@@ -43,8 +43,9 @@ ngOnInit(): void {
     firstname : new FormControl(null),
     lastname : new FormControl(null),
     email : new FormControl(null),
-    role: new FormControl(null),
-    magasin: new FormControl(null),
+    activated: new FormControl(null),
+   // roleId: new FormControl(null),
+   // magasinId: new FormControl(null),
     
    })
 
@@ -62,8 +63,12 @@ ngOnInit(): void {
           firstname : new FormControl( this.user.firstname),
           lastname : new FormControl(this.user.lastname),
           email : new FormControl(this.user.email),
-          role: new FormControl(this.user.role),
-          magasin: new FormControl(this.user.magasin),      
+          activated: new FormControl(this.user.activated),
+        // role: new FormControl(this.user.roleId),
+       
+        
+       //   magasinId: new FormControl(this.user.magasinId),
+         
          });
 
          this.loading = false;

@@ -18,15 +18,14 @@ export class ArticleService {
     
   }
   
-  /*postArticle(art:Article,image : any){
-    return this.http.post("http://localhost:8099/StockMnager/api/article/add",art)
-  }*/
+
   ajoutArticle(formData:any): Observable<any> {
+
     return this.http.post("http://localhost:8099/StockMnager/api/article/add",formData);
   }
 
   deleteArticle(id: any){
-    return this.http.delete(`http://localhost:8099/StockMnager/api/arcile/delete/${id}`);
+    return this.http.delete(`http://localhost:8099/StockMnager/api/article/delete/${id}`, { responseType: 'text' });
   }
 }
   

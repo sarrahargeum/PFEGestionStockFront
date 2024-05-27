@@ -22,9 +22,9 @@
           <input type="email" class="form-control" id="emailAddress" placeholder="Email Address" formControlName="email" />
         </div>
 
-        <div class="col">
+      <!--  <div class="col">
             <label class="form-label" for="role">Role</label>
-            <select class="form-control" formControlName="role" >
+            <select class="form-control" formControlName="roleId" >
              <option [value]="1">ChefMagasin</option>
              <option [value]="2">Magasinier</option>
              <option [value]="3">Client</option>
@@ -34,14 +34,20 @@
           
           <div class="col">
             <label class="form-label" for="Magasin">Magasin</label>
-            <select class="form-control" formControlName="magasin" >
-                <option *ngFor="let mg of listeMagasins" [value]="mg.id">{{ mg.nom }}</option>
+            <select class="form-control" formControlName="magasinId" >
+              <option *ngFor="let mg of listeMagasins" [value]="mg.id">{{ mg.nom }}</option>
             </select>
-          </div>
+          </div>-->
      
-      
+          <div class="col">
+            <label class="form-label" for="activated">Activated:</label>
+            <select class="form-control" formControlName="activated" >
+             <option value="activated">activated</option>
+             <option value="desactiver">desactiver</option>
+          </select>
+          </div>
        
       </div>
     </div>
-    <button  class="btn btn-primary" (click)="save()">Save</button>             
+    <button  class="btn btn-primary" (click)="save()">Modifier</button>             
     </form>

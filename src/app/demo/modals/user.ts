@@ -7,6 +7,7 @@ import { Roles } from "./roles";
     lastname: string;
     email: string;
     password: string;
+    activated: string;
     role: Roles;
     magasin:Magasin
   }

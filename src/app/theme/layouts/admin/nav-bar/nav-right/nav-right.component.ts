@@ -15,13 +15,9 @@ export class NavRightComponent {
     {
       icon: 'ti ti-edit-circle',
       title: 'Edit Profile',
-      routerLink: 'user-profil' 
+      routerLink: '/edituser/{{user.id}}'
     },
-   /* {
-      icon: 'ti ti-power',
-      title: 'Logout',
-      routerLink: 'login' 
-    }*/
+ 
   ];
 
  

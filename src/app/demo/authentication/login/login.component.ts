@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit{
                   (data:any) => {
                       console.log("User is logged in");
                       localStorage.setItem('datauser',JSON.stringify(data))
-                      this.router.navigate(['user-profil']);
+                      this.router.navigate(['/listarticle']);
                       
                   }
               );

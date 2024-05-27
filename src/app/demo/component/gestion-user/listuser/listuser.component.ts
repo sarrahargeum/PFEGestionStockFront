@@ -27,9 +27,8 @@ export class ListuserComponent implements OnInit {
   ngOnInit():void{
     this.refrechUserList();
     this.findAllRole();
-   
-
   }
+  
   refrechUserList() {
     this.userService.getUser().subscribe(data => {
       this.listUser = data;

@@ -18,7 +18,6 @@ import { MagasinService } from '../../../service/magasin.service';
 export default class RegisterComponent implements OnInit {
   utilisateurForm: FormGroup;
   submitted = false;
-  //selectedFonction: any; 
   registerForm: FormGroup;
   listeMagasins:Array<Magasin>=[];
 listeRoles: Array<Roles> = [];
@@ -31,12 +30,6 @@ listeRoles: Array<Roles> = [];
     ) { }
 
   ngOnInit(): void {
-
-     /* this.AuthenticationService.getRoles()
-      .subscribe(roles => {
-        this.listeRoles = roles;
-       
-  });*/
     this.magasinService.getMagasin()
       .subscribe(magasins => {
         this.listeMagasins = magasins;

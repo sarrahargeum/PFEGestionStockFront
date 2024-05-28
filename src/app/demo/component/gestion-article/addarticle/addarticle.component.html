@@ -1,5 +1,5 @@
 <div class="card my-5">
-  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="articleForm" >
     <div class="card-body">
       <div class="row">
         <div class="col-md-6">
@@ -64,7 +64,7 @@
       <br>
       <div class="row">
         <div class="col-md-6">
-          <button type="submit" class="btn btn-primary btn-block">Ajouter Article</button>
+          <button type="submit" class="btn btn-primary btn-block" (click)="onSubmit()">Ajouter Article</button>
         </div>
         <div class="col-md-6">
           <button type="reset" class="btn btn-primary btn-block">Reset</button>

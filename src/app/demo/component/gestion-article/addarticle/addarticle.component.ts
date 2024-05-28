@@ -18,10 +18,10 @@ import { MagasinService } from 'src/app/demo/service/magasin.service';
 })
 export class AddarticleComponent  implements OnInit{
  
-listeCategorie: Array<Category> = [];
-articleForm:FormGroup;
-submitted = false;
-userFile;
+ listeCategorie: Array<Category> = [];
+ articleForm:FormGroup;
+ submitted = false;
+ userFile;
  public imagePath;
  imgURL:any;
  public message:string;
@@ -82,12 +82,15 @@ userFile;
   formData.append('file',this.userFile);
   formData.append('categoryId', article.categoryId);
   formData.append('magasinId', article.magasinId);
-  
+
+  console.log(formData.get);
+
   this.articleService.ajoutArticle(formData).subscribe(data =>{
-
-    this.router.navigate(['listarticle']);
-
-  });
+console.log(data);
+if(data){
+  this.router.navigate(['listarticle']);
+}
+  })
   }
 
   onSelectFile(event){

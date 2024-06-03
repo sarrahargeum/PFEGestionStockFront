@@ -16,6 +16,7 @@ import RegisterComponent from './demo/component/gestion-user/register/register.c
 import { ListuserComponent } from './demo/component/gestion-user/listuser/listuser.component';
 import { EdituserComponent } from './demo/component/gestion-user/edituser/edituser.component';
 import { EditcategoryComponent } from './demo/component/gestion-category/editcategory/editcategory.component';
+import { AccueilComponent } from './demo/component/accueil/accueil.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
       },
       { path: 'login', component:LoginComponent },
       { path: 'register',component:RegisterComponent },
+      {path: 'accueil', component:AccueilComponent}
    ]
   },
   {

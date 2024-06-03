@@ -27,16 +27,30 @@
         <td>{{user.email}}</td>
         <td>{{user.lastname}}</td>
         <td>{{user.firstname}}</td>
-        <td  [ngStyle]="{'color': user.activated == 'desactiver' ? '#ff6666' :'#40bf80'   }" >{{user.activated}}</td>
+        
+     
+<td>
+  <button 
+  (click)="toggleActivation(user)" 
+  [ngStyle]="{
+    'background-color': user.activated == '0' ? '#ff6666 ' : '#40bf80',
+    'color': 'white'
+  }">
+  {{ user.activated == '1' ? 'Activer' : 'Désactiver' }}
+</button>
+</td>
+
         <td>{{user.role.nomRole}}</td>
         <td>{{user.magasin.nom}}</td>
        
         <td> 
         <ul >
           
-          <button   [disabled]= "user.activated == 'desactiver'" routerLink="/edituser/{{user.id}}" class="btn btn-info " > edit </button>  &nbsp;
+          <button   [disabled]= "user.activated == '0'" routerLink="/edituser/{{user.id}}" class="btn btn-info " > edit </button>  &nbsp;
           <button  (click)="deleteClick(user.id)" class="btn btn-danger" >supprimer</button >
         </ul>
+
+        
         </td>
       </tr>
      

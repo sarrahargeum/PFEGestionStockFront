@@ -52,6 +52,16 @@ deleteClick(id) {
   }
 }
 
+toggleActivation(user: any) {
+  const newStatus = !user.activated;
+  this.userService.active(user.id, newStatus).subscribe(response => {
+    // Mettez à jour l'état de l'utilisateur dans l'interface utilisateur
+    user.activated = newStatus;
+  }, error => {
+    console.error('Erreur lors de la mise à jour de l\'activation', error);
+  });
+}
+
 
 Search() {
   if (this.firstname != "") {

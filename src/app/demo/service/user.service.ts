@@ -27,4 +27,8 @@ export class UserService {
   retrieveUser(id: any): Observable<User> {
     return this.http.get<User>(`http://localhost:8099/StockMnager/api/user/retrieve-user/${id}`);
   }
+
+  active(userId: number, activated: boolean){
+    return this.http.put("http://localhost:8099/StockMnager/api/auth/admin/activated",  { id: userId, activated: activated });
+  }
 }

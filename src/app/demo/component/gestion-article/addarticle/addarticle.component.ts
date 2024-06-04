@@ -8,11 +8,13 @@ import { Magasin } from 'src/app/demo/modals/magasin';
 import { CategoryService } from 'src/app/demo/service/CategoryService';
 import { ArticleService } from 'src/app/demo/service/article.service';
 import { MagasinService } from 'src/app/demo/service/magasin.service';
+import { DialogModule } from 'primeng/dialog';
+
 
 @Component({
   selector: 'app-addarticle',
   standalone: true,
-  imports: [ReactiveFormsModule,RouterModule, FormsModule,CommonModule],
+  imports: [ReactiveFormsModule,RouterModule, FormsModule,CommonModule,DialogModule],
   templateUrl: './addarticle.component.html',
   styleUrl: './addarticle.component.scss'
 })
@@ -27,6 +29,8 @@ export class AddarticleComponent  implements OnInit{
  public message:string;
  selectedCategoryId:number;
  listeMagasin:Array<Magasin> =[];
+ 
+
 
   constructor(
     private router: Router,

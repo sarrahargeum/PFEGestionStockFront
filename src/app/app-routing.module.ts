@@ -17,6 +17,7 @@ import { ListuserComponent } from './demo/component/gestion-user/listuser/listus
 import { EdituserComponent } from './demo/component/gestion-user/edituser/edituser.component';
 import { EditcategoryComponent } from './demo/component/gestion-category/editcategory/editcategory.component';
 import { AccueilComponent } from './demo/component/accueil/accueil.component';
+import { ApplicationGuardService } from './demo/service/guard/application-guard.service';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       { path: 'login', component:LoginComponent },
-      { path: 'register',component:RegisterComponent },
+      { path: 'register',component:RegisterComponent ,canActivate:[ ApplicationGuardService]},
       {path: 'accueil', component:AccueilComponent}
    ]
   },
@@ -39,15 +40,15 @@ const routes: Routes = [
      
     children: [
       
-      { path: 'dashboard/default', component:DashboardComponent },
-      { path: 'user-profil',component:UserProfilComponent},
-      { path:'listarticle', component:ListarticleComponent},
-      { path: 'addarticle', component: AddarticleComponent },
-      { path: 'listcategory',component:ListcategoryComponent},
-      { path: 'addcategory', component:AddcategoryComponent  },
-      { path: 'editcategory/:id', component:EditcategoryComponent  },
-      { path:'listuser', component:ListuserComponent},
-      { path: 'edituser/:id', component: EdituserComponent }
+      { path: 'dashboard/default', component:DashboardComponent, canActivate:[ ApplicationGuardService] },
+      { path: 'user-profil',component:UserProfilComponent ,canActivate:[ ApplicationGuardService]},
+      { path:'listarticle', component:ListarticleComponent,canActivate:[ ApplicationGuardService]},
+      { path: 'addarticle', component: AddarticleComponent ,canActivate:[ ApplicationGuardService]},
+      { path: 'listcategory',component:ListcategoryComponent,canActivate:[ ApplicationGuardService]},
+      { path: 'addcategory', component:AddcategoryComponent ,canActivate:[ ApplicationGuardService] },
+      { path: 'editcategory/:id', component:EditcategoryComponent ,canActivate:[ ApplicationGuardService] },
+      { path:'listuser', component:ListuserComponent, canActivate:[ ApplicationGuardService]},
+      { path: 'edituser/:id', component: EdituserComponent ,canActivate:[ ApplicationGuardService]}
       
     ]
   }

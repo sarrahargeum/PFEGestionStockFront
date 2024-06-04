@@ -22,6 +22,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './demo/authentication/login/login.component';
 import { AuthenticationService } from './demo/service/authentication.service';
+import { DialogModule } from 'primeng/dialog';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -40,8 +43,8 @@ import { AuthenticationService } from './demo/service/authentication.service';
   
    
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule ,CommonModule,
-    FormsModule,ReactiveFormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule,SharedModule, BrowserAnimationsModule ,CommonModule,
+    FormsModule,ReactiveFormsModule, HttpClientModule,DialogModule,RouterModule],
     providers: [
       AuthenticationService],
   bootstrap: [AppComponent]

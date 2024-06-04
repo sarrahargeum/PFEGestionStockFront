@@ -69,7 +69,35 @@ export const NavigationItems: NavigationItem[] = [
     ]
   },
 
-    
+  //bonLivraison 
+  {
+    id: 'Bon Livraison ',
+    title: 'Bon Livraison ',
+    type: 'group',
+    icon: 'icon-navigation',
+    children: [
+      {
+        id: 'Entrée',
+        title: 'Entrée',
+        type: 'item',
+        classes: 'nav-item',
+       // url: '/listarticle',
+        icon: 'ti ti-credit-card'
+      },
+      {
+        id: 'Sortie',
+        title: 'Sortie',
+        type: 'item',
+        classes: 'nav-item',
+      //  url: '/listcategory',
+        icon: 'ti ti-loader'
+      },
+
+]
+
+},
+
+  
     
   
 

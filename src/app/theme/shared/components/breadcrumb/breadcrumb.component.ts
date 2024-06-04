@@ -38,11 +38,11 @@ export class BreadcrumbComponent {
   ) {
     this.navigations = NavigationItems;
     this.type = 'theme1';
-    this.setBreadcrumb();
+   // this.setBreadcrumb();
   }
 
   // public method
-  setBreadcrumb() {
+ /* setBreadcrumb() {
     this.route.events.subscribe((router: Event) => {
       if (router instanceof NavigationEnd) {
         const activeLink = router.url;
@@ -53,9 +53,9 @@ export class BreadcrumbComponent {
         this.titleService.setTitle(title + ' | Mantis  Angular Admin Template');
       }
     });
-  }
+  }*/
 
-  filterNavigation(navItems: NavigationItem[], activeLink: string): titleType[] {
+ /* filterNavigation(navItems: NavigationItem[], activeLink: string): titleType[] {
     for (const navItem of navItems) {
       if (navItem.type === 'item' && 'url' in navItem && navItem.url === activeLink) {
         return [
@@ -82,5 +82,5 @@ export class BreadcrumbComponent {
       }
     }
     return [];
-  }
+  }*/
 }

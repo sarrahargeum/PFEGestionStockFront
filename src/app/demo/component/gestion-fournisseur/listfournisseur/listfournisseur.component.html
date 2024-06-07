@@ -1,0 +1,27 @@
+<a routerLink="/addfournisseur" class="btn btn-success">Ajouter fournisseur</a>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Magasin</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let four of listfournisseur">
+      <tr>
+        <td>{{four.nom}}</td>
+        <td>{{four.prenom}}</td>
+        <td>{{four.adresse}}</td>
+        <td>{{four.magasin.nom}}</td>
+        <td> 
+          <ul class="text-center">
+            <button   class="btn btn-info "  > edit </button>  &nbsp;          
+            <button   (click)="deleteClick(four.id)"  class="btn btn-danger" > delete </button>
+          </ul>
+        </td>
+      </tr>
+     
+    </tbody>
+  </table>

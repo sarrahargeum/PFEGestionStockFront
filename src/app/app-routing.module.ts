@@ -18,6 +18,8 @@ import { EdituserComponent } from './demo/component/gestion-user/edituser/editus
 import { EditcategoryComponent } from './demo/component/gestion-category/editcategory/editcategory.component';
 import { AccueilComponent } from './demo/component/accueil/accueil.component';
 import { ApplicationGuardService } from './demo/service/guard/application-guard.service';
+import { AddfournisseurComponent } from './demo/component/gestion-fournisseur/addfournisseur/addfournisseur.component';
+import { ListfournisseurComponent } from './demo/component/gestion-fournisseur/listfournisseur/listfournisseur.component';
 
 const routes: Routes = [
   {
@@ -42,13 +44,20 @@ const routes: Routes = [
       
       { path: 'dashboard/default', component:DashboardComponent, canActivate:[ ApplicationGuardService] },
       { path: 'user-profil',component:UserProfilComponent ,canActivate:[ ApplicationGuardService]},
+
       { path:'listarticle', component:ListarticleComponent,canActivate:[ ApplicationGuardService]},
       { path: 'addarticle', component: AddarticleComponent ,canActivate:[ ApplicationGuardService]},
+
       { path: 'listcategory',component:ListcategoryComponent,canActivate:[ ApplicationGuardService]},
       { path: 'addcategory', component:AddcategoryComponent ,canActivate:[ ApplicationGuardService] },
       { path: 'editcategory/:id', component:EditcategoryComponent ,canActivate:[ ApplicationGuardService] },
+
       { path:'listuser', component:ListuserComponent, canActivate:[ ApplicationGuardService]},
-      { path: 'edituser/:id', component: EdituserComponent ,canActivate:[ ApplicationGuardService]}
+      { path: 'edituser/:id', component: EdituserComponent ,canActivate:[ ApplicationGuardService]},
+
+      { path: 'addfournisseur', component:AddfournisseurComponent  ,canActivate:[ ApplicationGuardService]},
+      { path: 'listfournisseur', component:ListfournisseurComponent  ,canActivate:[ ApplicationGuardService]}
+
       
     ]
   }

@@ -66,6 +66,14 @@ export const NavigationItems: NavigationItem[] = [
             url: '/listuser',
             icon: 'ti ti-brush'
           },
+          {
+            id: 'Fournisseur',
+            title: 'Fournisseur',
+            type: 'item',
+            classes: 'nav-item',
+            url: '/listfournisseur',
+            icon: 'ti ti-brush'
+          },
     ]
   },
 

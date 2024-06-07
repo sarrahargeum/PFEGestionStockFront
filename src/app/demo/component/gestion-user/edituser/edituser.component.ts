@@ -43,7 +43,7 @@ ngOnInit(): void {
     firstname : new FormControl(null),
     lastname : new FormControl(null),
     email : new FormControl(null),
-    activated: new FormControl(null),
+    //activated: new FormControl(null),
    // roleId: new FormControl(null),
    // magasinId: new FormControl(null),
     
@@ -63,7 +63,7 @@ ngOnInit(): void {
           firstname : new FormControl( this.user.firstname),
           lastname : new FormControl(this.user.lastname),
           email : new FormControl(this.user.email),
-          activated: new FormControl(this.user.activated),
+         // activated: new FormControl(this.user.activated),
         // role: new FormControl(this.user.roleId),
        
         

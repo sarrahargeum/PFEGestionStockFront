@@ -19,6 +19,7 @@ export class AddfournisseurComponent implements OnInit{
   fourForm:FormGroup;
   submitted = false;
   listfourni:any;
+  
   listeMagasin:Array<Magasin> =[];
 
   constructor(
@@ -48,29 +49,24 @@ export class AddfournisseurComponent implements OnInit{
   }
   get f() { return this.fourForm.controls; }
 
-  save(){
-    this.submitted = true;
-    console.log(this.fourForm.value);
+  save(){      
+       this.submitted = true;
+    const fourForm = {
+     nom: this.f.nom.value,
+     prenom: this.f.prenom.value,
+     adresse: this.f.adresse.value,
+     
+     magasin: {
+       id: this.f.magasinId.value
 
-    if (this.fourForm.invalid) {
-        
-      return;
-  } else{
-    console.log("dddddd");
-  this.fournisseurService.postFournisseur(this.fourForm.value).subscribe(resultat=>{
-   
-    
-console.log(resultat);
-
-    if(resultat){
-      this.router.navigate(['listfournisseur'])
-      console.log("resultat",resultat)
+     }
+   };
+     this.fournisseurService.postFournisseur(fourForm).subscribe(data=>{ 
+     this.router.navigate(['/listfournisseur'])
+})
    }
    
-  })
-
-  }
-  }
+  
   
   onReset() {
     this.submitted = false;

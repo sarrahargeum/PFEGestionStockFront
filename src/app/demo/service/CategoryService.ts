@@ -22,7 +22,6 @@ export class CategoryService {
   }
 
   updateCategory(id: number, category: Category): Observable<Category> {
-   // return this.http.put(`http://localhost:8099/StockMnager/api/category/Update/${id}`,category);
    const url = `http://localhost:8099/StockMnager/api/category/Update/${id}`;
   return this.http.put<Category>(url, category);
   }

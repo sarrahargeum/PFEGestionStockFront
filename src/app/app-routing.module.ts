@@ -20,6 +20,7 @@ import { AccueilComponent } from './demo/component/accueil/accueil.component';
 import { ApplicationGuardService } from './demo/service/guard/application-guard.service';
 import { AddfournisseurComponent } from './demo/component/gestion-fournisseur/addfournisseur/addfournisseur.component';
 import { ListfournisseurComponent } from './demo/component/gestion-fournisseur/listfournisseur/listfournisseur.component';
+import { EditfournisseurComponent } from './demo/component/gestion-fournisseur/editfournisseur/editfournisseur.component';
 
 const routes: Routes = [
   {
@@ -56,7 +57,8 @@ const routes: Routes = [
       { path: 'edituser/:id', component: EdituserComponent ,canActivate:[ ApplicationGuardService]},
 
       { path: 'addfournisseur', component:AddfournisseurComponent  ,canActivate:[ ApplicationGuardService]},
-      { path: 'listfournisseur', component:ListfournisseurComponent  ,canActivate:[ ApplicationGuardService]}
+      { path: 'listfournisseur', component:ListfournisseurComponent  ,canActivate:[ ApplicationGuardService]},
+      { path: 'editfournisseur/:id', component: EditfournisseurComponent ,canActivate:[ ApplicationGuardService]},
 
       
     ]

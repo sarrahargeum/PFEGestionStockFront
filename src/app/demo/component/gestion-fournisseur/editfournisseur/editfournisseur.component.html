@@ -1,3 +1,4 @@
+<p>editfournisseur works!</p>
 <div class="card my-5">
     <form [formGroup]="fourForm">
     
@@ -8,11 +9,8 @@
             <div class="col-md-6">
               <div class="form-group mb-3">
                 <label class="form-label" for="nom">Nom</label>
-                <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="nom" 
-                [ngClass]="{ 'is-invalid':  submitted && f.nom.errors }"/>
-                <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
-                    <div *ngIf="f.nom.errors.required">nom est obligatoire</div>
-                      </div>
+                <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="nom" />
+                
               </div>
             </div>
         
@@ -22,16 +20,13 @@
             <div class="col-md-6">
               <div class="form-group mb-3">
                 <label class="form-label" for="prenom">Prenom</label>
-                <input type="text" class="form-control" id="prenom" formControlName="prenom" placeholder="prenom" 
-                [ngClass]="{ 'is-invalid':  submitted && f.prenom.errors }"/>
-                <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
-                    <div *ngIf="f.prenom.errors.required">prenom est obligatoire</div>
-                      </div>
+                <input type="text" class="form-control" id="prenom" formControlName="prenom" placeholder="prenom" />
+                
               </div>
             </div>
         
           </div>
-          <div class="row">
+        <!--  <div class="row">
             <div class="col-md-6">
               <div class="form-group mb-3">
             <label>Selectionner une Magasin</label>
@@ -40,7 +35,7 @@
             </select>
           </div>
           </div>
-        </div>
+        </div>-->
 
           
     
@@ -49,11 +44,8 @@
             <div class="col-md-6">
               <div class="form-group mb-3">
                 <label class="form-label" for="adresse">Adresse</label>
-                <input type="text" class="form-control" id="adresse" formControlName="adresse" placeholder="adresse" 
-                [ngClass]="{ 'is-invalid':  submitted && f.adresse.errors }"/>
-                <div *ngIf="submitted && f.adresse.errors" class="invalid-feedback">
-                    <div *ngIf="f.adresse.errors.required">adresse est obligatoire</div>
-                      </div>
+                <input type="text" class="form-control" id="adresse" formControlName="adresse" placeholder="adresse" />
+               
               </div>
             </div>
         

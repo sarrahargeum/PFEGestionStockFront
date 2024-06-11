@@ -17,7 +17,8 @@
         <td>{{four.magasin.nom}}</td>
         <td> 
           <ul class="text-center">
-            <button   class="btn btn-info "  > edit </button>  &nbsp;          
+            <button   class="btn btn-info "  routerLink="/editfournisseur/{{four.id}}" > edit </button>  &nbsp;          
+            &nbsp;          
             <button   (click)="deleteClick(four.id)"  class="btn btn-danger" > delete </button>
           </ul>
         </td>

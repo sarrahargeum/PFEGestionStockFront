@@ -21,6 +21,10 @@ import { ApplicationGuardService } from './demo/service/guard/application-guard.
 import { AddfournisseurComponent } from './demo/component/gestion-fournisseur/addfournisseur/addfournisseur.component';
 import { ListfournisseurComponent } from './demo/component/gestion-fournisseur/listfournisseur/listfournisseur.component';
 import { EditfournisseurComponent } from './demo/component/gestion-fournisseur/editfournisseur/editfournisseur.component';
+import { GestionArticleComponent } from './demo/component/gestion-article/gestion-article.component';
+import { GestionCategoryComponent } from './demo/component/gestion-category/gestion-category.component';
+import { GestionUserComponent } from './demo/component/gestion-user/gestion-user.component';
+import { GestionFournisseurComponent } from './demo/component/gestion-fournisseur/gestion-fournisseur.component';
 
 const routes: Routes = [
   {
@@ -46,16 +50,20 @@ const routes: Routes = [
       { path: 'dashboard/default', component:DashboardComponent, canActivate:[ ApplicationGuardService] },
       { path: 'user-profil',component:UserProfilComponent ,canActivate:[ ApplicationGuardService]},
 
+    ///  { path:'gestion-article', component:GestionArticleComponent,canActivate:[ ApplicationGuardService]},
       { path:'listarticle', component:ListarticleComponent,canActivate:[ ApplicationGuardService]},
       { path: 'addarticle', component: AddarticleComponent ,canActivate:[ ApplicationGuardService]},
 
+    //  { path:'gestion-category', component:GestionCategoryComponent,canActivate:[ ApplicationGuardService]},
       { path: 'listcategory',component:ListcategoryComponent,canActivate:[ ApplicationGuardService]},
       { path: 'addcategory', component:AddcategoryComponent ,canActivate:[ ApplicationGuardService] },
       { path: 'editcategory/:id', component:EditcategoryComponent ,canActivate:[ ApplicationGuardService] },
 
+      ///{ path:'gestion-user', component:GestionUserComponent,canActivate:[ ApplicationGuardService]},
       { path:'listuser', component:ListuserComponent, canActivate:[ ApplicationGuardService]},
       { path: 'edituser/:id', component: EdituserComponent ,canActivate:[ ApplicationGuardService]},
 
+    //  { path:'gestion-fournisseur', component:GestionFournisseurComponent,canActivate:[ ApplicationGuardService]},
       { path: 'addfournisseur', component:AddfournisseurComponent  ,canActivate:[ ApplicationGuardService]},
       { path: 'listfournisseur', component:ListfournisseurComponent  ,canActivate:[ ApplicationGuardService]},
       { path: 'editfournisseur/:id', component: EditfournisseurComponent ,canActivate:[ ApplicationGuardService]},

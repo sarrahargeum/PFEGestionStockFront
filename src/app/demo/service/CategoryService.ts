@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Category } from '../modals/category';
 import { Observable } from 'rxjs';
+import { AuthenticationResponse } from '../modals/AuthenticationResponse';
 
 
 @Injectable({
@@ -33,5 +34,7 @@ export class CategoryService {
   deleteCategory(id: any) {
     return this.http.delete(`http://localhost:8099/StockMnager/api/category/delete/${id}`);
   }
+
+  
 
 }

@@ -1,4 +1,10 @@
-export interface NavigationItem {
+import { CommonModule } from "@angular/common";
+import { Component, OnInit } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { Router, RouterModule } from "@angular/router";
+
+
+export interface NavigationItem  {
   id: string;
   title: string;
   type: 'item' | 'collapse' | 'group';
@@ -15,9 +21,16 @@ export interface NavigationItem {
   children?: NavigationItem[];
   link?: string;
   description?: string;
+  
+
+
 }
 
+
 export const NavigationItems: NavigationItem[] = [
+
+
+  
   {
     id: 'dashboard',
     title: 'Dashboard',

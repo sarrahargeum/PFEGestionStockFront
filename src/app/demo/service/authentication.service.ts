@@ -6,6 +6,7 @@ import { Roles } from '../modals/roles';
 import { Router } from '@angular/router';
 import { AuthenticationResponse } from '../modals/AuthenticationResponse';
 import { AuthenticationRequest } from '../modals/AuthenticationRequest';
+import { User } from '../modals/user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,15 @@ export class AuthenticationService {
   ) {
   }     
 
-  authenticate(login:any){
-    return this.http.post("http://localhost:8099/StockMnager/api/auth/authenticate", login);
+ 
+
+  authenticate(login: any): Observable<any> {
+    return this.http.post<any>("http://localhost:8099/StockMnager/api/auth/authenticate", login);
   }
 
 
-  setAccessToken(authenticationResponse: AuthenticationResponse): void {
-    localStorage.setItem('accessToken', JSON.stringify(authenticationResponse));
+  setaccesstoken(authenticationResponse: AuthenticationResponse): void {
+    localStorage.setItem('accesstoken', JSON.stringify(authenticationResponse));
   }
 
     register(RegisterRequest:any):Observable<any>{
@@ -47,4 +50,17 @@ export class AuthenticationService {
     return false;
   }
 
+
+ 
+
+  setConnectedUser(user: User): void {
+    localStorage.setItem('connectedUser', JSON.stringify(user));
+  }
+
+  getConnectedUser(): User {
+    if (localStorage.getItem('connectedUser')) {
+      return JSON.parse(localStorage.getItem('connectedUser') as string);
+    }
+    return null;
+  }
 } 

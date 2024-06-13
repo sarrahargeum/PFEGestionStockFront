@@ -46,7 +46,7 @@ import { RouterModule } from '@angular/router';
   imports: [BrowserModule, AppRoutingModule,SharedModule, BrowserAnimationsModule ,CommonModule,
     FormsModule,ReactiveFormsModule, HttpClientModule,DialogModule,RouterModule],
     providers: [
-      AuthenticationService],
+      AuthenticationService,],
   bootstrap: [AppComponent]
 })
 

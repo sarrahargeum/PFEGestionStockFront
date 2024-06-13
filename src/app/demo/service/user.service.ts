@@ -16,7 +16,7 @@ export class UserService {
   }
 
 
-  public updateUser(id: number,user: User) {
+  updateUser(id: number,user: User) {
     return this.http.put(`http://localhost:8099/StockMnager/api/user/updateUser/${id}`, user);
   }
 
@@ -31,4 +31,7 @@ export class UserService {
   active(userId: number, activated: boolean){
     return this.http.put("http://localhost:8099/StockMnager/api/auth/admin/activated",  { id: userId, activated: activated });
   }
+
+
+
 }

@@ -1,4 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+
+<div style="text-align: right">
 <button routerLink="/addarticle" class="btn btn-success">Ajouter article</button>
+</div>
+<br>
+<div class="input-group input-group-alternative">
+ <!-- <i class="ti ti-search"></i> -->  
+    <input class="form-control" placeholder="Recherche" type="text" [(ngModel)]="code" (input)="Search()" >
+  </div>
+  <br>
+  <br>
 <div class="row">
   <div class="col-md-6 col-xl-4" *ngFor="let art of listArticle">
     <div class="card mb-3">
@@ -12,11 +33,18 @@
         <p class="card-text">Prix: {{art.prix}}.000 DT</p>
         <p class="card-text"><small class="text-muted">Taux de TVA: {{art.tauxTva}}</small></p>
 
-       
 
-        <button  class="btn btn-info " > edit </button>  &nbsp;
-        <button (click)="deleteClick(art.id)"  class="btn btn-danger" >supprimer</button >
+        <a  [routerLink]="'/editarticle/' + art.id" style="color: blue;">
+          <i class="fas fa-edit"></i>
+         </a> &nbsp;
+         <a (click)="deleteClick(art.id)" style="color: red;">
+          <i class="fas fa-trash-alt"></i>
+         </a>
+
+       
       </div>
     </div>
   </div>
 </div>
+</body>
+</html>

@@ -1,5 +1,15 @@
 
-<div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<div style="text-align: right">
   <a routerLink="/register" class="btn btn-success">Ajouter user</a>
 </div>
 <br>
@@ -46,8 +56,18 @@
         <td> 
         <ul >
           
-          <button   [disabled]= "user.activated == '0'" routerLink="/edituser/{{user.id}}" class="btn btn-info " > edit </button>  &nbsp;
-          <button  (click)="deleteClick(user.id)" class="btn btn-danger" >supprimer</button >
+          <button [disabled]="user.activated == '0'" [routerLink]="'/edituser/' + user.id" class="btn btn-info">
+            <i class="fas fa-edit"></i>
+          </button> &nbsp;
+          <a (click)="deleteClick(user.id)" style="color: red;">
+            <i class="fas fa-trash-alt"></i>
+            </a>
+          <!--  <a [routerLink]="'/edituser/' + user.id" [disabled]= "user.activated == '0'">
+              <i class="fas fa-edit"></i>
+             </a> &nbsp;
+             <a (click)="deleteClick(user.id)" style="color: red;">
+              <i class="fas fa-trash-alt"></i>
+             </a>-->
         </ul>
 
         
@@ -56,3 +76,5 @@
      
     </tbody>
   </table>
+</body>
+</html>

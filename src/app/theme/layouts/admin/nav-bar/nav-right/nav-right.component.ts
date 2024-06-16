@@ -12,11 +12,11 @@ export class NavRightComponent {
 
   // public method
   profile = [
-    {
+   /* {
       icon: 'ti ti-edit-circle',
       title: 'Edit Profile',
       routerLink: '/edituser/{{user.id}}'
-    },
+    },*/
  
   ];
 

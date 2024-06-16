@@ -100,7 +100,7 @@
       </div>
       <ul ngbNav #nav="ngbNav" class="nav drp-tabs nav-fill nav-tabs">
         <li ngbNavItem="1">
-          <a ngbNavLink><i class="ti ti-user"></i> Profile</a>
+          <a ngbNavLink ><i class="ti ti-user"></i> Profile</a>
           <ng-template ngbNavContent>
             @for (task of profile; track task) {
               <div (click)=navigateTo(task.routerLink)>
@@ -114,6 +114,12 @@
           </ng-template>
         </li>
       </ul>
+      <div [ngbNavOutlet]="nav"></div>
+      <a    class="dropdown-item">
+        <i class="ti ti-user"></i>
+        Profile
+      </a>
+
       <div [ngbNavOutlet]="nav"></div>
       <a  href="#" (click)="LogOut()" class="dropdown-item">
         <i class="ti ti-power"></i>

@@ -15,6 +15,8 @@ import { FournisseurService } from 'src/app/demo/service/fournisseur.service';
 export class ListfournisseurComponent implements OnInit {
 
   listfournisseur: Fournisseur[];
+  nom:string= '';
+
 
    constructor(private fourniseurService:FournisseurService){}
  
@@ -42,6 +44,16 @@ export class ListfournisseurComponent implements OnInit {
        })
      }
    }
+
+   Search() {
+    if (this.nom != "") {
+      this.listfournisseur = this.listfournisseur.filter(res => {
+        return res.nom.toLocaleLowerCase().match(this.nom.toLocaleLowerCase());
+      });
+    } else if (this.nom == "") {
+      this.ngOnInit();
+    }
+  }
  
  }
  

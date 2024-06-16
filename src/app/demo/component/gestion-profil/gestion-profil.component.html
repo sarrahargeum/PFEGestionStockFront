@@ -1,0 +1,32 @@
+<form [formGroup]="form" *ngIf="!loading">
+    <div class="card my-5">
+      <div class="card-body">
+     
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label class="form-label" for="firstname">First Name*</label>
+              <input type="text" class="form-control" id="firstname" placeholder="First Name" formControlName="firstname" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label class="form-label" for="lastName">Last Name*</label>
+              <input type="text" class="form-control" id="lastname" placeholder="Last Name" formControlName="lastname"  />
+            </div>
+          </div>
+        </div>
+       
+        <div class="form-group mb-3">
+          <label class="form-label" for="emailAddress">Email Address*</label>
+          <input type="email" class="form-control" id="emailAddress" placeholder="Email Address" formControlName="email" />
+        </div>
+
+      
+
+      
+       
+      </div>
+    </div>
+    <button  class="btn btn-primary" (click)="save()">Modifier</button>             
+    </form>

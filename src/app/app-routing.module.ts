@@ -25,6 +25,7 @@ import { GestionArticleComponent } from './demo/component/gestion-article/gestio
 import { GestionCategoryComponent } from './demo/component/gestion-category/gestion-category.component';
 import { GestionUserComponent } from './demo/component/gestion-user/gestion-user.component';
 import { GestionFournisseurComponent } from './demo/component/gestion-fournisseur/gestion-fournisseur.component';
+import { GestionProfilComponent } from './demo/component/gestion-profil/gestion-profil.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,8 @@ const routes: Routes = [
      
     children: [
       
+      { path: 'gestion-profil/:id', component: GestionProfilComponent },
+
       { path: 'dashboard/default', component:DashboardComponent, canActivate:[ ApplicationGuardService] },
       { path: 'user-profil',component:UserProfilComponent ,canActivate:[ ApplicationGuardService]},
 

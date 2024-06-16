@@ -11,7 +11,7 @@ export class AppComponent {
  
 
   // public props
-  title = 'mantis-free-version';
+  title = 'gestion Stock';
 
   constructor(){}
   

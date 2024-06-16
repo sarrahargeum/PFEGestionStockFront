@@ -16,6 +16,9 @@ import { CategoryService } from 'src/app/demo/service/CategoryService';
 })
 export class ListcategoryComponent implements OnInit {
  listCategory: Category[];
+ code:string= '';
+
+
   constructor(private categoryService:CategoryService){}
 
   ngOnInit():void{
@@ -38,6 +41,16 @@ export class ListcategoryComponent implements OnInit {
 
         this.refrechCatList();
       })
+    }
+  }
+
+  Search() {
+    if (this.code != "") {
+      this.listCategory = this.listCategory.filter(res => {
+        return res.code.toLocaleLowerCase().match(this.code.toLocaleLowerCase());
+      });
+    } else if (this.code == "") {
+      this.ngOnInit();
     }
   }
 

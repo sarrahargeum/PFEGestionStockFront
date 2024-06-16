@@ -1,4 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div style="text-align: right">
 <a routerLink="/addfournisseur" class="btn btn-success">Ajouter fournisseur</a>
+</div>
+<br>
+<div class="input-group input-group-alternative">
+ <!-- <i class="ti ti-search"></i> -->  
+    <input class="form-control" placeholder="Recherche" type="text" [(ngModel)]="nom" (input)="Search()" >
+  </div>
+  <br>
 <table class="table">
     <thead>
       <tr>
@@ -16,13 +33,17 @@
         <td>{{four.adresse}}</td>
         <td>{{four.magasin.nom}}</td>
         <td> 
-          <ul class="text-center">
-            <button   class="btn btn-info "  routerLink="/editfournisseur/{{four.id}}" > edit </button>  &nbsp;          
-            &nbsp;          
-            <button   (click)="deleteClick(four.id)"  class="btn btn-danger" > delete </button>
-          </ul>
+          <a [routerLink]="'/editfournisseur/' + four.id"  >
+            <i class="fas fa-edit"></i>
+           </a> &nbsp;
+           <a (click)="deleteClick(four.id)" style="color: red;">
+            <i class="fas fa-trash-alt"></i>
+           </a>
+    
         </td>
       </tr>
      
     </tbody>
   </table>
+</body>
+</html>

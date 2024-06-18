@@ -38,7 +38,8 @@ import { RouterModule } from '@angular/router';
     NavContentComponent,
     NavCollapseComponent,
     NavGroupComponent,
-    NavItemComponent   
+    NavItemComponent ,
+      
     
   
    

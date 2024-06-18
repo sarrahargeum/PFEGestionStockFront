@@ -26,6 +26,7 @@ import { GestionCategoryComponent } from './demo/component/gestion-category/gest
 import { GestionUserComponent } from './demo/component/gestion-user/gestion-user.component';
 import { GestionFournisseurComponent } from './demo/component/gestion-fournisseur/gestion-fournisseur.component';
 import { GestionProfilComponent } from './demo/component/gestion-profil/gestion-profil.component';
+import { EditarticleComponent } from './demo/component/gestion-article/editarticle/editarticle.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,7 @@ const routes: Routes = [
     ///  { path:'gestion-article', component:GestionArticleComponent,canActivate:[ ApplicationGuardService]},
       { path:'listarticle', component:ListarticleComponent,canActivate:[ ApplicationGuardService]},
       { path: 'addarticle', component: AddarticleComponent ,canActivate:[ ApplicationGuardService]},
+      { path: 'editarticle/:id', component:EditarticleComponent ,canActivate:[ ApplicationGuardService] },
 
     //  { path:'gestion-category', component:GestionCategoryComponent,canActivate:[ ApplicationGuardService]},
       { path: 'listcategory',component:ListcategoryComponent,canActivate:[ ApplicationGuardService]},

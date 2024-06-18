@@ -3,8 +3,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Location, LocationStrategy } from '@angular/common';
 
 // project import
-import { NavigationItems } from '../navigation';
+import { Admin, ChefMagasin, Client, Magasinier } from '../navigation';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-content',
@@ -12,6 +13,13 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./nav-content.component.scss']
 })
 export class NavContentComponent implements OnInit {
+
+  infoUser:any=null
+  public listTitles: any[];
+  public isCollapsed = true;
+  datauser;
+  dataJson;
+
   // public props
   @Output() NavCollapsedMob: EventEmitter<string> = new EventEmitter();
 
@@ -19,17 +27,51 @@ export class NavContentComponent implements OnInit {
   title = 'Demo application for version numbering';
   currentApplicationVersion = environment.appVersion;
 
-  navigation = NavigationItems;
+  
   windowWidth = window.innerWidth;
 
   // Constructor
   constructor(
     private location: Location,
-    private locationStrategy: LocationStrategy
+    private locationStrategy: LocationStrategy,
+    private router: Router
   ) {}
 
-  // Life cycle events
   ngOnInit() {
+
+    this.datauser=localStorage.getItem("datauser")
+    this.dataJson=JSON.parse(this.datauser)
+   console.log(this.dataJson);
+
+   
+    this.infoUser=JSON.parse(localStorage.getItem("datauser"))
+   
+    console.log(this.infoUser.roles.id)
+
+    if(this.infoUser?.roles.id==1){
+   
+      this.listTitles = ChefMagasin.filter(listTitle =>
+        listTitle
+      );
+    }else if(this.infoUser?.roles.id==2){
+      this.listTitles = Magasinier.filter(listTitle =>
+        listTitle
+      );
+    }
+    else if(this.infoUser?.roles.id==4){
+      this.listTitles = Admin.filter(listTitle =>
+        listTitle
+      );
+    }else{
+      
+      this.listTitles = Client.filter(listTitle =>
+        listTitle
+      );
+        
+    }
+    
+  
+
     if (this.windowWidth < 1025) {
       (document.querySelector('.coded-navbar') as HTMLDivElement).classList.add('menupos-static');
     }

@@ -27,6 +27,9 @@ import { GestionUserComponent } from './demo/component/gestion-user/gestion-user
 import { GestionFournisseurComponent } from './demo/component/gestion-fournisseur/gestion-fournisseur.component';
 import { GestionProfilComponent } from './demo/component/gestion-profil/gestion-profil.component';
 import { EditarticleComponent } from './demo/component/gestion-article/editarticle/editarticle.component';
+import { AddmagasinComponent } from './demo/component/gestion-magasin/addmagasin/addmagasin.component';
+import { EditmagasinComponent } from './demo/component/gestion-magasin/editmagasin/editmagasin.component';
+import { ListmagasinComponent } from './demo/component/gestion-magasin/listmagasin/listmagasin.component';
 
 const routes: Routes = [
   {
@@ -72,6 +75,11 @@ const routes: Routes = [
       { path: 'addfournisseur', component:AddfournisseurComponent  ,canActivate:[ ApplicationGuardService]},
       { path: 'listfournisseur', component:ListfournisseurComponent  ,canActivate:[ ApplicationGuardService]},
       { path: 'editfournisseur/:id', component: EditfournisseurComponent ,canActivate:[ ApplicationGuardService]},
+
+      ///Magasin
+      { path: 'listmagasin', component:ListmagasinComponent  ,canActivate:[ ApplicationGuardService]},
+      { path: 'addmagasin', component:AddmagasinComponent  ,canActivate:[ ApplicationGuardService]},
+      { path: 'editmagasin/:id', component:EditmagasinComponent  ,canActivate:[ ApplicationGuardService]},
 
       
     ]

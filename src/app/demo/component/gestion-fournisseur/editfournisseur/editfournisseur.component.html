@@ -1,67 +1,42 @@
-<p>editfournisseur works!</p>
 <div class="card my-5">
     <form [formGroup]="fourForm">
-    
-    
         <div class="card-body">
-         
           <div class="row">
             <div class="col-md-6">
               <div class="form-group mb-3">
                 <label class="form-label" for="nom">Nom</label>
-                <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="nom" />
-                
+                <input type="text" class="form-control" id="nom" formControlName="nom"  />
               </div>
             </div>
-        
           </div>
     
           <div class="row">
             <div class="col-md-6">
               <div class="form-group mb-3">
                 <label class="form-label" for="prenom">Prenom</label>
-                <input type="text" class="form-control" id="prenom" formControlName="prenom" placeholder="prenom" />
-                
+                <input type="text" class="form-control" id="prenom" formControlName="prenom"/>
               </div>
             </div>
-        
           </div>
-        <!--  <div class="row">
-            <div class="col-md-6">
-              <div class="form-group mb-3">
-            <label>Selectionner une Magasin</label>
-            <select class="form-control"  formControlName="magasinId">
-              <option *ngFor="let mg of listeMagasin" [value]="mg.id">{{ mg.nom }}</option>
-            </select>
-          </div>
-          </div>
-        </div>-->
 
-          
-    
-          
           <div class="row">
             <div class="col-md-6">
               <div class="form-group mb-3">
                 <label class="form-label" for="adresse">Adresse</label>
-                <input type="text" class="form-control" id="adresse" formControlName="adresse" placeholder="adresse" />
-               
+                <input type="text" class="form-control" id="adresse" formControlName="adresse" />
               </div>
             </div>
-        
-          </div>
+          </div> 
 
         <div class="row">
             <div class="col-md-6">
-              <button type="button" class="btn btn-primary btn-block" (click)="save()">Ajouter Fourniseur</button>
+              <button type="button" class="btn btn-primary btn-block" (click)="save()" >Modifier Fourniseur</button>
             </div>
             <div class="col-md-6">
               <button type="reset" class="btn btn-primary btn-block"  (click)="onReset()" >Reset</button>
             </div>
           </div>
-          
-           
-        </div>
+    </div>
     
     </form>
       </div>

@@ -30,7 +30,7 @@ export class ArticleService {
 
 
   updateArticle(id: number, article: Article): Observable<Article> {
-    const url = `http://localhost:8099/StockMnager/api/article/Update/${id}`;
+    const url = `http://localhost:8099/StockMnager/api/article/update/${id}`;
    return this.http.put<Article>(url, article);
    }
 

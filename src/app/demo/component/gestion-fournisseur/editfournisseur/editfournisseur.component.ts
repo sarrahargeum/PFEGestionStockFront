@@ -30,20 +30,15 @@ export class EditfournisseurComponent implements OnInit{
     private activatedRoute : ActivatedRoute,
     private router: Router,
     private fournisseurService:FournisseurService,
-    private UserService:UserService,
-    private magasinService: MagasinService
+
+
 
     
 
   ) { }
 
   ngOnInit(): void {
-    
-  this.magasinService.getMagasin()
-  .subscribe(magasins => {
-    this.listeMagasins = magasins;})
-
-    
+   
     this.datauser=localStorage.getItem("datauser")
     this.dataJson=JSON.parse(this.datauser)
    console.log(this.dataJson);
@@ -70,7 +65,6 @@ export class EditfournisseurComponent implements OnInit{
             nom : new FormControl( this.four.nom),
             prenom : new FormControl(this.four.prenom),
             adresse : new FormControl(this.four.adresse),
-
            
           });
           console.log(this.fourForm.value);
@@ -81,7 +75,6 @@ export class EditfournisseurComponent implements OnInit{
         })
       }
     })
-   
   }
 
   save(){
@@ -98,4 +91,3 @@ export class EditfournisseurComponent implements OnInit{
     this.fourForm.reset();
   }
 }
-

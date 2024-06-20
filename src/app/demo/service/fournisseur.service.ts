@@ -25,7 +25,7 @@ export class FournisseurService {
   }
 
   updateFournisseur(id: number, fournisseur: Fournisseur): Observable<Fournisseur> {
-    const url = `http://localhost:8099/StockMnager/api/fournisseur/Update/${id}`;
+    const url = `http://localhost:8099/StockMnager/api/fournisseur/update/${id}`;
    return this.http.put<Fournisseur>(url, fournisseur);
    }
 

@@ -73,10 +73,7 @@ export class EditarticleComponent implements OnInit{
         })
       }
     })
-   /* this.categoryService.getCategory().subscribe(data=>{
-      this.listCategory=data;
-      console.log(this.listCategory);
-    });*/
+  
   
   }
 

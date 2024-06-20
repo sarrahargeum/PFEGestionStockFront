@@ -62,7 +62,15 @@ export const Admin: NavigationItem[] = [
     classes: 'nav-item',
     path: '/listfournisseur',
     icon: 'ti ti-brush'
-  }
+  },
+  {
+    id: 'Magasin',
+    title: 'Magasin',
+    type: 'item',
+    classes: 'nav-item',
+    path: '/listmagasin',
+    icon: 'ti ti-loader'
+  },
 ]
   
 
@@ -83,14 +91,7 @@ export const ChefMagasin: NavigationItem[] = [
     path: '/listcategory',
     icon: 'ti ti-loader'
   },
-  {
-    id: 'Fournisseur',
-    title: 'Fournisseur',
-    type: 'item',
-    classes: 'nav-item',
-    path: '/listfournisseur',
-    icon: 'ti ti-brush'
-  }
+ 
 ];
 
 export const Magasinier: NavigationItem[] = [
@@ -110,14 +111,7 @@ export const Magasinier: NavigationItem[] = [
     path: '/listcategory',
     icon: 'ti ti-loader'
   },
-  {
-    id: 'Fournisseur',
-    title: 'Fournisseur',
-    type: 'item',
-    classes: 'nav-item',
-    path: '/listfournisseur',
-    icon: 'ti ti-brush'
-  }
+  
 ];
 
 export const Client: NavigationItem[] = [
@@ -137,12 +131,5 @@ export const Client: NavigationItem[] = [
     path: '/listcategory',
     icon: 'ti ti-loader'
   },
-  {
-    id: 'Fournisseur',
-    title: 'Fournisseur',
-    type: 'item',
-    classes: 'nav-item',
-    path: '/listfournisseur',
-    icon: 'ti ti-brush'
-  }
+ 
 ];

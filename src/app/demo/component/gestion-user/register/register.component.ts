@@ -1,4 +1,3 @@
-// angular import
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -36,19 +35,16 @@ listeRoles: Array<Roles> = [];
         
   });
 
-
     this.registerForm=this.formbuilder.group({
       firstname:['', Validators.required],
       lastname:['', Validators.required],
       email:['',[Validators.required, Validators.email]],
-      password:['', [Validators.required, Validators.minLength(6)]],
+      password:['', [Validators.required, Validators.minLength(5)]],
       roleId:['', Validators.required],
       magasinId:['', Validators.required],
    
 
     })
-  // console.log(this.registerForm);
-    
   }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }

@@ -18,6 +18,7 @@ export class GestionProfilComponent implements OnInit{
   submitted = false;
   form: any;
 datauser:any;
+dataJson:any;
 
 constructor(
   private activatedRoute : ActivatedRoute,
@@ -28,7 +29,9 @@ constructor(
 ) { }
 ngOnInit(): void {
 
-  
+  this.datauser=localStorage.getItem("datauser")
+  this.dataJson=JSON.parse(this.datauser)
+ console.log(this.dataJson); 
 
   this.datauser=JSON.parse(localStorage.getItem("datauser"))
    this.loading = true;

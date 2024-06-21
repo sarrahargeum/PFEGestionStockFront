@@ -19,7 +19,7 @@ export class MagasinService {
   
   
   postMagasin(mg: any) {
-    return this.http.post(`${this.apiUrl}/addFour`, mg);
+    return this.http.post(`${this.apiUrl}/addMg`, mg);
   }
 
   retrieveMagasin(id: any): Observable<Magasin> {

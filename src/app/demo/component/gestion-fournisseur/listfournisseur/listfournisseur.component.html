@@ -1,49 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
-<div style="text-align: right">
-<a routerLink="/addfournisseur" class="btn btn-success">Ajouter fournisseur</a>
-</div>
-<br>
-<div class="input-group input-group-alternative">
- <!-- <i class="ti ti-search"></i> -->  
-    <input class="form-control" placeholder="Recherche" type="text" [(ngModel)]="nom" (input)="Search()" >
+  <!-- Button for adding supplier -->
+  <div style="text-align: right">
+    <button class="btn btn-success" (click)="openModal('add')">Ajouter Fournisseur</button>
+  </div>
+
+  <!-- Supplier search input -->
+  <div class="input-group input-group-alternative">
+    <input class="form-control" placeholder="Recherche" type="text" [(ngModel)]="nom" (input)="Search()">
   </div>
   <br>
-<table class="table">
+
+  <!-- Supplier table -->
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Nom</th>
         <th scope="col">Prenom</th>
         <th scope="col">Adresse</th>
+        <th scope="col">Numéro teléphone</th>
         <th scope="col">Magasin</th>
         <th class="text-center">Action</th>
       </tr>
     </thead>
-    <tbody *ngFor="let four of listfournisseur">
-      <tr>
+    <tbody>
+      <tr *ngFor="let four of listfournisseur">
         <td>{{four.nom}}</td>
         <td>{{four.prenom}}</td>
         <td>{{four.adresse}}</td>
+        <td>{{four.numTel}}</td>
         <td>{{four.magasin.nom}}</td>
-        <td> 
-          <a [routerLink]="'/editfournisseur/' + four.id"  >
-            <i class="fas fa-edit"></i>
-           </a> &nbsp;
-           <a (click)="deleteClick(four.id)" style="color: red;">
+        <td>
+          <a (click)="openModal('edit', four.id)" style="color: blue;">
+            <i class="fas fa-edit"></i> 
+          </a>
+
+          
+          <a (click)="deleteClick(four.id)" style="color: red;">
             <i class="fas fa-trash-alt"></i>
-           </a>
-    
+          </a>
         </td>
       </tr>
-     
     </tbody>
   </table>
+  
+  <br>
+
+  <!-- Modal for adding/editing store -->
+  <div *ngIf="showModal" class="modal" tabindex="-1" role="dialog" style="display: block; background: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ modalTitle }}</h5>
+          <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="fournisseurForm" (ngSubmit)="save()">
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Nom" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+              <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                <div *ngIf="f.nom.errors.required">Nom est obligatoire</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="prenom">Prenom</label>
+              <input type="text" class="form-control" id="prenom" formControlName="prenom" placeholder="Prenom" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }">
+              <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                <div *ngIf="f.prenom.errors.required">Prenom est obligatoire</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="adresse">Adresse</label>
+              <input type="text" class="form-control" id="adresse" formControlName="adresse" placeholder="Adresse" [ngClass]="{ 'is-invalid': submitted && f.adresse.errors }">
+              <div *ngIf="submitted && f.adresse.errors" class="invalid-feedback">
+                <div *ngIf="f.adresse.errors.required">Adresse est obligatoire</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="numTel">Numéro Téléphone</label>
+              <input type="text" class="form-control" id="numTel" formControlName="numTel" placeholder="Numéro Téléphone" [ngClass]="{ 'is-invalid': submitted && f.numTel.errors }">
+              <div *ngIf="submitted && f.numTel.errors" class="invalid-feedback">
+                <div *ngIf="f.numTel.errors.required">Numéro Téléphone est obligatoire</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="magasinId">Selectionner une Magasin</label>
+              <select class="form-control" id="magasinId" formControlName="magasinId">
+                <option *ngFor="let mg of listeMagasin" [value]="mg.id">{{ mg.nom }}</option>
+              </select>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Enregistrer</button>
+              <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>

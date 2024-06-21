@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,71 +9,111 @@
 <body>
 
 <div style="text-align: right">
-  <a routerLink="/register" class="btn btn-success">Ajouter user</a>
+  <button class="btn btn-success" (click)="openModal('add')">Ajouter user</button>
 </div>
 <br>
 <div class="input-group input-group-alternative">
- <!-- <i class="ti ti-search"></i> -->  
-    <input class="form-control" placeholder="Recherche" type="text" [(ngModel)]="firstname" (input)="Search()" >
-  </div>
-
+  <input class="form-control" placeholder="Recherche" type="text" [(ngModel)]="firstname" (input)="Search()">
+</div>
+<br>
 <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Email</th>
-        <th scope="col">Lastname </th>
-        <th scope="col">Firstname</th>
-        <th scope="col">Activated</th>
-        <th scope="col">Role</th>
-        <th scope="col">Magasin</th>
-       
-       <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let user of listUser">
-      <tr>
-       <!-- <th scope="row">1</th>-->
-        <td>{{user.email}}</td>
-        <td>{{user.lastname}}</td>
-        <td>{{user.firstname}}</td>
-        
-     
-<td>
-  <button 
-  (click)="toggleActivation(user)" 
-  [ngStyle]="{
-    'background-color': user.activated == '0' ? '#ff6666 ' : '#40bf80',
-    'color': 'white'
-  }">
-  {{ user.activated == '1' ? 'Activer' : 'Désactiver' }}
-</button>
-</td>
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Activated</th>
+      <th scope="col">Role</th>
+      <th scope="col">Magasin</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of listUser">
+      <td>{{user.email}}</td>
+      <td>{{user.lastname}}</td>
+      <td>{{user.firstname}}</td>
+      <td>
+        <button (click)="toggleActivation(user)"
+                [ngStyle]="{'background-color': user.activated == '0' ? '#ff6666 ' : '#40bf80', 'color': 'white'}">
+          {{ user.activated == '1' ? 'Activer' : 'Désactiver' }}
+        </button>
+      </td>
+      <td>{{user.role.nomRole}}</td>
+      <td>{{user.magasin.nom}}</td>
+      <td>
+        <button [disabled]="user.activated == '0'" (click)="openModal('edit', user.id)" style="color: blue;">
+          <i class="fas fa-edit"></i>
+        </button> &nbsp;
+        <a (click)="deleteClick(user.id)" style="color: red;">
+          <i class="fas fa-trash-alt"></i>
+        </a>
 
-        <td>{{user.role.nomRole}}</td>
-        <td>{{user.magasin.nom}}</td>
-       
-        <td> 
-        <ul >
-          
-          <button [disabled]="user.activated == '0'" [routerLink]="'/edituser/' + user.id" class="btn btn-info">
-            <i class="fas fa-edit"></i>
-          </button> &nbsp;
-          <a (click)="deleteClick(user.id)" style="color: red;">
-            <i class="fas fa-trash-alt"></i>
-            </a>
-          <!--  <a [routerLink]="'/edituser/' + user.id" [disabled]= "user.activated == '0'">
-              <i class="fas fa-edit"></i>
-             </a> &nbsp;
-             <a (click)="deleteClick(user.id)" style="color: red;">
-              <i class="fas fa-trash-alt"></i>
-             </a>-->
-        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-        
-        </td>
-      </tr>
-     
-    </tbody>
-  </table>
+<!-- Modal for adding/editing user -->
+<div *ngIf="showModal" class="modal" tabindex="-1" role="dialog" style="display: block; background: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ isEditMode ? 'Modifier User' : 'Ajouter User' }}</h5>
+        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="firstname">First Name*</label>
+            <input type="text" class="form-control" id="firstname" placeholder="First Name" formControlName="firstname" />
+          </div>
+          <div class="form-group">
+            <label for="lastname">Last Name*</label>
+            <input type="text" class="form-control" id="lastname" placeholder="Last Name" formControlName="lastname" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address*</label>
+            <input type="email" class="form-control" id="email" placeholder="Email Address" formControlName="email" />
+          </div>
+          <div *ngIf="!isEditMode">
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password" />
+            </div>
+            <div class="form-group">
+              <label for="roleId">Role</label>
+              <select class="form-control" formControlName="roleId">
+                <option [value]="1">ChefMagasin</option>
+                <option [value]="2">Magasinier</option>
+                <option [value]="3">Client</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="magasinId">Magasin</label>
+              <select class="form-control" formControlName="magasinId">
+                <option *ngFor="let mg of listeMagasins" [value]="mg.id">{{ mg.nom }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" *ngIf="isEditMode">
+            <label for="activated">Activated:</label>
+            <select class="form-control" formControlName="activated">
+              <option value="1">Activated</option>
+              <option value="0">Desactiver</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Modifier' : 'Ajouter' }}</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

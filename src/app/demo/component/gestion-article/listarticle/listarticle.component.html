@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,42 +8,104 @@
 </head>
 <body>
 
-
 <div style="text-align: right">
-<button routerLink="/addarticle" class="btn btn-success">Ajouter article</button>
+  <button class="btn btn-success" (click)="openModal('add')">Ajouter Article</button>
 </div>
 <br>
 <div class="input-group input-group-alternative">
- <!-- <i class="ti ti-search"></i> -->  
-    <input class="form-control" placeholder="Recherche" type="text" [(ngModel)]="code" (input)="Search()" >
-  </div>
-  <br>
-  <br>
+  <input class="form-control" placeholder="Recherche" type="text" [(ngModel)]="code" (input)="Search()">
+</div>
+<br>
+<br>
 <div class="row">
   <div class="col-md-6 col-xl-4" *ngFor="let art of listArticle">
     <div class="card mb-3">
       <img class="card-img-top img-responsive"
-      [src]="'http://localhost:8099/StockMnager/api/article/Imgarticles/' + art.id" 
-        style = "height :200px;width:fil-content"
-       alt="Card image cap">
+        [src]="'http://localhost:8099/StockMnager/api/article/Imgarticles/' + art.id" 
+        style="height:200px;width:full-content" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{art.code}}</h5>
         <p class="card-text">{{art.designation}}</p>
         <p class="card-text">Prix: {{art.prix}}.000 DT</p>
         <p class="card-text"><small class="text-muted">Taux de TVA: {{art.tauxTva}}</small></p>
-
-
-        <a  [routerLink]="'/editarticle/' + art.id" style="color: blue;">
+        <a (click)="openModal('edit', art.id)" style="color: blue;">
           <i class="fas fa-edit"></i>
-         </a> &nbsp;
-         <a (click)="deleteClick(art.id)" style="color: red;">
+        </a> &nbsp;
+        <a (click)="deleteClick(art.id)" style="color: red;">
           <i class="fas fa-trash-alt"></i>
-         </a>
-
-       
+        </a>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Modal for adding/editing article -->
+<div *ngIf="showModal" class="modal" tabindex="-1" role="dialog" style="display: block; background: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ modalTitle }}</h5>
+        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="code">Code</label>
+            <input type="text" class="form-control" id="code" formControlName="code" placeholder="Code" [ngClass]="{ 'is-invalid': submitted && f.code.errors }">
+            <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+              <div *ngIf="f.code.errors.required">Code est obligatoire</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="prix">Prix</label>
+            <input type="number" step="0.01" class="form-control" id="prix" formControlName="prix" placeholder="Entrez le prix" [ngClass]="{ 'is-invalid': submitted && f.prix.errors }">
+            <div *ngIf="submitted && f.prix.errors" class="invalid-feedback">
+              <div *ngIf="f.prix.errors.required">Prix est obligatoire</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="tauxTva">Taux TVA</label>
+            <input type="number" step="0.01" class="form-control" id="tauxTva" formControlName="tauxTva" placeholder="Entrez le taux de TVA" [ngClass]="{ 'is-invalid': submitted && f.tauxTva.errors }">
+            <div *ngIf="submitted && f.tauxTva.errors" class="invalid-feedback">
+              <div *ngIf="f.tauxTva.errors.required">Taux TVA est obligatoire</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="designation">Désignation</label>
+            <textarea class="form-control" id="designation" rows="3" formControlName="designation" [ngClass]="{ 'is-invalid': submitted && f.designation.errors }"></textarea>
+            <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+              <div *ngIf="f.designation.errors.required">Désignation est obligatoire</div>
+            </div>
+          </div>
+          <div *ngIf="!isEditMode">
+            <div class="form-group">
+              <label for="categoryId">Sélectionner une catégorie</label>
+              <select class="form-control" id="categoryId" formControlName="categoryId">
+                <option *ngFor="let cat of listeCategorie" [value]="cat.id">{{ cat.code }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="magasinId">Sélectionner un magasin</label>
+              <select class="form-control" id="magasinId" formControlName="magasinId">
+                <option *ngFor="let mg of listeMagasin" [value]="mg.id">{{ mg.nom }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="file" accept="image/*" (change)="onSelectFile($event)">
+              <img [src]="imgURL" height="200" *ngIf="imgURL">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

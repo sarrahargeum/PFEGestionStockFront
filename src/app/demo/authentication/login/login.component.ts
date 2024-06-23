@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.datauser=localStorage.getItem("datauser")
-    this.dataJson=JSON.parse(this.datauser)
+    // this.datauser=localStorage.getItem("datauser")
+    // this.dataJson=JSON.parse(this.datauser)
    this.datauser=JSON.parse(localStorage.getItem("datauser"))
 
   }

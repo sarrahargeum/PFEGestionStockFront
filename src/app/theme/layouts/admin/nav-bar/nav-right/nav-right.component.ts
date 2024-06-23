@@ -1,5 +1,5 @@
 // angular import
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './nav-right.component.html',
   styleUrls: ['./nav-right.component.scss']
 })
-export class NavRightComponent {
+export class NavRightComponent implements OnInit {
+  datauser:any
+  nameuser:string
   constructor(private router: Router) {}
 
   // public method
@@ -20,14 +22,21 @@ export class NavRightComponent {
  
   ];
 
- 
+ ngOnInit(){
+  this.datauser=JSON.parse(localStorage.getItem("datauser"))
+  this.nameuser=this.datauser.user.firstname+' '+this.datauser.user.lastname
+  
+  
+ }
   navigateTo(route: string) {
     this.router.navigate([route]);
   }
-
+  goToProfil(){
+    this.router.navigate(['gestion-profil/'+this.datauser.user.id])
+    
+  }
 
   LogOut(){
-    console.log("test");
     this.router.navigate(['login'])
     localStorage.clear();
   }

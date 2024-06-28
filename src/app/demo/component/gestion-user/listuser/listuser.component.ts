@@ -37,7 +37,7 @@ export class ListuserComponent  implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       roleId: [null, Validators.required],
       magasinId: [null, Validators.required],
-      activated: [1, Validators.required]
+    
     });
   }
 
@@ -71,7 +71,7 @@ export class ListuserComponent  implements OnInit {
     } else {
       this.id = null;
       this.userForm.reset();
-      this.userForm.controls['activated'].setValue(1);
+      //this.userForm.controls['activated'].setValue(1);
     }
   }
 

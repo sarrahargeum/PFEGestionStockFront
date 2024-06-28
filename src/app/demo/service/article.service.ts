@@ -14,7 +14,7 @@ export class ArticleService {
   private apiUrl = 'http://localhost:8099/StockMnager/api/article';
 
   getArticle(): Observable<Article[]>{
-    return this.http.get<Article[]>("http://localhost:8099/StockMnager/api/article/all");
+    return this.http.get<Article[]>("http://localhost:8099/StockMnager/api/article/allArticle");
     
   }
   

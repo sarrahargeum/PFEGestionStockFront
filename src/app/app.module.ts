@@ -24,6 +24,7 @@ import { LoginComponent } from './demo/authentication/login/login.component';
 import { AuthenticationService } from './demo/service/authentication.service';
 import { DialogModule } from 'primeng/dialog';
 import { RouterModule } from '@angular/router';
+import { PaginationComponent } from './demo/component/pagination/pagination.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { RouterModule } from '@angular/router';
     NavCollapseComponent,
     NavGroupComponent,
     NavItemComponent ,
+  
       
     
   
@@ -48,6 +50,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,ReactiveFormsModule, HttpClientModule,DialogModule,RouterModule],
     providers: [
       AuthenticationService,],
+   
   bootstrap: [AppComponent]
 })
 

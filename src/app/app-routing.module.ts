@@ -18,6 +18,8 @@ import { ListfournisseurComponent } from './demo/component/gestion-fournisseur/l
 import { GestionProfilComponent } from './demo/component/gestion-profil/gestion-profil.component';
 import { ListmagasinComponent } from './demo/component/gestion-magasin/listmagasin/listmagasin.component';
 import { ListuserComponent } from './demo/component/gestion-user/listuser/listuser.component';
+import { MvtStockComponent } from './demo/component/mvt-stock/mvt-stock.component';
+import { DetailArticleComponent } from './demo/component/gestion-article/detail-article/detailArticleComponent';
 
 const routes: Routes = [
   {
@@ -45,7 +47,7 @@ const routes: Routes = [
 
     ///  gestion-article
       { path:'listarticle', component:ListarticleComponent,canActivate:[ ApplicationGuardService]},
-      
+      { path:"detailArticle", component:DetailArticleComponent , canActivate:[ApplicationGuardService]},
 
     // category
       { path: 'listcategory',component:ListcategoryComponent,canActivate:[ ApplicationGuardService]},
@@ -61,7 +63,10 @@ const routes: Routes = [
       ///Magasin
       { path: 'listmagasin', component:ListmagasinComponent  ,canActivate:[ ApplicationGuardService]},
 
+
+      {path:'mvtStock', component:MvtStockComponent , canActivate:[ApplicationGuardService]}
       
+
     ]
   }
 

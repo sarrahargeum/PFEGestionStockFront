@@ -13,13 +13,13 @@ import { MagasinService } from 'src/app/demo/service/magasin.service';
   selector: 'app-detail-article',
   templateUrl: './detail-article.component.html',
   styleUrls: ['./detail-article.component.scss'],
-  standalone: true,
+ /* standalone: true,
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ]*/
 })
 export class DetailArticleComponent implements OnInit {
   @Input() article: Article;

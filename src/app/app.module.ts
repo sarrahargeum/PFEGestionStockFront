@@ -25,6 +25,8 @@ import { AuthenticationService } from './demo/service/authentication.service';
 import { DialogModule } from 'primeng/dialog';
 import { RouterModule } from '@angular/router';
 import { PaginationComponent } from './demo/component/pagination/pagination.component';
+import { DetailArticleComponent } from './demo/component/gestion-article/detail-article/detailArticleComponent';
+import { MvtStockComponent } from './demo/component/mvt-stock/mvt-stock.component';
 
 
 @NgModule({
@@ -40,8 +42,8 @@ import { PaginationComponent } from './demo/component/pagination/pagination.comp
     NavCollapseComponent,
     NavGroupComponent,
     NavItemComponent ,
-  
-      
+DetailArticleComponent,
+    MvtStockComponent  
     
   
    

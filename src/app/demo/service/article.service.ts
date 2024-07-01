@@ -11,31 +11,31 @@ export class ArticleService {
   host :string = "http://localhost:8099";
 
   constructor(private http: HttpClient) { }
-  private apiUrl = 'http://localhost:8099/StockMnager/api/article';
+  private baseUrl = 'http://localhost:8099/StockMnager/api/article';
 
   getArticle(): Observable<Article[]>{
-    return this.http.get<Article[]>("http://localhost:8099/StockMnager/api/article/allArticle");
+    return this.http.get<Article[]>(`${this.baseUrl}/allArticle`);
     
   }
   
 
   ajoutArticle(formData:any): Observable<any> {
 
-    return this.http.post("http://localhost:8099/StockMnager/api/article/add",formData);
+    return this.http.post(`${this.baseUrl}/add`,formData);
   }
 
   deleteArticle(id: any){
-    return this.http.delete(`http://localhost:8099/StockMnager/api/article/delete/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.baseUrl}/delete/${id}`, { responseType: 'text' });
   }
 
 
   updateArticle(id: number, article: Article): Observable<Article> {
-    const url = `http://localhost:8099/StockMnager/api/article/update/${id}`;
+    const url = `${this.baseUrl}/update/${id}`;
    return this.http.put<Article>(url, article);
    }
 
    retrieveArticle(id: any): Observable<Article> {
-    return this.http.get<Article>(`http://localhost:8099/StockMnager/api/article/retrieve-article/${id}`);
+    return this.http.get<Article>(`${this.baseUrl}/retrieve-article/${id}`);
   }
 
 }

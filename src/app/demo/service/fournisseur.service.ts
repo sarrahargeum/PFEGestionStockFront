@@ -7,29 +7,30 @@ import { Fournisseur } from '../modals/fournisseur';
   providedIn: 'root'
 })
 export class FournisseurService {
+  private baseUrl = 'http://localhost:8099/StockMnager/api/fournisseur';
 
   constructor(private http: HttpClient) { }
 
 
 
   getFournisseur(): Observable<Fournisseur[]> {
-    return this.http.get<Fournisseur[]>("http://localhost:8099/StockMnager/api/fournisseur/all");
+    return this.http.get<Fournisseur[]>(`${this.baseUrl}/all`);
   }
 
   postFournisseur(four: any) {
-    return this.http.post("http://localhost:8099/StockMnager/api/fournisseur/addFour", four);
+    return this.http.post(`${this.baseUrl}/addFour`, four);
   }
 
   retrieveFournisseur(id: any): Observable<Fournisseur> {
-    return this.http.get<Fournisseur>(`http://localhost:8099/StockMnager/api/fournisseur/retrieve-fournisseur/${id}`);
+    return this.http.get<Fournisseur>(`${this.baseUrl}/retrieve-fournisseur/${id}`);
   }
 
   updateFournisseur(id: number, fournisseur: Fournisseur): Observable<Fournisseur> {
-    const url = `http://localhost:8099/StockMnager/api/fournisseur/update/${id}`;
+    const url = `${this.baseUrl}/update/${id}`;
    return this.http.put<Fournisseur>(url, fournisseur);
    }
 
   deletefourniseur(id: any) {
-    return this.http.delete(`http://localhost:8099/StockMnager/api/fournisseur/delete/${id}`);
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 }

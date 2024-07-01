@@ -13,24 +13,23 @@ export interface NavigationItem {
   target?: boolean;
   breadcrumbs?: boolean;
   children?: NavigationItem[];
+  sousMenu?: NavigationItem[];
   link?: string;
   description?: string;
   path?:string;
+  active?: boolean;
   requiredRoles?: number[];
 }
 
-export const Admin: NavigationItem[] = [  
+export const Admin: NavigationItem[] = [
   {
-        id: 'dashboard',
-        title: 'Dashboard',
-        type: 'group',
-        classes: 'nav-item',
-        path: '/dashboard/default',
-        icon: 'ti ti-dashboard',
-      
+    id: 'dashboard',
+    title: 'Dashboard',
+    type: 'group',
+    classes: 'nav-item',
+    path: '/dashboard/default',
+    icon: 'ti ti-dashboard',
   },
- 
-     
   {
     id: 'Article',
     title: 'Article',
@@ -71,7 +70,32 @@ export const Admin: NavigationItem[] = [
     path: '/listmagasin',
     icon: 'ti ti-loader'
   },
-]
+  /* {
+    id: 'Bon Livraison',
+    title: 'Bon Livraison',
+    type: 'collapse',
+    icon: 'fas fa-users',
+    sousMenu: [ */
+      {
+        id: 'Bon Entree',
+        title: 'Bon Entree',
+        type: 'item',
+        classes: 'nav-item',
+        icon: 'fas fa-users',
+        path: '/bonEntree'
+      },
+      {
+        id: 'Bon Sortie',
+        title: 'Bon Sortie',
+        type: 'item',
+        classes: 'nav-item',
+        icon: 'fas fa-truck',
+        path: '/bonSortie'
+      }
+    ]
+/*   }
+];
+ */
   
 
 export const ChefMagasin: NavigationItem[] = [

@@ -20,11 +20,9 @@ import { NavItemComponent } from './theme/layouts/admin/navigation/nav-content/n
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './demo/authentication/login/login.component';
 import { AuthenticationService } from './demo/service/authentication.service';
 import { DialogModule } from 'primeng/dialog';
 import { RouterModule } from '@angular/router';
-import { PaginationComponent } from './demo/component/pagination/pagination.component';
 import { DetailArticleComponent } from './demo/component/gestion-article/detail-article/detailArticleComponent';
 import { MvtStockComponent } from './demo/component/mvt-stock/mvt-stock.component';
 
@@ -42,7 +40,7 @@ import { MvtStockComponent } from './demo/component/mvt-stock/mvt-stock.componen
     NavCollapseComponent,
     NavGroupComponent,
     NavItemComponent ,
-DetailArticleComponent,
+    DetailArticleComponent,
     MvtStockComponent  
     
   

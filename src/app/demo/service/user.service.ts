@@ -7,25 +7,26 @@ import { User } from '../modals/user';
   providedIn: 'root'
 })
 export class UserService {
+  private baseUrl = 'http://localhost:8099/StockMnager/api/user';
 
   constructor(private http: HttpClient) { }
 
 
   getUser(): Observable<User[]>{
-    return this.http.get<User[]>("http://localhost:8099/StockMnager/api/user/all");
+    return this.http.get<User[]>(`${this.baseUrl}/all`);
   }
 
 
   updateUser(id: number,user: User) {
-    return this.http.put(`http://localhost:8099/StockMnager/api/user/updateUser/${id}`, user);
+    return this.http.put(`${this.baseUrl}/updateUser/${id}`, user);
   }
 
   deleteUser(id: any){
-    return this.http.delete(`http://localhost:8099/StockMnager/api/user/delete/${id}`);
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 
   retrieveUser(id: any): Observable<User> {
-    return this.http.get<User>(`http://localhost:8099/StockMnager/api/user/retrieve-user/${id}`);
+    return this.http.get<User>(`${this.baseUrl}/retrieve-user/${id}`);
   }
 
   active(userId: number, activated: boolean){

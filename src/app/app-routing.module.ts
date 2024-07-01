@@ -20,6 +20,8 @@ import { ListmagasinComponent } from './demo/component/gestion-magasin/listmagas
 import { ListuserComponent } from './demo/component/gestion-user/listuser/listuser.component';
 import { MvtStockComponent } from './demo/component/mvt-stock/mvt-stock.component';
 import { DetailArticleComponent } from './demo/component/gestion-article/detail-article/detailArticleComponent';
+import { BonEntreeComponent } from './demo/component/bon-livraison/bon-entree/bon-entree.component';
+import { BonSortieComponent } from './demo/component/bon-livraison/bon-sortie/bon-sortie.component';
 
 const routes: Routes = [
   {
@@ -64,8 +66,13 @@ const routes: Routes = [
       { path: 'listmagasin', component:ListmagasinComponent  ,canActivate:[ ApplicationGuardService]},
 
 
-      {path:'mvtStock', component:MvtStockComponent , canActivate:[ApplicationGuardService]}
-      
+      {path:'mvtStock', component:MvtStockComponent , canActivate:[ApplicationGuardService]},
+
+
+      {path:'bonEntree', component:BonEntreeComponent , canActivate:[ApplicationGuardService]},
+      {path:'bonSortie', component:BonSortieComponent , canActivate:[ApplicationGuardService]}
+
+
 
     ]
   }

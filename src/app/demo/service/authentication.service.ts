@@ -13,6 +13,8 @@ import { User } from '../modals/user';
 })
 export class AuthenticationService {
 
+  private baseUrl = 'http://localhost:8099/StockMnager/api/auth';
+
   constructor(private http: HttpClient,
           private router: Router
   ) {
@@ -21,7 +23,7 @@ export class AuthenticationService {
  
 
   authenticate(login: any): Observable<any> {
-    return this.http.post<any>("http://localhost:8099/StockMnager/api/auth/authenticate", login);
+    return this.http.post<any>(`${this.baseUrl}/authenticate`, login);
   }
 
 
@@ -30,7 +32,7 @@ export class AuthenticationService {
   }
 
     register(RegisterRequest:any):Observable<any>{
-      return this.http.post("http://localhost:8099/StockMnager/api/auth/register", RegisterRequest);
+      return this.http.post(`${this.baseUrl}/register`, RegisterRequest);
     }
     
  

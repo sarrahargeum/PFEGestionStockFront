@@ -26,6 +26,7 @@ export class ListfournisseurComponent   implements OnInit {
   modalTitle = 'Ajouter Fournisseur';
   id: number | null = null;
   listeMagasin: Array<Magasin> = [];
+  
 
   constructor(
     private fournisseurService: FournisseurService,

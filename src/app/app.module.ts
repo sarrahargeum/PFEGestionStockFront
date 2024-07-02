@@ -24,7 +24,8 @@ import { AuthenticationService } from './demo/service/authentication.service';
 import { DialogModule } from 'primeng/dialog';
 import { RouterModule } from '@angular/router';
 import { DetailArticleComponent } from './demo/component/gestion-article/detail-article/detailArticleComponent';
-import { MvtStockComponent } from './demo/component/mvt-stock/mvt-stock.component';
+import { MvtStockComponent } from './demo/component/gestion-article/mvt-stock/mvt-stock.component';
+import { DetailBonEntreeComponent } from './demo/component/bon-livraison/detail-bon-entree/detail-bon-entree.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MvtStockComponent } from './demo/component/mvt-stock/mvt-stock.componen
     NavGroupComponent,
     NavItemComponent ,
     DetailArticleComponent,
-    MvtStockComponent  
+    MvtStockComponent ,
+    DetailBonEntreeComponent 
     
   
    

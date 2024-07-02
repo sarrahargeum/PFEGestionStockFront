@@ -138,22 +138,3 @@ export const Magasinier: NavigationItem[] = [
   
 ];
 
-export const Client: NavigationItem[] = [
-  {
-    id: 'Article',
-    title: 'Article',
-    type: 'item',
-    classes: 'nav-item',
-    path: '/listarticle',
-    icon: 'ti ti-credit-card'
-  },
-  {
-    id: 'Category',
-    title: 'Category',
-    type: 'item',
-    classes: 'nav-item',
-    path: '/listcategory',
-    icon: 'ti ti-loader'
-  },
- 
-];

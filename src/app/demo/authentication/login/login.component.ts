@@ -51,8 +51,6 @@ export class LoginComponent implements OnInit{
         } else if (data.roles.id === 2) {
           this.router.navigate(['listcategory']);
         } else if (data.roles.id === 3) {
-          this.router.navigate(['listfournisseur']);
-        } else if (data.roles.id === 4) {
           this.router.navigate(['listuser']);
         } else {
           alert(data.errorMessage || 'Unknown role');

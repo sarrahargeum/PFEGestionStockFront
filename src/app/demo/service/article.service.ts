@@ -8,7 +8,7 @@ import { Article } from '../modals/article';
 })
 export class ArticleService {
 
-  host :string = "http://localhost:8099";
+  
 
   constructor(private http: HttpClient) { }
   private baseUrl = 'http://localhost:8099/StockMnager/api/article';

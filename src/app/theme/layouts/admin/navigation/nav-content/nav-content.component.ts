@@ -3,7 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Location, LocationStrategy } from '@angular/common';
 
 // project import
-import { Admin, ChefMagasin, Client, Magasinier } from '../navigation';
+import { Admin, ChefMagasin, Magasinier } from '../navigation';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
@@ -58,16 +58,10 @@ export class NavContentComponent implements OnInit {
         listTitle
       );
     }
-    else if(this.infoUser?.roles.id==4){
+    else if(this.infoUser?.roles.id==3){
       this.listTitles = Admin.filter(listTitle =>
         listTitle
       );
-    }else{
-      
-      this.listTitles = Client.filter(listTitle =>
-        listTitle
-      );
-        
     }
     
   

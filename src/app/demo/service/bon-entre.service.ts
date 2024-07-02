@@ -9,7 +9,7 @@ import { EtatCommande } from '../modals/EtatCommande';
 })
 export class BonEntreService {
 
-  private baseUrl = 'http://localhost:8099/api/BonEntreFournisseur';
+  private baseUrl = 'http://localhost:8099/StockMnager/api/BonEntree';
 
   constructor(private http: HttpClient) { }
 

@@ -26,6 +26,7 @@ import { RouterModule } from '@angular/router';
 import { DetailArticleComponent } from './demo/component/gestion-article/detail-article/detailArticleComponent';
 import { MvtStockComponent } from './demo/component/gestion-article/mvt-stock/mvt-stock.component';
 import { DetailBonEntreeComponent } from './demo/component/bon-livraison/detail-bon-entree/detail-bon-entree.component';
+import { ListarticleComponent } from './demo/component/gestion-article/listarticle/listarticle.component';
 
 
 @NgModule({
@@ -44,7 +45,6 @@ import { DetailBonEntreeComponent } from './demo/component/bon-livraison/detail-
     DetailArticleComponent,
     MvtStockComponent ,
     DetailBonEntreeComponent 
-    
   
    
   ],

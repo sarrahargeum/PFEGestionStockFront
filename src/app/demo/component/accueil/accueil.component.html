@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Navbar with dropdown</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="mynavbar">
+    <br>
+    <div class="mynavbar-left">
+      <a href="javascript:"><img src="assets/images/logo.jpeg" alt="logo" style="width: 150px; height: auto;"/></a>
+    </div>
+    <div class="mynavbar-right">
+      <ul>
+        <li><a>Home</a></li>
+        <li><a href="#">Se Connecter</a></li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br>
+  <div>
+    <div class="row">
+      <div class="col-md-6 col-xl-4" *ngFor="let art of listArticle">
+        <div class="card mb-3">
+          <img class="card-img-top img-responsive" [src]="'http://localhost:8099/StockMnager/api/article/Imgarticles/' + art.id" style="height:200px;width:full-content" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{art.code}}</h5>
+            <p class="card-text">{{art.designation}}</p>
+            <p class="card-text">Prix: {{art.prix}}.000 DT</p>
+            <p class="card-text"><small class="text-muted">Taux de TVA: {{art.tauxTva}}</small></p>
+            <button class="btn btn-success" data-toggle="modal" data-target="#commandeModal" (click)="openModal(art.id)">Commander</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="commandeModal" tabindex="-1" role="dialog" aria-labelledby="commandeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="commandeModalLabel">Commander</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="clientName">Nom du client</label>
+              <input type="text" class="form-control" id="clientName" placeholder="Entrez votre nom">
+            </div>
+            <div class="form-group">
+              <label for="adresse">Adresse du client</label>
+              <input type="text" class="form-control" id="adresse" placeholder="Entrez votre adresse">
+            </div>
+            <div class="form-group">
+
+              <label for="numTel">Numero du client</label>
+              <input type="text" class="form-control" id="numTel" placeholder="Entrez votre numéro de téléphone">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-primary">Envoyer la commande</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div *ngIf="showModal" class="modal" tabindex="-1" role="dialog" style="display: block; background: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ modalTitle }}</h5>
+          <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form >
+            <div class="form-group">
+              <label for="nom">Nom du client</label>
+              <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Nom du client" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+              <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                <div *ngIf="f.nom.errors.required">nom est obligatoire</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="adresse">Adresse du client</label>
+              <input type="text" step="0.01" class="form-control" id="adresse" formControlName="adresse" placeholder="Entrez le adresse" [ngClass]="{ 'is-invalid': submitted && f.adresse.errors }">
+              <div *ngIf="submitted && f.adresse.errors" class="invalid-feedback">
+                <div *ngIf="f.adresse.errors.required">adresse est obligatoire</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="numTel">Numero du client</label>
+              <input type="text" step="0.01" class="form-control" id="numTel" formControlName="numTel" placeholder="Entrez le numTel" [ngClass]="{ 'is-invalid': submitted && f.numTel.errors }">
+              <div *ngIf="submitted && f.numTel.errors" class="invalid-feedback">
+                <div *ngIf="f.numTel.errors.required">numTel est obligatoire</div>
+              </div>
+            </div>
+        
+            <!-- <div *ngIf="!isEditMode">
+              <div class="form-group">
+                <label for="categoryId">Sélectionner une catégorie</label>
+                <select class="form-control" id="categoryId" formControlName="categoryId">
+                  <option *ngFor="let cat of listeCategorie" [value]="cat.id">{{ cat.code }}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="magasinId">Sélectionner un magasin</label>
+                <select class="form-control" id="magasinId" formControlName="magasinId">
+                  <option *ngFor="let mg of listeMagasin" [value]="mg.id">{{ mg.nom }}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="file" accept="image/*" (change)="onSelectFile($event)">
+                <img [src]="imgURL" height="200" *ngIf="imgURL">
+              </div>
+            </div> -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Enregistrer</button>
+              <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

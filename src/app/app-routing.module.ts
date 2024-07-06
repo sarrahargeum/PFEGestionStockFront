@@ -23,7 +23,6 @@ import { DetailArticleComponent } from './demo/component/gestion-article/detail-
 import { BonEntreeComponent } from './demo/component/bon-livraison/bon-entree/bon-entree.component';
 import { BonSortieComponent } from './demo/component/bon-livraison/bon-sortie/bon-sortie.component';
 import { DetailBonEntreeComponent } from './demo/component/bon-livraison/detail-bon-entree/detail-bon-entree.component';
-import { AddBonEntreeComponent } from './demo/component/bon-livraison/add-bon-entree/add-bon-entree.component';
 
 const routes: Routes = [
   {
@@ -74,7 +73,6 @@ const routes: Routes = [
       {path:'bonEntree', component:BonEntreeComponent , canActivate:[ApplicationGuardService]},
       {path:'bonSortie', component:BonSortieComponent , canActivate:[ApplicationGuardService]},
 
-      {path:'addBonEntree', component:AddBonEntreeComponent , canActivate:[ApplicationGuardService]},
 
       {path:'detailBonEntree', component:DetailBonEntreeComponent , canActivate:[ApplicationGuardService]},
 

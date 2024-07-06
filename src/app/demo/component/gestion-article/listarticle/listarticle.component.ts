@@ -58,8 +58,8 @@ export class ListarticleComponent implements OnInit {
   refreshArticleList() {
     this.articleService.getArticle().subscribe(data => {
       this.listArticle = data;
-      this.categorieService.getCategory().subscribe(data => this.listeCategorie = data);
-      this.magasinService.getMagasin().subscribe(data => this.listeMagasin = data);
+      this.categorieService.getCategory().subscribe(categ => this.listeCategorie = categ);
+      this.magasinService.getMagasin().subscribe(maga => this.listeMagasin = maga);
     });
   }
 
@@ -120,19 +120,12 @@ export class ListarticleComponent implements OnInit {
       console.log(this.articleForm.value);
 
       this.articleService.updateArticle(this.id, this.articleForm.value).subscribe(() => {
-        this.fetchData();
-        this.closeModal();
+        this.refreshArticleList();
+                this.closeModal();
       });
     }
   }
-  fetchData() {
-    
-    
-    this.categorieService.getCategory().subscribe(data => this.listeCategorie = data);
-    this.magasinService.getMagasin().subscribe(data => this.listeMagasin = data);
-
-   
-  }
+ 
   onSelectFile(event) {  if(event.target.files.length>0)
     {
       const file = event.target.files[0];
@@ -155,9 +148,12 @@ export class ListarticleComponent implements OnInit {
   deleteClick(id: number) {
     if (confirm('Are you sure to delete this article?')) {
       this.articleService.deleteArticle(id).subscribe(() => {
-        this.fetchData();
+        this.refreshArticleList();
+      
       });
+      
     }
+ 
   }
 
   get f() {

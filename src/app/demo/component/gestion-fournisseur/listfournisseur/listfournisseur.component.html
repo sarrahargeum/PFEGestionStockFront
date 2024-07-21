@@ -28,6 +28,7 @@
         <th scope="col">Prenom</th>
         <th scope="col">Adresse</th>
         <th scope="col">Numéro teléphone</th>
+        <th scope="col">Mail</th>
         <th scope="col">Magasin</th>
         <th class="text-center">Action</th>
       </tr>
@@ -38,6 +39,7 @@
         <td>{{four.prenom}}</td>
         <td>{{four.adresse}}</td>
         <td>{{four.numTel}}</td>
+        <td>{{four.mail}}</td>
         <td>{{four.magasin.nom}}</td>
         <td>
           <a (click)="openModal('edit', four.id)" style="color: blue;">
@@ -95,6 +97,14 @@
                 <div *ngIf="f.numTel.errors.required">Numéro Téléphone est obligatoire</div>
               </div>
             </div>
+            <div class="form-group">
+              <label >Mail</label>
+              <input type="email" class="form-control" id="mail" formControlName="mail" placeholder="mail" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }">
+              <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+                <div *ngIf="f.mail.errors.required">mail est obligatoire</div>
+              </div>
+            </div>
+
             <div class="form-group">
               <label for="magasinId">Selectionner une Magasin</label>
               <select class="form-control" id="magasinId" formControlName="magasinId">

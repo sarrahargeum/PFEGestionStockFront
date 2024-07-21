@@ -36,27 +36,25 @@ export class ListfournisseurComponent   implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.magasinService.getMagasin().subscribe(magasins => {
-      this.listeMagasin = magasins;
-    });
-
-    this.fournisseurService.getFournisseur().subscribe((data: Fournisseur[]) => {
-      this.listfournisseur = data;
-    });
-
-    this.fournisseurForm = this.formBuilder.group({
+      this.fournisseurForm = this.formBuilder.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       adresse: ['', Validators.required],
       numTel: ['', [Validators.required, Validators.minLength(5)]],
       magasinId: ['', Validators.required],
+      mail: ['', [Validators.required, Validators.email]],
     });
+    this.refrechFournisseurList();
   }
 
   refrechFournisseurList() {
+
     this.fournisseurService.getFournisseur().subscribe(data => {
       this.listfournisseur = data;
+      this.magasinService.getMagasin().subscribe(maga => this.listeMagasin = maga);
     });
+
+   
   }
 
   deleteClick(id: number) {
@@ -94,7 +92,8 @@ export class ListfournisseurComponent   implements OnInit {
           prenom: fournisseur.prenom,
           adresse: fournisseur.adresse,
           numTel: fournisseur.numTel,
-          magasinId: fournisseur.magasin.id
+          mail: fournisseur.mail,
+          magasinId: fournisseur.magasin.nom
         });
       });
     }
@@ -117,7 +116,7 @@ export class ListfournisseurComponent   implements OnInit {
      prenom: this.f.prenom.value,
      adresse: this.f.adresse.value,
      numTel: this.f.numTel.value,
-     
+     mail: this.f.mail.value,
      magasin: {
        id: this.f.magasinId.value
 

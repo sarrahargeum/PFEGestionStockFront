@@ -6,6 +6,7 @@ export class Fournisseur {
     prenom: string;
     adresse:string;
     numTel:string;
+    mail:string
     magasin:Magasin
 
 

@@ -39,7 +39,8 @@ export class ListmagasinComponent implements OnInit {
       nom: ['', Validators.required],
       description: ['', Validators.required],
       email: ['', Validators.required],
-      numTel: ['', Validators.required]
+      numTel: ['', Validators.required],
+      siteWeb: ['', Validators.required],
     });
   }
 
@@ -85,6 +86,7 @@ export class ListmagasinComponent implements OnInit {
           description: magasin.description,
           email: magasin.email,
           numTel: magasin.numTel,
+          siteWeb:magasin.siteWeb
         });
       });
     }

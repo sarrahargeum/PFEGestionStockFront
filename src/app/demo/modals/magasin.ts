@@ -3,7 +3,8 @@ export class Magasin {
     description: string;
     email: string;
     nom:string;
-    numTel:String;
+    numTel:string;
+    siteWeb:string;
  
   
   }

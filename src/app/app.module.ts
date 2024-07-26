@@ -27,9 +27,8 @@ import { DetailArticleComponent } from './demo/component/gestion-article/detail-
 import { MvtStockComponent } from './demo/component/gestion-article/mvt-stock/mvt-stock.component';
 import { DetailBonEntreeComponent } from './demo/component/bon-livraison/detail-bon-entree/detail-bon-entree.component';
 import { ListarticleComponent } from './demo/component/gestion-article/listarticle/listarticle.component';
-import { SocketConfigService } from './demo/service/socket-config.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-//import { SocketIoModule } from 'ngx-socket-io';
+
 
 @NgModule({
   declarations: [
@@ -52,11 +51,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [BrowserModule, AppRoutingModule,SharedModule, BrowserAnimationsModule ,CommonModule,
     FormsModule,ReactiveFormsModule, HttpClientModule,DialogModule,RouterModule, NgbModule,
-   // SocketIoModule.forRoot(SocketConfigService.prototype.getSocketConfig()),
   ],
     providers: [
       AuthenticationService,
-      SocketConfigService
+   
     ],
    
   bootstrap: [AppComponent]

@@ -76,7 +76,7 @@ const routes: Routes = [
 
       {path:'detailBonEntree', component:DetailBonEntreeComponent , canActivate:[ApplicationGuardService]},
 
-
+   
 
     ]
   }

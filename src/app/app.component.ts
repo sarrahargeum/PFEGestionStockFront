@@ -1,5 +1,6 @@
 // angular import
 import { Component, OnInit } from '@angular/core';
+import { WebSocketService } from './demo/service/web-Socket.service';
 
 
 
@@ -13,14 +14,17 @@ export class AppComponent {
 
   // public props
   title = 'gestion Stock';
+  public notifications = 0;
+  constructor(private webSocketService: WebSocketService) {
 
-  constructor() {
   }
 
   ngOnInit() {
-  
+    this.webSocketService.connect();
   }
   
-  
+  sendMessage() {
+    this.webSocketService.sendMessage('World');
+  }
 
 }

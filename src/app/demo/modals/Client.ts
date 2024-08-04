@@ -1,7 +1,9 @@
+import { BonEntreeComponent } from "../component/bon-livraison/bon-entree/bon-entree.component";
 import { BonEntreFournisseur } from "./BonEntreFournisseur";
+import { BonSortieClient } from "./BonSortieClient";
 import { Magasin } from "./magasin";
 
-export class Fournisseur {
+export class Client {
     id: number;
     nom: string;
     prenom: string;
@@ -10,7 +12,7 @@ export class Fournisseur {
     mail:string;
     magasin:Magasin;
     idMagasin:number;
-    bonEntreFournisseur?: Array<BonEntreFournisseur>;
+    bonSortieClients?: Array<BonSortieClient>;
 
 
   }

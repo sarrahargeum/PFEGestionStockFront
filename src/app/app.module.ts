@@ -28,7 +28,7 @@ import { MvtStockComponent } from './demo/component/gestion-article/mvt-stock/mv
 import { DetailBonEntreeComponent } from './demo/component/bon-livraison/detail-bon-entree/detail-bon-entree.component';
 import { ListarticleComponent } from './demo/component/gestion-article/listarticle/listarticle.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { WebSocketService } from './demo/service/web-Socket.service';
 
 @NgModule({
   declarations: [
@@ -50,11 +50,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
    
   ],
   imports: [BrowserModule, AppRoutingModule,SharedModule, BrowserAnimationsModule ,CommonModule,
-    FormsModule,ReactiveFormsModule, HttpClientModule,DialogModule,RouterModule, NgbModule,
+    FormsModule,ReactiveFormsModule, HttpClientModule,DialogModule,RouterModule, NgbModule
   ],
     providers: [
       AuthenticationService,
-   
+      WebSocketService
     ],
    
   bootstrap: [AppComponent]

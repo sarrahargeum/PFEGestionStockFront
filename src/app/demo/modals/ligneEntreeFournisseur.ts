@@ -1,3 +1,4 @@
+import { BonEntreFournisseur } from "./BonEntreFournisseur";
 import { EtatCommande } from "./EtatCommande";
 import { Article } from "./article";
 
@@ -7,7 +8,7 @@ export class LigneEntreeFournisseur {
   quantite: number;
   prixUnitaire: number;
   article: Article;
-  //bonEntreFournisseur: BonEntreFournisseur;
+  bonEntreFournisseur: BonEntreFournisseur;
   etatCommande: EtatCommande;
   idMagasin: number;
 }

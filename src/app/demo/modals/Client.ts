@@ -1,6 +1,4 @@
-import { BonEntreeComponent } from "../component/bon-livraison/bon-entree/bon-entree.component";
-import { BonEntreFournisseur } from "./BonEntreFournisseur";
-import { BonSortieClient } from "./BonSortieClient";
+import { BonSortieClient } from "./BonSortie";
 import { Magasin } from "./magasin";
 
 export class Client {

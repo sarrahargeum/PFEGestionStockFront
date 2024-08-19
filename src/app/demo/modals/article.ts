@@ -1,6 +1,6 @@
 import { Category } from "./category";
-import { LigneEntreeFournisseur } from "./ligneEntreeFournisseur";
-import { LigneSortieClient } from "./ligneSortieClient";
+import { LigneEntree } from "./ligneEntree";
+import { LigneSortie } from "./ligneSortie";
 import { MvtStk } from "./mvtStock";
 
 export class Article {
@@ -11,8 +11,8 @@ export class Article {
     tauxTva :number;
     image :String;
     category: Category;
-    ligneSortieClients?: Array<LigneSortieClient>;
-    ligneEntreeFournisseurs?: Array<LigneEntreeFournisseur>;
+    ligneSortie?: Array<LigneSortie>;
+    ligneEntree?: Array<LigneEntree>;
     mvtStks?: Array<MvtStk>;
   
 }

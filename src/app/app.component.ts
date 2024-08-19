@@ -14,17 +14,17 @@ export class AppComponent {
 
   // public props
   title = 'gestion Stock';
-  public notifications = 0;
+  //public notifications = 0;
   constructor(private webSocketService: WebSocketService) {
 
   }
 
-  ngOnInit() {
+ /* ngOnInit() {
     this.webSocketService.connect();
   }
   
   sendMessage() {
     this.webSocketService.sendMessage('World');
-  }
+  }*/
 
 }

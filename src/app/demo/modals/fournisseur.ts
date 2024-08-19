@@ -1,4 +1,4 @@
-import { BonEntreFournisseur } from "./BonEntreFournisseur";
+import { BonEntree } from "./BonEntree";
 import { Magasin } from "./magasin";
 
 export class Fournisseur {
@@ -10,7 +10,7 @@ export class Fournisseur {
     mail:string;
     magasin:Magasin;
     idMagasin:number;
-    bonEntreFournisseur?: Array<BonEntreFournisseur>;
+    bonEntreFournisseur?: Array<BonEntree>;
 
 
   }

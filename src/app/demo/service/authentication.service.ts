@@ -59,10 +59,25 @@ export class AuthenticationService {
     localStorage.setItem('connectedUser', JSON.stringify(user));
   }
 
-  getConnectedUser(): User {
+ /* getConnectedUser(): User {
     if (localStorage.getItem('connectedUser')) {
-      return JSON.parse(localStorage.getItem('connectedUser') as string);
+      return JSON.parse(localStorage.getItem('connectedUser') as string)
     }
     return null;
+  }*/
+    getConnectedUser(): User | null {
+      const userJson = localStorage.getItem('connectedUser');
+      if (userJson) {
+          try {
+              return JSON.parse(userJson);
+          } catch (error) {
+              console.error('Error parsing connected user from localStorage:', error);
+              // Handle the error or return a default User object
+          }
+      }
+      // Return null or a default User object if the user is not found in localStorage
+      return null;
   }
+  
+
 } 

@@ -82,7 +82,7 @@ export const Admin: NavigationItem[] = [
         type: 'item',
         classes: 'nav-item',
         icon: 'fas fa-users',
-        path: '/bonEntree'
+        path: '/commandesfournisseur'
       },
       {
         id: 'Bon Sortie',
@@ -90,7 +90,7 @@ export const Admin: NavigationItem[] = [
         type: 'item',
         classes: 'nav-item',
         icon: 'fas fa-truck',
-        path: '/bonSortie'
+        path: '/commandesclient'
       }
     ]
 /*   }

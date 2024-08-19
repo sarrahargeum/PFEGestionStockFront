@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Article } from '../modals/article';
+import { ArticleDto } from '../modals/DTO/ArticleDto';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class ArticleService {
   constructor(private http: HttpClient) { }
   private baseUrl = 'http://localhost:8099/StockMnager/api/article';
 
-  getArticle(): Observable<Article[]>{
-    return this.http.get<Article[]>(`${this.baseUrl}/allArticle`);
+  getArticle(): Observable<ArticleDto[]>{
+    return this.http.get<ArticleDto[]>(`${this.baseUrl}/allArticle`);
     
   }
   

@@ -7,11 +7,11 @@ import * as SockJS from 'sockjs-client';
   providedIn: 'root'
 })
 export class WebSocketService {
-  private stompClient: Client;
+//  private stompClient: Client;
 
   constructor() { }
 
-  connect() {
+ /* connect() {
     const socket = new SockJS('http://localhost:8099/ws');
     this.stompClient = new Client({
       webSocketFactory: () => socket as any,
@@ -40,5 +40,5 @@ export class WebSocketService {
       destination: '/app/hello',
       body: message
     });
-  }
+  }*/
 }

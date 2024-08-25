@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { Article } from 'src/app/demo/modals/article';
 import { CategoryService } from 'src/app/demo/service/CategoryService';
 import { ArticleService } from 'src/app/demo/service/article.service';
+import { BonEntreService } from 'src/app/demo/service/bon-entre.service';
 import { MagasinService } from 'src/app/demo/service/magasin.service';
 
 @Component({
@@ -37,7 +38,8 @@ export class ListarticleComponent implements OnInit {
     private formBuilder: FormBuilder,
     private articleService: ArticleService,
     private categorieService: CategoryService,
-    private magasinService: MagasinService
+    private magasinService: MagasinService,
+    private bonEntreeService: BonEntreService
   ) { }
 
   ngOnInit(): void {

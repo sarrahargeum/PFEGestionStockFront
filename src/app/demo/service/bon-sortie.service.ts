@@ -31,7 +31,7 @@ export class BonSortieService {
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/deleteCmd/${id}`);
   }
 
   updateEtatCommande(id: number, etatCommande: EtatCommande): Observable<BonSortieDto> {

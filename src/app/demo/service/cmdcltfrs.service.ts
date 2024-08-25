@@ -28,11 +28,6 @@ export class CmdcltfrsService {
 
    return this.bonSortieService.saveBonSortie(bonSortie);
 }
-   
-  //  console.log('Magasin:', connectedUser?.magasin);
-    
-
-   
 
 
   enregistrerCommandeFournisseur(bonEntree: BonEntreeDto): Observable<BonEntreeDto> {
@@ -67,5 +62,6 @@ export class CmdcltfrsService {
   deleteCmdFour(id: number){
     return this.bonEntreService.delete(id)
   }
+  
     
 }

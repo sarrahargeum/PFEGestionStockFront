@@ -93,7 +93,7 @@ export class ListfournisseurComponent   implements OnInit {
           adresse: fournisseur.adresse,
           numTel: fournisseur.numTel,
           mail: fournisseur.mail,
-          magasinId: fournisseur.magasin.nom
+         // magasinId: fournisseur.magasin.nom
         });
       });
     }

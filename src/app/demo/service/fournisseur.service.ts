@@ -22,12 +22,11 @@ export class FournisseurService {
   }
 
   retrieveFournisseur(id: any): Observable<Fournisseur> {
-    return this.http.get<Fournisseur>(`${this.baseUrl}/retrieve-fournisseur/${id}`);
+    return this.http.get<Fournisseur>(`${this.baseUrl}/${id}`);
   }
 
   updateFournisseur(id: number, fournisseur: Fournisseur): Observable<Fournisseur> {
-    const url = `${this.baseUrl}/update/${id}`;
-   return this.http.put<Fournisseur>(url, fournisseur);
+   return this.http.put<Fournisseur>(`${this.baseUrl}/update/${id}`, fournisseur);
    }
 
   deletefourniseur(id: any) {

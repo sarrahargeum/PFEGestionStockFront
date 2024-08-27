@@ -8,8 +8,8 @@ export class Fournisseur {
     adresse:string;
     numTel:string;
     mail:string;
-    magasin:Magasin;
-    idMagasin:number;
+    //magasin:Magasin;
+   idMagasin:number;
     bonEntreFournisseur?: Array<BonEntree>;
 
 

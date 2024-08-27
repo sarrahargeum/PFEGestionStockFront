@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserService } from '../../service/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-gestion-profil',
@@ -24,6 +25,7 @@ constructor(
   private activatedRoute : ActivatedRoute,
   private router: Router,
   private userService :UserService ,
+  private toastr :ToastrService
 
 
 ) { }
@@ -73,17 +75,20 @@ ngOnInit(): void {
  save(){
   this.userService.updateUser(this.id, this.form.value).subscribe(
     (res:any)=>{
-      console.log(res);
+      //console.log(res);
       // localStorage.setItem('datauser', JSON.stringify(data));
       this.datauser.user=res
       localStorage.setItem('datauser', JSON.stringify(this.datauser));
-      console.log(JSON.parse(localStorage.getItem("datauser")));
+     // console.log(JSON.parse(localStorage.getItem("datauser")));
       this.router.navigateByUrl('/listuser');
       setTimeout(() => {
         location.reload();
       }, 50);
-      
+      this.toastr.success('User update successfully.', 'Success'); 
+    }, error => {
+      this.toastr.error('Failed to update user. Please try again.', 'Error'); 
     }
+    
   );
 }
 

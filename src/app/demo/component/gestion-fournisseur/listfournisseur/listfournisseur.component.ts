@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Fournisseur } from 'src/app/demo/modals/fournisseur';
 import { FournisseurService } from 'src/app/demo/service/fournisseur.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-listfournisseur',
@@ -33,6 +34,7 @@ export class ListfournisseurComponent   implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private magasinService: MagasinService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -61,8 +63,11 @@ export class ListfournisseurComponent   implements OnInit {
     if (confirm('Are you sure to delete this project')) {
       this.fournisseurService.deletefourniseur(id).subscribe(() => {
         this.refrechFournisseurList();
+        this.toastr.success('Fournisseur delete successfully.', 'Success'); 
+      }, error => {
+        this.toastr.error('Failed to delete fournisseur. Please try again.', 'Error'); 
       });
-    }
+        }
   }
 
   Search() {
@@ -93,7 +98,8 @@ export class ListfournisseurComponent   implements OnInit {
           adresse: fournisseur.adresse,
           numTel: fournisseur.numTel,
           mail: fournisseur.mail,
-         // magasinId: fournisseur.magasin.nom
+        //magasinId: fournisseur.magasin.nom
+         magasinId: fournisseur.idMagasin  
         });
       });
     }
@@ -111,30 +117,37 @@ export class ListfournisseurComponent   implements OnInit {
   save() {
     this.submitted = true;
 
-   const fournisseurForm = {
-     nom: this.f.nom.value,
-     prenom: this.f.prenom.value,
-     adresse: this.f.adresse.value,
-     numTel: this.f.numTel.value,
-     mail: this.f.mail.value,
-     magasin: {
-       id: this.f.magasinId.value
+    const fournisseurForm = {
+        nom: this.f.nom.value,
+        prenom: this.f.prenom.value,
+        adresse: this.f.adresse.value,
+        numTel: this.f.numTel.value,
+        mail: this.f.mail.value,
+        idMagasin: this.f.magasinId.value,  
 
-     }
-   };
+    };
 
     if (!this.isEditMode) {
-      this.fournisseurService.postFournisseur(fournisseurForm).subscribe(() => {
-        this.refrechFournisseurList();
-        this.closeModal();
-      });
+        // Create a new Fournisseur
+        this.fournisseurService.postFournisseur(fournisseurForm).subscribe(() => {
+            this.refrechFournisseurList();
+            this.closeModal();
+            this.toastr.success('Fournisseur added successfully.', 'Success');
+        }, error => {
+            this.toastr.error('Failed to add Fournisseur. Please try again.', 'Error');
+        });
     } else if (this.id != null) {
-      this.fournisseurService.updateFournisseur(this.id, this.fournisseurForm.value).subscribe(() => {
-        this.refrechFournisseurList();
-        this.closeModal();
-      });
+        // Update an existing Fournisseur
+        this.fournisseurService.updateFournisseur(this.id,this.fournisseurForm.value).subscribe(() => {
+            this.refrechFournisseurList();
+            this.closeModal();
+            this.toastr.success('Fournisseur updated successfully.', 'Success');
+        }, error => {
+            this.toastr.error('Failed to update Fournisseur. Please try again.', 'Error');
+        });
     }
-  }
+}
+
 
   get f() {
     return this.fournisseurForm.controls;

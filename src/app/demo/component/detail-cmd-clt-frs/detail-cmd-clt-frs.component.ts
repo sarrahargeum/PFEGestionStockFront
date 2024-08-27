@@ -6,6 +6,9 @@ import { BonEntreService } from '../../service/bon-entre.service';
 import { Router } from '@angular/router';
 import { BonSortieService } from '../../service/bon-sortie.service';
 
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-detail-cmd-clt-frs',
@@ -28,11 +31,12 @@ export class DetailCmdCltFrsComponent implements OnInit {
   constructor(private cmdcltfrs: CmdcltfrsService,
     private bonEntreeService:BonEntreService,
     private bonSortieService:BonSortieService,
+    private toastr:ToastrService
   ) { }
 
   ngOnInit(): void {
     this.extractClientFournisseur();
-  
+    
  
   }
   openModal(): void {
@@ -49,26 +53,24 @@ export class DetailCmdCltFrsComponent implements OnInit {
         this.bonEntreeService.updateEtatCommande(this.commande.id, this.newEtatCommande)
           .subscribe(
             response => {
-              console.log('Commande updated successfully with fournisseur');
+            //  console.log('Commande updated successfully with fournisseur');
               this.closeModal(); 
               window.location.reload();
-            },
-            error => {
-              console.error('Error updating commande with fournisseur:', error);
-            }
-          );
+              this.toastr.success('etat update successfully.', 'Success'); 
+            }, error => {
+              this.toastr.error('Failed to update etat livrée. Please try again.', 'Error'); 
+            });
+            
       } else if (this.origin === 'client') {
         this.bonSortieService.updateEtatCommande(this.commande.id, this.newEtatCommande)
           .subscribe(
             response => {
-              console.log('Commande updated successfully with client');
               this.closeModal(); 
               window.location.reload();
-            },
-            error => {
-              console.error('Error updating commande with client:', error);
-            }
-          );
+              this.toastr.success('etat update successfully.', 'Success'); 
+            }, error => {
+              this.toastr.error('Failed to update etat livrée. Please try again.', 'Error'); 
+            });
       }
     }
   }
@@ -79,6 +81,11 @@ deleteBonEntree(id: number): void {let message = '';
   if (this.origin === 'fournisseur') {
     message = 'Are you sure you want to delete this BonEntree?';
     deleteObservable = this.cmdcltfrs.deleteCmdFour(id);
+    this.toastr.success('Bon entree delete successfully.', 'Success'); 
+   error => {
+    this.toastr.error('Failed to delete bon entree. Please try again.', 'Error'); 
+  }
+  
   } else if (this.origin === 'client') {
     message = 'Are you sure you want to delete this BonSortie?';
     deleteObservable = this.cmdcltfrs.deleteCmdClt(id);
@@ -87,14 +94,12 @@ deleteBonEntree(id: number): void {let message = '';
   if (message && confirm(message)) {
     deleteObservable.subscribe(
       response => {
-        console.log(`${this.origin === 'fournisseur' ? 'BonEntree' : 'BonSortie'} deleted successfully`);
         window.location.reload(); // Refresh the page or navigate to another route
-      },
-      error => {
-        console.error(`Error deleting ${this.origin === 'fournisseur' ? 'BonEntree' : 'BonSortie'}:`, error);
+        this.toastr.success('Bon entree delete successfully.', 'Success'); 
+        error => {
+         this.toastr.error('Failed to delete bon entree. Please try again.', 'Error'); 
+   } });
       }
-    );
-  }
 }
   
 
@@ -105,4 +110,22 @@ deleteBonEntree(id: number): void {let message = '';
       this.cltFrs = this.commande.fournisseur;
     }
   }
+
+
+ /* 
+  <div id="invoice">
+ async generatePDF() {
+    const element = document.getElementById('invoice'); // Ensure to set the ID on your div
+    if (element) {
+      const canvas = await html2canvas(element); // Await html2canvas since it returns a promise
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF();
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save('facture.pdf');
+    }
+  }*/
 }

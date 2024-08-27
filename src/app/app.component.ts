@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebSocketService } from './demo/service/web-Socket.service';
 
-
+import{jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-root',

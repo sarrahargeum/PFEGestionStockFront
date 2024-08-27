@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Article } from 'src/app/demo/modals/article';
 import { CategoryService } from 'src/app/demo/service/CategoryService';
 import { ArticleService } from 'src/app/demo/service/article.service';
@@ -33,7 +34,8 @@ export class DetailArticleComponent implements OnInit {
     private articleService: ArticleService,
     private formBuilder: FormBuilder,
     private categorieService: CategoryService,
-    private magasinService: MagasinService
+    private magasinService: MagasinService,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -107,7 +109,11 @@ export class DetailArticleComponent implements OnInit {
       this.articleService.ajoutArticle(formData).subscribe(() => {
         this.fetchData();
         this.closeModal();
-      });
+        this.toastr.success('article added successfully.', 'Success'); // Success toast notification
+              }, error => {
+                this.toastr.error('Failed to added article. Please try again.', 'Error'); // Error toast notification
+              });
+            
     } else if (this.id != null) {
 
       console.log(this.articleForm.value);
@@ -115,6 +121,9 @@ export class DetailArticleComponent implements OnInit {
       this.articleService.updateArticle(this.id, this.articleForm.value).subscribe(() => {
         this.fetchData();
         this.closeModal();
+        this.toastr.success('article update successfully.', 'Success'); // Success toast notification
+      }, error => {
+        this.toastr.error('Failed to update article. Please try again.', 'Error'); // Error toast notification
       });
     }
   }
@@ -123,7 +132,11 @@ export class DetailArticleComponent implements OnInit {
     if (confirm('Are you sure to delete this article?')) {
       this.articleService.deleteArticle(id).subscribe(() => {
         this.fetchData();
+        this.toastr.success('article delete successfully.', 'Success'); // Success toast notification
+      }, error => {
+        this.toastr.error('Failed to delete article. Please try again.', 'Error'); // Error toast notification
       });
+    
     }
   }
 }

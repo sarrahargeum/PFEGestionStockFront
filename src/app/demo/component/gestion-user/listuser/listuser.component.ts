@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/demo/modals/user';
 import { AuthenticationService } from 'src/app/demo/service/authentication.service';
 import { MagasinService } from 'src/app/demo/service/magasin.service';
@@ -28,7 +29,8 @@ export class ListuserComponent  implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private magasinService: MagasinService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private toastr: ToastrService
   ) {
     this.userForm = this.fb.group({
       firstname: ['', Validators.required],
@@ -91,6 +93,9 @@ export class ListuserComponent  implements OnInit {
   deleteClick(userId: number) {
     this.userService.deleteUser(userId).subscribe(() => {
       this.loadUsers();
+      this.toastr.success('User deleted successfully.', 'Success'); 
+    }, error => {
+      this.toastr.error('Failed to delete user. Please try again.', 'Error'); 
     });
   }
 
@@ -112,6 +117,9 @@ export class ListuserComponent  implements OnInit {
       this.userService.updateUser(this.id, this.userForm.value).subscribe(() => {
         this.loadUsers();
         this.closeModal();
+        this.toastr.success('User update successfully.', 'Success'); 
+      }, error => {
+        this.toastr.error('Failed to update user. Please try again.', 'Error');   
       });
     } else {
       
@@ -119,6 +127,9 @@ export class ListuserComponent  implements OnInit {
       this.authenticationService.register(formData).subscribe(() => {
         this.loadUsers();
         this.closeModal();
+        this.toastr.success('User added successfully.', 'Success'); 
+      }, error => {
+        this.toastr.error('Failed to added user. Please try again.', 'Error');      
       });
     }
   }

@@ -42,3 +42,18 @@ $pc-secondary: map-get($preset-colors, 'preset-1', 'secondary');
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+
+
+@import 'ngx-toastr/toastr';
+
+//@import 'ngx-toastr/toastr-bs4-alert';
+
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+// bootstrap 4
+//@import 'ngx-toastr/toastr-bs4-alert';
+// boostrap 5
+@import 'ngx-toastr/toastr-bs5-alert';

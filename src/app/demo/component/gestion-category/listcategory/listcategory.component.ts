@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { catchError } from 'rxjs';
 import { Category } from 'src/app/demo/modals/category';
 import { CategoryService } from 'src/app/demo/service/CategoryService';
 
@@ -24,7 +26,8 @@ export class ListcategoryComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -42,10 +45,19 @@ export class ListcategoryComponent implements OnInit {
   }
 
   deleteClick(id: any) {
+ 
     if (confirm('Are you sure to delete this category?')) {
-      this.categoryService.deleteCategory(id).subscribe(() => {
-        this.refreshCategoryList();
-      });
+
+      this.categoryService.deleteCategory(id).subscribe(
+        () => {
+          this.refreshCategoryList();
+          this.toastr.success('Category deleted successfully.', 'Success'); // Success toast notification
+        },
+        error => {
+          this.toastr.error('Failed to delete category have one or many article. Please try again.', 'Error'); // Error toast notification
+          console.error('Error deleting category:', error); // Log the error for debugging
+        }
+      );
     }
   }
 
@@ -99,12 +111,18 @@ export class ListcategoryComponent implements OnInit {
       this.categoryService.postCategory(this.categoryForm.value).subscribe(() => {
         this.refreshCategoryList();
         this.closeModal();
+        this.toastr.success('Category added successfully.', 'Success'); // Success toast notification
+      }, error => {
+        this.toastr.error('Failed to add category. Please try again.', 'Error'); // Error toast notification
       });
     } else {
       // Update existing category
       this.categoryService.updateCategory(this.id!, this.categoryForm.value).subscribe(() => {
         this.refreshCategoryList();
         this.closeModal();
+         this.toastr.success('Category updated successfully.', 'Success'); // Success toast notification
+      }, error => {
+        this.toastr.error('Failed to update category. Please try again.', 'Error'); // Error toast notification
       });
     }
   }

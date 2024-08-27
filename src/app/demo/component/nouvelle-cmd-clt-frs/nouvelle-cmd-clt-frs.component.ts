@@ -13,6 +13,7 @@ import { BonEntree } from '../../modals/BonEntree';
 import { LigneSortieDto } from '../../modals/DTO/ligneSortieDto';
 import { BonEntreeDto } from '../../modals/DTO/BonEntreeDto';
 import { BonSortieDto } from '../../modals/DTO/BonSortieDto';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     private router: Router,
     private cltFrsService: CltFrsService,
     private articleService: ArticleService,
-    private cmdCltFrsService: CmdcltfrsService
+    private cmdCltFrsService: CmdcltfrsService,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -105,18 +107,15 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     if (ligneCmdAlreadyExists) {
       this.lignesCommande.forEach(lig => {
         if (lig && lig.article?.codeArticle === this.searchedArticle.code) {
-          // @ts-ignore
           lig.quantite = lig.quantite + +this.quantite;
         }
       });
     } else {
       const ligneCmd: LigneSortieDto = {
-       // id: 0,
         article: this.searchedArticle,
         prixUnitaire: this.searchedArticle.prix,
         quantite: +this.quantite,
-       // idMagasin: 1,  
-      //  bonSortieClient: null
+     
       };
       this.lignesCommande.push(ligneCmd);
     }
@@ -128,54 +127,35 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     this.articleNotYetSelected = true;
   }
 
- /* enregistrerCommande(): void {
-    
+ 
+  enregistrerCommande(): void {
     const commande = this.preparerCommande();
+  
     if (this.origin === 'client') {
-     
-      this.cmdCltFrsService.enregistrerCommandeClient(commande as BonSortieClient)
-      
-      .subscribe(cmd => {
-
-
-        this.router.navigate(['commandesclient']);
-      }, error => {
-        this.errorMsg = error.error.errors;
-      });
+      this.cmdCltFrsService.enregistrerCommandeClient(commande as BonSortieDto)
+        .subscribe(
+          cmd => {
+            this.toastr.success('Commandes client added successfully.', 'Success');
+            this.router.navigate(['commandesclient']);
+          },
+          error => {
+            this.toastr.error('Failed to add commandes client. Please try again.', 'Error');
+          }
+        );
     } else if (this.origin === 'fournisseur') {
       this.cmdCltFrsService.enregistrerCommandeFournisseur(commande as BonEntreeDto)
-      .subscribe(cmd => {
-        this.router.navigate(['commandesfournisseur']);
-      }, error => {
-        this.errorMsg = error.error.errors;
-      });
+        .subscribe(
+          cmd => {
+            this.toastr.success('Commandes fournisseur added successfully.', 'Success');
+            this.router.navigate(['commandesfournisseur']);
+          },
+          error => {
+            this.toastr.error('Failed to add commandes fournisseur. Please try again.', 'Error');
+          }
+        );
     }
-  }*/
-    enregistrerCommande(): void {
-      const commande = this.preparerCommande();
-      if (this.origin === 'client') {
-        this.cmdCltFrsService.enregistrerCommandeClient(commande as BonSortieDto)
-          .subscribe(
-            cmd => {
-              this.router.navigate(['commandesclient']);
-            },
-            error => {
-              this.errorMsg = error?.error?.errors || ['An unexpected error occurred'];
-            }
-          );
-      } else if (this.origin === 'fournisseur') {
-        this.cmdCltFrsService.enregistrerCommandeFournisseur(commande as BonEntreeDto)
-          .subscribe(
-            cmd => {
-              this.router.navigate(['commandesfournisseur']);
-            },
-            error => {
-              this.errorMsg = error?.error?.errors || ['An unexpected error occurred'];
-            }
-          );
-      }
-    }
-    
+  }
+  
 
   private preparerCommande(): any {
     if (this.origin === 'client') {

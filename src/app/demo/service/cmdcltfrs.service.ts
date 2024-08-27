@@ -31,7 +31,6 @@ export class CmdcltfrsService {
 
 
   enregistrerCommandeFournisseur(bonEntree: BonEntreeDto): Observable<BonEntreeDto> {
-   // bonEntree.idMagasin = this.authenticationService.getConnectedUser().magasin?.id;
    bonEntree.idMagasin = 1;
     return this.bonEntreService.saveBonEntreFournisseur(bonEntree);
   }

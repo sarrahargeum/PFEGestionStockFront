@@ -34,6 +34,7 @@ import { DetailCmdCltFrsComponent } from './demo/component/detail-cmd-clt-frs/de
 import { BouttonActionComponent } from './demo/component/boutton-action/boutton-action.component';
 import { DetailMvtStkComponent } from './demo/component/detail-mvt-stk/detail-mvt-stk.component';
 import { DetailMvtStkArticleComponent } from './demo/component/detail-mvt-stk-article/detail-mvt-stk-article.component';
+import { provideToastr, ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -63,14 +64,17 @@ import { DetailMvtStkArticleComponent } from './demo/component/detail-mvt-stk-ar
    
   ],
   imports: [BrowserModule, AppRoutingModule,SharedModule, BrowserAnimationsModule ,CommonModule,
-    FormsModule,ReactiveFormsModule, HttpClientModule,DialogModule,RouterModule, NgbModule
+    FormsModule,ReactiveFormsModule, HttpClientModule,DialogModule,RouterModule, NgbModule,
+    ToastrModule.forRoot(), // ToastrModule added
 
     
 
   ],
     providers: [
       AuthenticationService,
-      WebSocketService
+      WebSocketService,
+      provideToastr(), // Toastr providers
+
     ],
    
   bootstrap: [AppComponent]

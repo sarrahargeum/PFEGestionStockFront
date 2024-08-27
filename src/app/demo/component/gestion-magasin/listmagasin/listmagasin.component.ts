@@ -6,6 +6,7 @@ import { Magasin } from 'src/app/demo/modals/magasin';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-listmagasin',
@@ -26,8 +27,8 @@ export class ListmagasinComponent implements OnInit {
 
   constructor(
     private magasinService: MagasinService,
-    private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastr:ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -57,8 +58,11 @@ export class ListmagasinComponent implements OnInit {
     if (confirm('Are you sure to delete this project')) {
       this.magasinService.deleteMagasin(id).subscribe(data => {
         this.refrechMgList();
-      });
-    }
+        this.toastr.success('Magasin delete successfully.', 'Success'); 
+      }, error => {
+        this.toastr.error('Failed to delete Magasin. Please try again.', 'Error'); 
+      }); 
+       }
   }
 
   Search() {
@@ -112,14 +116,18 @@ export class ListmagasinComponent implements OnInit {
       this.magasinService.postMagasin(this.magasinForm.value).subscribe(() => {
         this.refrechMgList();
         this.closeModal();
-      });
-    } else {
+        this.toastr.success('Magasin added successfully.', 'Success'); 
+      }, error => {
+        this.toastr.error('Failed to added Magasin. Please try again.', 'Error'); 
+      });     } else {
       // Update existing category
       this.magasinService.updateMagasin(this.id!, this.magasinForm.value).subscribe(() => {
         this.refrechMgList();
         this.closeModal();
-      });
-    }
+        this.toastr.success('Magasin update successfully.', 'Success'); 
+      }, error => {
+        this.toastr.error('Failed to update Magasin. Please try again.', 'Error');
+      });     }
   }
 
   get f() {

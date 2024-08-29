@@ -1,27 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { BonEntreService } from '../../service/bon-entre.service';
-import { BonEntree } from '../../modals/BonEntree';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BonSortieDto } from '../../../modals/DTO/BonSortieDto';
+import { BonSortieService } from '../../../service/bon-sortie.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { BonEntreeDto } from '../../modals/DTO/BonEntreeDto';
-import { LigneEntreeDto } from '../../modals/DTO/LigneEntreeDto';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { LigneEntree } from '../../modals/ligneEntree';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-facture',
+  selector: 'app-factureclient',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
-  templateUrl: './facture.component.html',
-  styleUrl: './facture.component.scss'
+  templateUrl: './factureclient.component.html',
+  styleUrl: './factureclient.component.scss'
 })
-export class FactureComponent  implements OnInit {
-  listBonEntree : BonEntreeDto;
+export class FactureclientComponent implements OnInit {
+  listBonSortie : BonSortieDto;
  
   constructor(
-   private bonEntreeService:BonEntreService,
+   private bonSortieService:BonSortieService,
    private route: ActivatedRoute,
 
   ) { }
@@ -29,17 +26,18 @@ export class FactureComponent  implements OnInit {
   ngOnInit(): void { 
      const id = +this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.bonEntreeService.findById(id).subscribe((data: BonEntreeDto) => {
-        this.listBonEntree = data;
+      this.bonSortieService.findById(id).subscribe((data: BonSortieDto) => {
+        this.listBonSortie = data;
+        console.log(data)
       });
 
     }
   }
   getTotal(): number {
-    if (!this.listBonEntree || !this.listBonEntree.ligneEntrees) {
+    if (!this.listBonSortie || !this.listBonSortie.ligneSorties) {
       return 0;
     }
-    return this.listBonEntree.ligneEntrees.reduce((total, ligne) => {
+    return this.listBonSortie.ligneSorties.reduce((total, ligne) => {
       return total + (ligne.quantite * ligne.prixUnitaire);
     }, 0);
   }

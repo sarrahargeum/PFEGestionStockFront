@@ -76,18 +76,18 @@
     <div class="invoice-box">
         <div class="invoice-header">
       <h1>Facture</h1>
-            <p>Type de Facture : <strong>Vente</strong></p>
+        
         </div>
 
-        <div *ngIf="listBonEntree" class="invoice-details">
+        <div *ngIf="listBonSortie" class="invoice-details">
             <table>
                 <tr>
-                    <td><strong>N° de Commande:</strong> {{listBonEntree.code }}</td>
-                    <td><strong>Date:</strong> {{listBonEntree.dateCommande   | date:'yyyy-MM-dd' }}</td>
+                    <td><strong>N° de Commande:</strong> {{listBonSortie.code }}</td>
+                    <td><strong>Date:</strong> {{listBonSortie.dateCommande    | date:'yyyy-MM-dd' }}</td>
                 </tr>
             </table>
             <div >
-                <div *ngIf="listBonEntree.ligneEntrees && listBonEntree.ligneEntrees.length">
+                <div *ngIf="listBonSortie.ligneSorties && listBonSortie.ligneSorties.length">
             <table>
                 <tr class="heading">
                     <td>Article</td>
@@ -96,7 +96,7 @@
                     <td>Sous-total</td>
                 </tr>
 
-                <tr *ngFor="let ligne of listBonEntree.ligneEntrees" class="item">
+                <tr *ngFor="let ligne of listBonSortie.ligneSorties" class="item">
                     <td>{{ ligne.article.code }}</td>
                     <td>{{ ligne.quantite }}</td>
                     <td>{{ ligne.prixUnitaire }} DT</td>

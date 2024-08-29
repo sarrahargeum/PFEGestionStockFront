@@ -23,7 +23,8 @@ import { DetailArticleComponent } from './demo/component/gestion-article/detail-
 import { NouvelleCmdCltFrsComponent } from './demo/component/nouvelle-cmd-clt-frs/nouvelle-cmd-clt-frs.component';
 import { DetailCmdComponent } from './demo/component/detail-cmd/detail-cmd.component';
 import { PageCmdCltFrsComponent } from './demo/component/page-cmd-clt-frs/page-cmd-clt-frs.component';
-import { FactureComponent } from './demo/component/facture/facture.component';
+import { FactureComponent } from './demo/component/facture/factureFour/factureFour.component';
+import { FactureclientComponent } from './demo/component/facture/factureclient/factureclient.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,8 @@ const routes: Routes = [
      
   //facture 
   { path:'facture/:id', component:FactureComponent, canActivate:[ ApplicationGuardService]},
+  { path:'factureCLT/:id', component:FactureclientComponent, canActivate:[ ApplicationGuardService]},
+
 
 
       ///user

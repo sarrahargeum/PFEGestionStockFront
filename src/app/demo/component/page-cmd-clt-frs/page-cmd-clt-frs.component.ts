@@ -18,6 +18,7 @@ export class PageCmdCltFrsComponent implements OnInit {
   mapLignesCommande = new Map();
   mapPrixTotalCommande = new Map();
   listBonEntree:BonEntreeDto;
+  
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -94,5 +95,13 @@ export class PageCmdCltFrsComponent implements OnInit {
   }
 
 
-
+  getFactureRoute(id: number): string[] {
+    if (this.origin === 'fournisseur') {
+      return ['/facture', id.toString()];
+    } else if (this.origin === 'client') {
+      return ['/factureCLT', id.toString()];
+    }
+    return ['/']; 
+  }
+  
 }

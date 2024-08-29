@@ -3,11 +3,9 @@ import { Client } from '../../modals/Client';
 import { CmdcltfrsService } from '../../service/cmdcltfrs.service';
 import { EtatCommande } from '../../modals/EtatCommande';
 import { BonEntreService } from '../../service/bon-entre.service';
-import { Router } from '@angular/router';
 import { BonSortieService } from '../../service/bon-sortie.service';
 
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
+
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

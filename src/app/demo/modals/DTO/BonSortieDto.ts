@@ -9,7 +9,7 @@ export class BonSortieDto {
     etatCommande?: EtatCommande;
     client?: ClientDto;
     idMagasin?: number;
-    ligneEntree?: Array<LigneSortieDto>;
+    ligneSorties?: Array<LigneSortieDto>;
     commandeLivree?: boolean;
     }
 

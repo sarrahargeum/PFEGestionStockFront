@@ -53,7 +53,6 @@ export class DetailCmdCltFrsComponent implements OnInit {
         this.bonEntreeService.updateEtatCommande(this.commande.id, this.newEtatCommande)
           .subscribe(
             response => {
-            //  console.log('Commande updated successfully with fournisseur');
               this.closeModal(); 
               window.location.reload();
               this.toastr.success('etat update successfully.', 'Success'); 
@@ -112,20 +111,5 @@ deleteBonEntree(id: number): void {let message = '';
   }
 
 
- /* 
-  <div id="invoice">
- async generatePDF() {
-    const element = document.getElementById('invoice'); // Ensure to set the ID on your div
-    if (element) {
-      const canvas = await html2canvas(element); // Await html2canvas since it returns a promise
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF();
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save('facture.pdf');
-    }
-  }*/
 }

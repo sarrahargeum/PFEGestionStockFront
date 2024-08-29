@@ -4,7 +4,7 @@ import {Observable, of} from 'rxjs';
 import { BonSortieService } from './bon-sortie.service';
 import { BonEntreService } from './bon-entre.service';
 import { AuthenticationService } from './authentication.service';
-import { BonSortieClient } from '../modals/BonSortie';
+import { BonSortie } from '../modals/BonSortie';
 import { BonEntree } from '../modals/BonEntree';
 import { BonEntreeDto } from '../modals/DTO/BonEntreeDto';
 import { BonSortieDto } from '../modals/DTO/BonSortieDto';

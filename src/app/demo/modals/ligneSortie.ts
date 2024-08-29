@@ -1,6 +1,6 @@
 import { Article } from "./article";
 import { ArticleDto } from "./DTO/ArticleDto";
-import { BonSortieClient } from "./BonSortie";
+import { BonSortie } from "./BonSortie";
 
 export class LigneSortie {
     id: number;
@@ -8,7 +8,7 @@ export class LigneSortie {
     prixUnitaire: number;
     article: ArticleDto;     
     idMagasin: number;
-    bonSortieClient: BonSortieClient; 
+    bonSortie: BonSortie; 
 
 
   }

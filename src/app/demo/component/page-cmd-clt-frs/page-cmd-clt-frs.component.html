@@ -41,7 +41,10 @@
               </div>
               <div class="col-md-6 text-right">
                 <h5>Total Somme commande: {{ calculerTotalCommande(cmd.id) }}</h5>
+                <button [routerLink]="['/facture', cmd.id]">Afficher Facture</button>
+
               </div>
+              
             </div>
           </div>
       </div>

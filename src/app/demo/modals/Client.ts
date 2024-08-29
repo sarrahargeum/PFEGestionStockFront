@@ -1,4 +1,4 @@
-import { BonSortieClient } from "./BonSortie";
+import { BonSortie } from "./BonSortie";
 import { Magasin } from "./magasin";
 
 export class Client {
@@ -10,7 +10,7 @@ export class Client {
     mail:string;
     magasin:Magasin;
     idMagasin:number;
-    bonSortieClients?: Array<BonSortieClient>;
+    bonSorties?: Array<BonSortie>;
 
 
   }

@@ -9,7 +9,7 @@ export interface BonEntreeDto {
     etatCommande?: EtatCommande;
     fournisseur?: FournisseurDto;
     idMagasin?: number;
-    ligneEntree?: Array<LigneEntree>;
+    ligneEntrees?: Array<LigneEntree>;
     commandeLivree?: boolean;
   }
 

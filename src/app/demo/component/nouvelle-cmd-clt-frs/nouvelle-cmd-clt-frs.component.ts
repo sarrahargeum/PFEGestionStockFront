@@ -4,7 +4,6 @@ import { Article } from '../../modals/article';
 import { CltFrsService } from '../../service/clt-frs.service';
 import { ArticleService } from '../../service/article.service';
 import { CmdcltfrsService } from '../../service/cmdcltfrs.service';
-import { BonSortieClient } from '../../modals/BonSortie';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Category } from '../../modals/category';

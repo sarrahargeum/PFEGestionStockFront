@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { CmdcltfrsService } from '../../service/cmdcltfrs.service';
 import { LigneSortieDto } from '../../modals/DTO/ligneSortieDto';
+import { BonEntreService } from '../../service/bon-entre.service';
+import { BonEntreeDto } from '../../modals/DTO/BonEntreeDto';
 
 
 @Component({
@@ -15,11 +17,13 @@ export class PageCmdCltFrsComponent implements OnInit {
   listeCommandes: any[] = [];
   mapLignesCommande = new Map();
   mapPrixTotalCommande = new Map();
-
+  listBonEntree:BonEntreeDto;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private cmdCltFrsService: CmdcltfrsService
+    private cmdCltFrsService: CmdcltfrsService,
+    private bonEntreeService:BonEntreService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -88,4 +92,7 @@ export class PageCmdCltFrsComponent implements OnInit {
   calculerTotalCommande(id?: number): number {
     return this.mapPrixTotalCommande.get(id);
   }
+
+
+
 }

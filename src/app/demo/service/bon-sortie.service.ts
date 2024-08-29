@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BonSortieClient } from '../modals/BonSortie';
 import { Observable } from 'rxjs';
 import { EtatCommande } from '../modals/EtatCommande';
 import { BonSortieDto } from '../modals/DTO/BonSortieDto';
+import { BonSortie } from '../modals/BonSortie';
 
 @Injectable({
   providedIn: 'root'
@@ -57,8 +57,8 @@ export class BonSortieService {
     return this.http.delete<void>(`${this.baseUrl}/delete/article/${id}/${idLigneCommande}`);
   }
 
-  findAllLignesCommandesClientByCommandeClientId(idCommande:number): Observable<BonSortieClient[]> {
-    return this.http.get<BonSortieClient[]>(`${this.baseUrl}/commandesclients/lignesCommande/${idCommande}`);
+  findAllLignesCommandesClientByCommandeClientId(idCommande:number): Observable<BonSortie[]> {
+    return this.http.get<BonSortie[]>(`${this.baseUrl}/commandesclients/lignesCommande/${idCommande}`);
   }
   
 

@@ -18,13 +18,13 @@ import { ListfournisseurComponent } from './demo/component/gestion-fournisseur/l
 import { GestionProfilComponent } from './demo/component/gestion-profil/gestion-profil.component';
 import { ListmagasinComponent } from './demo/component/gestion-magasin/listmagasin/listmagasin.component';
 import { ListuserComponent } from './demo/component/gestion-user/listuser/listuser.component';
-import { MvtStockComponent } from './demo/component/mvt-stock/mvt-stock.component';
 import { DetailArticleComponent } from './demo/component/gestion-article/detail-article/detailArticleComponent';
 import { NouvelleCmdCltFrsComponent } from './demo/component/nouvelle-cmd-clt-frs/nouvelle-cmd-clt-frs.component';
 import { DetailCmdComponent } from './demo/component/detail-cmd/detail-cmd.component';
 import { PageCmdCltFrsComponent } from './demo/component/page-cmd-clt-frs/page-cmd-clt-frs.component';
 import { FactureComponent } from './demo/component/facture/factureFour/factureFour.component';
 import { FactureclientComponent } from './demo/component/facture/factureclient/factureclient.component';
+import { DetailMvtStkArticleComponent } from './demo/component/detail-mvt-stk-article/detail-mvt-stk-article.component';
 
 const routes: Routes = [
   {
@@ -74,8 +74,8 @@ const routes: Routes = [
       { path: 'listmagasin', component:ListmagasinComponent  ,canActivate:[ ApplicationGuardService]},
 
 
-      {path:'mvtStock', component:MvtStockComponent , canActivate:[ApplicationGuardService]},
-
+//stock
+     {path:'detailmvtart/:id', component:DetailMvtStkArticleComponent , canActivate:[ApplicationGuardService]},
 
       {path:'detailCmd', component:DetailCmdComponent , canActivate:[ApplicationGuardService]},
 

@@ -24,7 +24,6 @@ import { AuthenticationService } from './demo/service/authentication.service';
 import { DialogModule } from 'primeng/dialog';
 import { RouterModule } from '@angular/router';
 import { DetailArticleComponent } from './demo/component/gestion-article/detail-article/detailArticleComponent';
-import { MvtStockComponent } from './demo/component/mvt-stock/mvt-stock.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WebSocketService } from './demo/service/web-Socket.service';
 import { NouvelleCmdCltFrsComponent } from './demo/component/nouvelle-cmd-clt-frs/nouvelle-cmd-clt-frs.component';
@@ -32,9 +31,8 @@ import { DetailCmdComponent } from './demo/component/detail-cmd/detail-cmd.compo
 import { PageCmdCltFrsComponent } from './demo/component/page-cmd-clt-frs/page-cmd-clt-frs.component';
 import { DetailCmdCltFrsComponent } from './demo/component/detail-cmd-clt-frs/detail-cmd-clt-frs.component';
 import { BouttonActionComponent } from './demo/component/boutton-action/boutton-action.component';
-import { DetailMvtStkComponent } from './demo/component/detail-mvt-stk/detail-mvt-stk.component';
-import { DetailMvtStkArticleComponent } from './demo/component/detail-mvt-stk-article/detail-mvt-stk-article.component';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
+import { DetailMvtStkArticleComponent } from './demo/component/detail-mvt-stk-article/detail-mvt-stk-article.component';
 
 @NgModule({
   declarations: [
@@ -50,13 +48,11 @@ import { provideToastr, ToastrModule } from 'ngx-toastr';
     NavGroupComponent,
     NavItemComponent ,
     DetailArticleComponent,
-    MvtStockComponent ,
     NouvelleCmdCltFrsComponent,
     DetailCmdComponent,
     PageCmdCltFrsComponent,
     DetailCmdCltFrsComponent,
     BouttonActionComponent,
-    DetailMvtStkComponent,
     DetailMvtStkArticleComponent
 
 

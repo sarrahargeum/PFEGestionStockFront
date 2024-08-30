@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Article } from 'src/app/demo/modals/article';
 import { CategoryService } from 'src/app/demo/service/CategoryService';
@@ -40,8 +40,8 @@ export class ListarticleComponent implements OnInit {
     private articleService: ArticleService,
     private categorieService: CategoryService,
     private magasinService: MagasinService,
-    private bonEntreeService: BonEntreService ,
-    private toastr : ToastrService
+    private toastr : ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -172,7 +172,9 @@ export class ListarticleComponent implements OnInit {
   get f() {
     return this.articleForm.controls;
   }
-
+  viewStockDetails(articleId: number): void {
+    this.router.navigate(['/detailmvtart', articleId]);
+  }
 
 
   Search() {

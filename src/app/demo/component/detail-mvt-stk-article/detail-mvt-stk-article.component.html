@@ -1,42 +1,43 @@
-<div class="row mb-1 mr-0 custom-border">
-   <!--  Details article-->
-  <div class="col-md-5 custom-border-right mb-1 mt-1 ">
+<div class="row mb-1 mr-0 custom-border" >
+ 
+    <h3>Stock actuel : {{ stockReel }}</h3>
+
+
+
+ 
+<div *ngIf="mvtStocks.length > 0" class="col-md-12 mb-1">
+
+  <div class="col-md-5 custom-border-right mb-1 mt-1">
     <div class="col">
       <div class="row">
-        <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-        <div class="col-md-11">Code article</div>
+        <div class="col-md-1">
+          <i class="fas fa-info-circle blue-color"></i>
+        </div>
+        <div class="col-md-11">Code article: {{ mvtStocks[0].article.code }}</div>
       </div>
       <div class="row">
-        <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-        <div class="col-md-11">designation</div>
+        <div class="col-md-1">
+          <i class="fas fa-info-circle blue-color"></i>
+        </div>
+        <div class="col-md-11">Designation: {{ mvtStocks[0].article.designation }}</div>
       </div>
       <div class="row">
-        <div class="col-md-1"><i class="fas fa-dollar-sign blue-color"></i></div>
-        <div class="col-md-11">prix HT</div>
-      </div>
-      <div class="row">
-        <div class="col-md-1"><i class="fas fa-dollar-sign blue-color"></i></div>
-        <div class="col-md-11">prix TTC</div>
+        <div class="col-md-1">
+          <i class="fas fa-dollar-sign blue-color"></i>
+        </div>
+        <div class="col-md-11">Prix : {{ mvtStocks[0].article.prix }}</div>
       </div>
     </div>
+   
+
   </div>
 
-  <!--  details categorie-->
-  <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-    <div class="col-md-10 text-center">
-      <div class="row">
-        <div class="col-md-12">
-          <h3>Stock actuel</h3>
-        </div>
-        <div class="col-md-12">
-          <h3>139</h3>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
+  
+      
 
-  <!--  boutons action-->
-  <div class="col-md-3 mb-1 mt-1 ">
+  <!-- Boutons action
+  <div class="col-md-3 mb-1 mt-1">
     <div class="row">
       <div class="col-md-12 text-center">
         <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
@@ -44,10 +45,10 @@
         </button>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" autofocus>
+<!-- Modal<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" autofocus>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -71,8 +72,35 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp;Annuler</button>
-        <button type="button" class="btn btn-primary"> <i class="fas fa-save"></i>&nbsp;Enregistrer</button>
+        <button type="button" class="btn btn-primary"><i class="fas fa-save"></i>&nbsp;Enregistrer</button>
       </div>
     </div>
   </div>
+</div>-->
+
+<div class="table-responsive">
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Quantité</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mvt of mvtStocks">
+        <td>{{ mvt.dateMvt | date: 'dd.MM.yyyy' }}</td>
+        <td>{{ mvt.quantite }}</td>
+        <td>{{ mvt.typeMvt }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+</div>
+
+<!-- Display a message if no data is available -->
+<div *ngIf="mvtStocks.length === 0">
+  <p>No stock movements available.</p>
+</div>
+
+

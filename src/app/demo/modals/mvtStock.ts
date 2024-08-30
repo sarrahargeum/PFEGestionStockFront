@@ -1,3 +1,4 @@
+import { Article } from "./article";
 import { Magasin } from "./magasin";
 
 export enum TypeStock {
@@ -9,6 +10,7 @@ export enum TypeStock {
     id: number;
     quantite: number;
     dateMvt: Date;
+    article:Article;
     typestock:TypeStock;
     magasin:Magasin
 

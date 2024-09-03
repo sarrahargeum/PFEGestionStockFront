@@ -12,7 +12,7 @@ import { WebSocketService } from 'src/app/demo/service/web-Socket.service';
 export class NavRightComponent implements OnInit {
   datauser:any
   nameuser:string
-  notifications: Notification[] = [];
+  notifications: any = [];
 
   constructor(private router: Router,
     private socketService : WebSocketService,
@@ -35,11 +35,18 @@ export class NavRightComponent implements OnInit {
   this.datauser=JSON.parse(localStorage.getItem("datauser"))
   this.nameuser=this.datauser.user.firstname+' '+this.datauser.user.lastname
 //notif
-  this.socketService.connect("ChefMagasin");
+
+
+  this.socketService.connect(this.datauser.roles.nomRole);
 
   // Subscribe to incoming messages
    this.socketService.getMessages().subscribe((message) => {
     console.log(message);
+    if(message){
+      this.notifications?.push(message);
+    }
+
+    
   });
 
   //this.loadNotifications();

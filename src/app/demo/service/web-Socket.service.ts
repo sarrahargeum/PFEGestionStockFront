@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import * as Stomp from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Roles } from '../modals/roles';
+import { log } from 'console';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketService {
   private stompClient: Stomp.Client;
-  private messageSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private messageSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor() {
     // Initialize the Stomp client with the appropriate settings
@@ -36,16 +36,19 @@ console.log('Connected: ' + frame);
 
       // subscribe if chef magasinier to recieve validation notification
       if (role === "ChefMagasin") {
+        console.log("here");
+        
         this.stompClient.subscribe('/topic/order/validation', (message) => {
           if (message.body) {
+            console.log(message.body)
             this.messageSubject.next(message.body);
           }
         });
       }
     };
     this.stompClient.onStompError = (frame) => {
-//console.error('Broker reported error: ' + frame.headers['message']);
-    //  console.error('Additional details: ' + frame.body);
+console.error('Broker reported error: ' + frame.headers['message']);
+      console.error('Additional details: ' + frame.body);
     };
 
     this.stompClient.activate();
@@ -58,7 +61,7 @@ console.log('Connected: ' + frame);
     }
   }
 
-  getMessages(): Observable<string> {
+  getMessages(): Observable<Notification> {
     return this.messageSubject.asObservable();
   }
 

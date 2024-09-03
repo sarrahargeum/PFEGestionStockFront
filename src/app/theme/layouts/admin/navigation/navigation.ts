@@ -115,8 +115,23 @@ export const ChefMagasin: NavigationItem[] = [
     path: '/listcategory',
     icon: 'ti ti-loader'
   },
- 
-];
+  {
+    id: 'Bon Entree',
+    title: 'Bon Entree',
+    type: 'item',
+    classes: 'nav-item',
+    icon: 'fas fa-users',
+    path: '/commandesfournisseur'
+  },
+  {
+    id: 'Bon Sortie',
+    title: 'Bon Sortie',
+    type: 'item',
+    classes: 'nav-item',
+    icon: 'fas fa-truck',
+    path: '/commandesclient'
+  }
+]
 
 export const Magasinier: NavigationItem[] = [
   {
@@ -136,5 +151,21 @@ export const Magasinier: NavigationItem[] = [
     icon: 'ti ti-loader'
   },
   
-];
+  {
+    id: 'Bon Entree',
+    title: 'Bon Entree',
+    type: 'item',
+    classes: 'nav-item',
+    icon: 'fas fa-users',
+    path: '/commandesfournisseur'
+  },
+  {
+    id: 'Bon Sortie',
+    title: 'Bon Sortie',
+    type: 'item',
+    classes: 'nav-item',
+    icon: 'fas fa-truck',
+    path: '/commandesclient'
+  }
+]
 

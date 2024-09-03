@@ -1,4 +1,3 @@
-/* tslint:disable */
 import { EtatCommande } from '../EtatCommande';
 import { ClientDto } from './ClientDto';
 import { LigneSortieDto } from './ligneSortieDto';
@@ -13,3 +12,4 @@ export class BonSortieDto {
     commandeLivree?: boolean;
     }
 
+ 

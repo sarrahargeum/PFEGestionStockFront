@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/app/demo/service/authentication.servi
 import { MagasinService } from 'src/app/demo/service/magasin.service';
 import { RoleService } from 'src/app/demo/service/role.service';
 import { UserService } from 'src/app/demo/service/user.service';
+import { WebSocketService } from 'src/app/demo/service/web-Socket.service';
 
 @Component({
   selector: 'app-listuser',
@@ -30,7 +31,8 @@ export class ListuserComponent  implements OnInit {
     private userService: UserService,
     private magasinService: MagasinService,
     private authenticationService: AuthenticationService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private socketService : WebSocketService
   ) {
     this.userForm = this.fb.group({
       firstname: ['', Validators.required],
@@ -46,6 +48,16 @@ export class ListuserComponent  implements OnInit {
   ngOnInit() {
     this.loadUsers();
     this.loadMagasins();
+    //lpartie hedhi hia eli test7a9ha bech touslek notif 
+/*fil connect t3adi role es7i7 ahna 3emlin condition ken 3adit chef tjih les notif de validation
+    w ken 7atit admin tjih les notif ki stock mch youfa wadh7a hedhi ? ey ey wadhha maaneha vhef heki twali chef Magasin kima andi ena RoleService
+    exactement juste ken 7atit lesm si nn id lfeyda test tab9a te5dem ma3neha tnajem tbadel fil service zeda */
+  /*  this.socketService.connect("ChefMagasin");
+
+    // Subscribe to incoming messages
+     this.socketService.getMessages().subscribe((message) => {
+      console.log(message);
+    });*/
   }
 
   loadUsers() {
@@ -61,6 +73,7 @@ export class ListuserComponent  implements OnInit {
   }
 
   openModal(mode: string, userId?: number) {
+
     this.showModal = true;
     this.isEditMode = mode === 'edit';
     if (this.isEditMode && userId) {

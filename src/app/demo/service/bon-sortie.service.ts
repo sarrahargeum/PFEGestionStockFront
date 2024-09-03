@@ -18,6 +18,10 @@ export class BonSortieService {
     return this.http.post<BonSortieDto>(`${this.baseUrl}/saveBS`, bonSortieClient);
   }
 
+  saveBSClient(bonSortieClient: BonSortieDto): Observable<BonSortieDto> {
+    return this.http.post<BonSortieDto>(`${this.baseUrl}/saveBSClient`, bonSortieClient);
+  }
+
   findByCode(code: string): Observable<BonSortieDto> {
     return this.http.get<BonSortieDto>(`${this.baseUrl}/retreive-code/${code}`);
   }

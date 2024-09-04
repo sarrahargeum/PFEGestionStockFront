@@ -25,6 +25,7 @@ import { PageCmdCltFrsComponent } from './demo/component/page-cmd-clt-frs/page-c
 import { FactureComponent } from './demo/component/facture/factureFour/factureFour.component';
 import { FactureclientComponent } from './demo/component/facture/factureclient/factureclient.component';
 import { DetailMvtStkArticleComponent } from './demo/component/detail-mvt-stk-article/detail-mvt-stk-article.component';
+import { ListClientComponent } from './demo/component/gestion-client/list-client/list-client.component';
 
 const routes: Routes = [
   {
@@ -69,6 +70,8 @@ const routes: Routes = [
 
     //  fournisseur
       { path: 'listfournisseur', component:ListfournisseurComponent  ,canActivate:[ ApplicationGuardService]},
+      //client
+      { path: 'listclient', component:ListClientComponent  ,canActivate:[ ApplicationGuardService]},
 
       ///Magasin
       { path: 'listmagasin', component:ListmagasinComponent  ,canActivate:[ ApplicationGuardService]},

@@ -19,8 +19,10 @@ export class ClientService {
     return this.http.get<Client[]>(`${this.baseUrl}/all`);
   }
 
-  saveClient(clientData: ClientDto): Observable<ClientDto>  {
-    return this.http.post<ClientDto>(`${this.baseUrl}/addCli`, clientData);
+  saveClient(clientData: Client): Observable<Client>  {
+    clientData.idMagasin = 1;
+
+    return this.http.post<Client>(`${this.baseUrl}/addCli`, clientData);
   }
 
 

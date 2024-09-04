@@ -63,6 +63,14 @@ export const Admin: NavigationItem[] = [
     icon: 'ti ti-brush'
   },
   {
+    id: 'Client',
+    title: 'Client',
+    type: 'item',
+    classes: 'nav-item',
+    path: '/listclient',
+    icon: 'ti ti-brush'
+  },
+  {
     id: 'Magasin',
     title: 'Magasin',
     type: 'item',

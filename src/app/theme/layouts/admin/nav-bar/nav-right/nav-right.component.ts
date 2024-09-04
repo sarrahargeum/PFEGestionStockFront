@@ -22,14 +22,7 @@ export class NavRightComponent implements OnInit {
   ) {}
 
   // public method
-  profile = [
-   /* {
-      icon: 'ti ti-edit-circle',
-      title: 'Edit Profile',
-      routerLink: '/edituser/{{user.id}}'
-    },*/
- 
-  ];
+  profile = [];
 
  ngOnInit(){
   this.datauser=JSON.parse(localStorage.getItem("datauser"))

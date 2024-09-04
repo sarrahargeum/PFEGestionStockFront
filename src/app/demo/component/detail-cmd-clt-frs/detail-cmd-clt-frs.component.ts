@@ -24,7 +24,7 @@ export class DetailCmdCltFrsComponent implements OnInit {
   listeCommandes =[];
   newEtatCommande: EtatCommande;
   showModal: boolean = false;
-  etatsCommande: EtatCommande[] = [EtatCommande.EN_PREPARATIO, EtatCommande.VALIDE, EtatCommande.LIVREE]; 
+  etatsCommande: EtatCommande[] = [ EtatCommande.VALIDE, EtatCommande.LIVREE]; 
 
   constructor(private cmdcltfrs: CmdcltfrsService,
     private bonEntreeService:BonEntreService,

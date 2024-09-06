@@ -14,15 +14,12 @@
           <div class="form-group">
             <input type="text" class="form-control" name="codeCmd" placeholder="Code commande" [(ngModel)]="codeCommande">
           </div>
-          <div class="form-group">
-            <label for="dateCommande">Date commande:</label>
-            <input type="date" id="dateCommande" class="form-control" placeholder="Date commande" required>
-        </div>
-    
+         
     
           <div class="form-group">
+            <p>Selectionner un {{ origin }}</p>
+
             <select class="form-control" name="cltFrs" [(ngModel)]="selectedClientFournisseur">
-              <option>Selectionner un {{ origin }}</option>
               <option *ngFor="let obj of listClientsFournisseurs" [ngValue]="obj">
                 {{ obj.nom }}&nbsp;{{ obj.prenom }}
               </option>
@@ -55,11 +52,11 @@
     <div class="row mt-2 p-3 custom-border">
         <div class="form-row col-md-12">
           <div class="col-md-4">
+            <p>Selectionner l'article</p>
             <input type="text" class="form-control" placeholder="Code article" [(ngModel)]="codeArticle" (input)="filtrerArticle()">
             <div *ngIf="codeArticle.length && !articleNotYetSelected" class="autocomplete shadow p-3 mb-5 bg-white rounded">
               <p class="p-1" *ngFor="let article of listArticle"
-                 (click)="selectArticleClick(article)"
-              >
+                 (click)="selectArticleClick(article)">
                 {{ article.code }}&nbsp; {{ article.designation }}
               </p>
             </div>

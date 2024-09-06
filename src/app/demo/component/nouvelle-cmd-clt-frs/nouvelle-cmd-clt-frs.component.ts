@@ -13,6 +13,7 @@ import { LigneSortieDto } from '../../modals/DTO/ligneSortieDto';
 import { BonEntreeDto } from '../../modals/DTO/BonEntreeDto';
 import { BonSortieDto } from '../../modals/DTO/BonSortieDto';
 import { ToastrService } from 'ngx-toastr';
+import { StockService } from '../../service/stock.service';
 
 
 @Component({
@@ -42,7 +43,8 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     private cltFrsService: CltFrsService,
     private articleService: ArticleService,
     private cmdCltFrsService: CmdcltfrsService,
-    private toastr : ToastrService
+    private toastr : ToastrService,
+    private stockService :StockService
   ) { }
 
   ngOnInit(): void {
@@ -127,7 +129,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   }
 
  
-  enregistrerCommande(): void {
+/*  enregistrerCommande(): void {
     const commande = this.preparerCommande();
   
     if (this.origin === 'client') {
@@ -153,7 +155,66 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
           }
         );
     }
-  }
+  }*/
+
+    enregistrerCommande(): void {
+      const commande = this.preparerCommande();
+    
+      // Function to check stock availability for all articles in the order
+      const checkStockAvailability = (): boolean => {
+        let stockIsSufficient = true;
+    
+        if (this.origin === 'client' && commande.ligneSorties) {
+          commande.ligneSorties.forEach((ligne: any) => {
+            const articleId = ligne.article.id;
+            const requestedQuantity = ligne.quantite;
+    
+            this.stockService.stockReelArticle(articleId).subscribe(
+              (stock: number) => {
+                if (stock < requestedQuantity) {
+                  this.toastr.error(
+                    `Stock insuffisant pour cette article . Stock disponible: ${stock}, quantité demandée: ${requestedQuantity}.`,
+                    'Erreur'
+                  );
+                  stockIsSufficient = false;
+                }
+              },
+              (error) => {
+                this.toastr.error(`Erreur lors de la vérification du stock pour l'article ${articleId}.`, 'Erreur');
+                stockIsSufficient = false;
+              }
+            );
+          });
+        }
+    
+        return stockIsSufficient;
+      };
+    
+      // Check if stock is sufficient before proceeding with saving the command
+      if (checkStockAvailability()) {
+        if (this.origin === 'client') {
+          this.cmdCltFrsService.enregistrerCommandeClient(commande as BonSortieDto)
+            .subscribe(
+              cmd => {
+                this.toastr.success('Commandes client ajoutée avec succès.', 'Succès');
+                this.router.navigate(['commandesclient']);
+              }
+            );
+        } else if (this.origin === 'fournisseur') {
+          this.cmdCltFrsService.enregistrerCommandeFournisseur(commande as BonEntreeDto)
+            .subscribe(
+              cmd => {
+                this.toastr.success('Commandes fournisseur ajoutée avec succès.', 'Succès');
+                this.router.navigate(['commandesfournisseur']);
+              },
+              error => {
+                this.toastr.error('Échec de l\'ajout de la commande fournisseur. Veuillez réessayer.', 'Erreur');
+              }
+            );
+        }
+      }
+    }
+    
   
 
   private preparerCommande(): any {

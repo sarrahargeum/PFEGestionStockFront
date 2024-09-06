@@ -42,8 +42,8 @@ export class NavRightComponent implements OnInit {
     
   });
 
-  //this.loadNotifications();
 
+  
   
  }
   navigateTo(route: string) {

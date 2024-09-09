@@ -23,6 +23,8 @@ import {
   ApexGrid,
   ApexLegend
 } from 'ng-apexcharts';
+import { ClientService } from '../../service/client.service';
+import { DashbordService } from '../../service/dashbord.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -55,8 +57,14 @@ export default class DashboardComponent implements OnInit {
   // eslint-disable-next-line
   weekChart: any;
 
+
+  clientCount: number = 0;  
+
   // constructor
-  constructor() {
+  constructor( private dashbordService:DashbordService) {
+
+
+
     this.chartOptions_4 = {
       chart: {
         type: 'bar',
@@ -218,6 +226,8 @@ export default class DashboardComponent implements OnInit {
       this.weekChart = new ApexCharts(document.querySelector('#visitor-chart'), this.weekOptions);
       this.weekChart.render();
     }, 500);
+    this.getClientCount();
+
   }
 
   // public method
@@ -300,46 +310,37 @@ export default class DashboardComponent implements OnInit {
   };
 
   card = [
+
     {
-      title: 'Total Page Views',
-      amount: '4,42,236',
-      background: 'bg-light-primary ',
-      border: 'border-primary',
-      icon: 'ti ti-trending-up',
-      percentage: '59.3%',
-      color: 'text-primary',
-      number: '35,000'
-    },
-    {
-      title: 'Total Users',
-      amount: '78,250',
-      background: 'bg-light-success ',
-      border: 'border-success',
-      icon: 'ti ti-trending-up',
-      percentage: '70.5%',
-      color: 'text-success',
-      number: '8,900'
-    },
-    {
-      title: 'Total Order',
-      amount: '18,800',
+      title: 'Total Clients',
       background: 'bg-light-warning ',
       border: 'border-warning',
       icon: 'ti ti-trending-down',
-      percentage: '27.4%',
-      color: 'text-warning',
-      number: '1,943'
+
+   
     },
     {
-      title: 'Total Sales',
-      amount: '$35,078',
+      title: 'Total Fournisseur',
+      background: 'bg-light-success ',
+      border: 'border-success',
+      icon: 'ti ti-trending-up',
+
+    },
+    {
+      title: 'Total Bon Sortie',
+      amount: '',
       background: 'bg-light-danger ',
       border: 'border-danger',
       icon: 'ti ti-trending-down',
-      percentage: '27.4%',
       color: 'text-danger',
-      number: '$20,395'
-    }
+    },
+    {
+      title: 'Total Bon Entree',
+      background: 'bg-light-warning ',
+      border: 'border-warning',
+      icon: 'ti ti-trending-up',
+      color: 'text-warning',
+    },
   ];
 
   tables = tableData;
@@ -370,4 +371,29 @@ export default class DashboardComponent implements OnInit {
       percentage: '16%'
     }
   ];
+
+
+
+
+  getClientCount(): void {
+      this.dashbordService.getClientCount().subscribe((count: number) => {
+        this.clientCount = count;
+        this.card[0].amount = `${count}`; 
+      });
+      this.dashbordService.getFournisseurCount().subscribe((count: number) => {
+        this.clientCount = count;
+        this.card[1].amount = `${count}`; 
+      });
+      this.dashbordService.getBonSortieCount().subscribe((count: number) => {
+        this.clientCount = count;
+        this.card[2].amount = `${count}`; 
+      });
+      this.dashbordService.getBonEntreeCount().subscribe((count: number) => {
+        this.clientCount = count;
+         this.card[3].amount = `${count}`; 
+      });
+    
+  }
+
+
 }

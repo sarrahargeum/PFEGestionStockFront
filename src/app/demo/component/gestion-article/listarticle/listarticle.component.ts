@@ -10,6 +10,7 @@ import { CategoryService } from 'src/app/demo/service/CategoryService';
 import { ArticleService } from 'src/app/demo/service/article.service';
 import { BonEntreService } from 'src/app/demo/service/bon-entre.service';
 import { MagasinService } from 'src/app/demo/service/magasin.service';
+import { StockService } from 'src/app/demo/service/stock.service';
 
 @Component({
   selector: 'app-listarticle',
@@ -34,14 +35,14 @@ export class ListarticleComponent implements OnInit {
   public imagePath;
   art;
   public message:string;
-
   constructor(
     private formBuilder: FormBuilder,
     private articleService: ArticleService,
     private categorieService: CategoryService,
     private magasinService: MagasinService,
     private toastr : ToastrService,
-    private router: Router
+    private router: Router,
+    private mvtStockService: StockService
   ) { }
 
   ngOnInit(): void {
@@ -186,4 +187,7 @@ export class ListarticleComponent implements OnInit {
       this.ngOnInit();
     }
   }
+
+
+
 }

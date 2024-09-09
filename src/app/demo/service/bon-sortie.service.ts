@@ -68,7 +68,9 @@ export class BonSortieService {
 
 
 
-
+  saveBonSortieClient(bonSortie: BonSortieDto): Observable<BonSortieDto> {
+    return this.http.post<BonSortieDto>(`${this.baseUrl}/saveBSClient`, bonSortie);
+  }
 
 
 }

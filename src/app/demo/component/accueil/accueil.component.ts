@@ -11,6 +11,7 @@ import { BonSortieService } from '../../service/bon-sortie.service';
 import { ClientService } from '../../service/client.service';
 import { BonSortieDto } from '../../modals/DTO/BonSortieDto';
 import { ClientDto } from '../../modals/DTO/ClientDto';
+import { EtatCommande } from '../../modals/EtatCommande';
 
 @Component({
   selector: 'app-accueil',
@@ -93,41 +94,41 @@ export class AccueilComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
-
     if (this.bonSortieForm.invalid) {
       return;
     }
 
-    const formValue = this.bonSortieForm.value;
-
-    const clientDto: ClientDto = {
-      id: formValue.clientId,
-      nom: formValue.clientNom,
-      prenom: formValue.clientPrenom,
-      adresse: formValue.clientAdresse,
-      numTel: formValue.clientNumTel,
-      mail: formValue.clientMail,
-      idMagasin: formValue.clientIdMagasin
+    const bonSortie = {
+      code: 'BS2023-001',
+      dateCommande: this.bonSortieForm.value.dateCommande,
+      etatCommande: EtatCommande.EN_PREPARATIO,
+      client: {
+        id: this.bonSortieForm.value.clientId, // Assure-toi que l'ID du client est récupéré ici
+        nom: this.bonSortieForm.value.clientNom,
+        prenom: this.bonSortieForm.value.clientPrenom,
+        adresse: this.bonSortieForm.value.clientAdresse,
+        numTel: this.bonSortieForm.value.clientNumTel,
+        mail: this.bonSortieForm.value.clientMail,
+        idMagasin: this.bonSortieForm.value.clientIdMagasin
+      },
+      idMagasin: this.bonSortieForm.value.idMagasin,
+      ligneSorties: [
+        {
+          article: {
+            id: this.bonSortieForm.value.articleId
+          },
+          quantite: this.bonSortieForm.value.quantity,
+        }
+      ]
     };
 
-    const bonSortieDto: BonSortieDto = {
-      client: clientDto,
-      ligneSorties: [{
-        article: { id: formValue.articleId },
-        quantite: formValue.quantite
-      }],
-      dateCommande: formValue.dateCommande,
-      idMagasin: formValue.idMagasin
-    };
-
-    this.bonSortieService.saveBSClient(bonSortieDto).subscribe(
-      response => {
-        console.log('Bon de sortie saved successfully', response);
+    this.bonSortieService.saveBonSortieClient(bonSortie).subscribe(
+      (response) => {
+        console.log('Bon de sortie enregistré avec succès', response);
         this.closeModal();
       },
-      error => {
-        console.error('Error saving bon de sortie', error);
+      (error) => {
+        console.error('Erreur lors de l\'enregistrement du bon de sortie', error);
       }
     );
   }

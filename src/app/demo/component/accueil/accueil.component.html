@@ -7,6 +7,27 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    .stock-epuise {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: rgb(233, 4, 4);
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+    .card-img-container {
+      position: relative;
+    }
+  </style>
 </head>
 <body>
   <div class="mynavbar">
@@ -28,6 +49,7 @@
         <div class="card mb-3">
           <img class="card-img-top img-responsive" [src]="'http://localhost:8099/StockMnager/api/article/Imgarticles/' + art.id" style="height:200px;width:full-content" alt="Card image cap">
           <div class="card-body">
+            <div *ngIf="art?.stockDisponible === 0" class="stock-epuise">Stock épuisé</div>
             <h5 class="card-title">{{art.code}}</h5>
             <p class="card-text">{{art.designation}}</p>
             <p class="card-text">Prix: {{art.prix}}.000 DT</p>
@@ -53,40 +75,57 @@
           </button>
         </div>
         <div class="modal-body">
+         
           <form [formGroup]="bonSortieForm">
             <!-- Client Information -->
-            <div>
+
+            <div class="form-group">
               <label for="clientNom">Nom</label>
-              <input id="clientNom" formControlName="clientNom">
+              <input  step="0.01" class="form-control" id="clientNom" formControlName="clientNom" placeholder="Nom Client"
+               [ngClass]="{ 'is-invalid': submitted && f.clientNom.errors }">
+              <div *ngIf="submitted && f.clientNom.errors" class="invalid-feedback">
+                <div *ngIf="f.clientNom.errors.required">Nom Client est obligatoire</div>
+              </div>
             </div>
-            <div>
-              <label for="clientPrenom">Prénom</label>
-              <input id="clientPrenom" formControlName="clientPrenom">
+
+            <div class="form-group">
+              <label for="clientPrenom">Prenom</label>
+              <input  step="0.01" class="form-control" id="clientPrenom" formControlName="clientPrenom" placeholder="votre prenom"
+               [ngClass]="{ 'is-invalid': submitted && f.clientPrenom.errors }">
+              <div *ngIf="submitted && f.clientPrenom.errors" class="invalid-feedback">
+                <div *ngIf="f.clientPrenom.errors.required">Prenom est obligatoire</div>
+              </div>
             </div>
-            <div>
+            <div class="form-group">
               <label for="clientAdresse">Adresse</label>
-              <input id="clientAdresse" formControlName="clientAdresse">
+              <input  step="0.01" class="form-control" id="clientAdresse" formControlName="clientAdresse" placeholder=" votre Adresse"
+               [ngClass]="{ 'is-invalid': submitted && f.clientAdresse.errors }">
+              <div *ngIf="submitted && f.clientAdresse.errors" class="invalid-feedback">
+                <div *ngIf="f.clientAdresse.errors.required">Adresse est obligatoire</div>
+              </div>
             </div>
-            <div>
+
+            <div class="form-group">
               <label for="clientNumTel">Numéro de téléphone</label>
-              <input id="clientNumTel" formControlName="clientNumTel">
+              <input  step="0.01" class="form-control" id="clientNumTel" formControlName="clientNumTel" placeholder=" votre numero telephone"
+               [ngClass]="{ 'is-invalid': submitted && f.clientNumTel.errors }">
+              <div *ngIf="submitted && f.clientNumTel.errors" class="invalid-feedback">
+                <div *ngIf="f.clientNumTel.errors.required">Numero telephone est obligatoire</div>
+              </div>
             </div>
-            <div>
-              <label for="clientMail">Email</label>
-              <input id="clientMail" formControlName="clientMail">
-            </div>
-            
+          
           
             <!-- Article Information -->
-         
-            <div>
+            <div class="form-group">
               <label for="quantity">Quantity</label>
-              <input id="quantity" formControlName="quantity" type="number">
+              <input type="number" step="0.01" class="form-control" id="quantity" formControlName="quantity" 
+               [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }">
+              <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                <div *ngIf="f.quantity.errors.required">Quantity est obligatoire</div>
+              </div>
             </div>
-            <!-- <div>
-              <label for="dateCommande">Date Commande</label>
-              <input id="dateCommande" formControlName="dateCommande" type="date">
-            </div>         -->
+           
+           
            <button  (click)="onSubmit()">Submit</button>
            <!--[disabled]="bonSortieForm.invalid"-->
           </form>  

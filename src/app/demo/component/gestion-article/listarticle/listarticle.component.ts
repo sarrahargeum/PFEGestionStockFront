@@ -66,7 +66,6 @@ export class ListarticleComponent implements OnInit {
       this.magasinService.getMagasin().subscribe(maga => this.listeMagasin = maga);
     });
   }
-//hedhy
   openModal(mode: 'add' | 'edit', articleId?: number) {
     this.submitted = false;
     this.articleForm.reset();

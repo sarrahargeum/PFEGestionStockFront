@@ -33,29 +33,21 @@ export class AccueilComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private articleService: ArticleService,
-    private categorieService: CategoryService,
-    private magasinService: MagasinService,
+ 
     private bonSortieService: BonSortieService,
-    private clientService: ClientService
   ) {}
 
   ngOnInit(): void {
     this.bonSortieForm = this.formBuilder.group({
       clientId: ['', Validators.required],
-      clientNom: [''],
-      clientPrenom: [''],
-      clientAdresse: [''],
-      clientNumTel: [''],
-      clientMail: [''],
-      clientIdMagasin: [''],
-      articleId: ['', Validators.required],
+      clientNom: ['', Validators.required],
+      clientPrenom: ['', Validators.required],
+      clientAdresse: ['', Validators.required],
+      clientNumTel: ['', Validators.required,],
       quantity: ['', [Validators.required, Validators.min(1)]],
-      dateCommande: [''],
-      idMagasin: ['']
     });
 
     this.refreshArticleList();
-    this.refreshClientList();
   }
 
   refreshArticleList() {
@@ -63,20 +55,9 @@ export class AccueilComponent implements OnInit {
       this.listArticle = data;
     });
 
-    this.categorieService.getCategory().subscribe(data => {
-      this.listeCategorie = data;
-    });
-
-    this.magasinService.getMagasin().subscribe(data => {
-      this.listeMagasin = data;
-    });
   }
 
-  refreshClientList() {
-    this.clientService.getClient().subscribe(data => {
-      this.listClient = data;
-    });
-  }
+ 
 
   openModal(articleId: number): void {
     this.selectedArticleId = articleId;
@@ -91,25 +72,12 @@ export class AccueilComponent implements OnInit {
     this.showModal = false;
   }
 
-  get bf() {
-    return this.bonSortieForm.controls;
-  }
-
   onSubmit() {
-    console.log('test');
-    
-    // if (this.bonSortieForm.invalid) {
-    //   console.log('test2');
-
-    //   return;
-    // }
+ 
 
     const bonSortie = {
-      code: 'BS2023-001',
-    //  dateCommande: this.bonSortieForm.value.dateCommande,
       etatCommande: EtatCommande.EN_PREPARATIO,
       client: {
-        // id: this.bonSortieForm.value.clientId, // Assure-toi que l'ID du client est récupéré ici
         nom: this.bonSortieForm.value.clientNom,
         prenom: this.bonSortieForm.value.clientPrenom,
         adresse: this.bonSortieForm.value.clientAdresse,
@@ -117,7 +85,6 @@ export class AccueilComponent implements OnInit {
         mail: this.bonSortieForm.value.clientMail,
        idMagasin: 1
       },
-     // idMagasin: this.bonSortieForm.value.idMagasin,
       ligneSorties: [
         {
           article: {
@@ -137,5 +104,8 @@ export class AccueilComponent implements OnInit {
         console.error('Erreur lors de l\'enregistrement du bon de sortie', error);
       }
     );
+  }
+  get f() {
+    return this.bonSortieForm.controls;
   }
 }

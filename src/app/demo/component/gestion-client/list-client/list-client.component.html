@@ -100,13 +100,6 @@
                 <div *ngIf="f.mail.errors.required">mail est obligatoire</div>
               </div>
             </div>-->
-
-          <!--  <div class="form-group">
-              <label for="magasinId">Selectionner une Magasin</label>
-              <select class="form-control" id="magasinId" formControlName="magasinId">
-                <option *ngFor="let mg of listeMagasin" [value]="mg.id">{{ mg.nom }}</option>
-              </select>
-            </div>-->
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary">Enregistrer</button>
               <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>

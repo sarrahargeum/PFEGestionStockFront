@@ -29,7 +29,7 @@ export class AccueilComponent implements OnInit {
   showModal = false;
   submitted = false;
   modalTitle = 'Commander';
-
+  selectedArticleId:number;
   constructor(
     private formBuilder: FormBuilder,
     private articleService: ArticleService,
@@ -78,7 +78,9 @@ export class AccueilComponent implements OnInit {
     });
   }
 
-  openModal() {
+  openModal(articleId: number): void {
+    this.selectedArticleId = articleId;
+    console.log('Article ID:', articleId);
     this.submitted = false;
     this.bonSortieForm.reset();
     this.modalTitle = 'Commander';
@@ -94,35 +96,39 @@ export class AccueilComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.bonSortieForm.invalid) {
-      return;
-    }
+    console.log('test');
+    
+    // if (this.bonSortieForm.invalid) {
+    //   console.log('test2');
+
+    //   return;
+    // }
 
     const bonSortie = {
       code: 'BS2023-001',
-      dateCommande: this.bonSortieForm.value.dateCommande,
+    //  dateCommande: this.bonSortieForm.value.dateCommande,
       etatCommande: EtatCommande.EN_PREPARATIO,
       client: {
-        id: this.bonSortieForm.value.clientId, // Assure-toi que l'ID du client est récupéré ici
+        // id: this.bonSortieForm.value.clientId, // Assure-toi que l'ID du client est récupéré ici
         nom: this.bonSortieForm.value.clientNom,
         prenom: this.bonSortieForm.value.clientPrenom,
         adresse: this.bonSortieForm.value.clientAdresse,
         numTel: this.bonSortieForm.value.clientNumTel,
         mail: this.bonSortieForm.value.clientMail,
-        idMagasin: this.bonSortieForm.value.clientIdMagasin
+       idMagasin: 1
       },
-      idMagasin: this.bonSortieForm.value.idMagasin,
+     // idMagasin: this.bonSortieForm.value.idMagasin,
       ligneSorties: [
         {
           article: {
-            id: this.bonSortieForm.value.articleId
+          id: this.selectedArticleId   
           },
           quantite: this.bonSortieForm.value.quantity,
         }
       ]
     };
 
-    this.bonSortieService.saveBonSortieClient(bonSortie).subscribe(
+    this.bonSortieService.saveBSClient(bonSortie).subscribe(
       (response) => {
         console.log('Bon de sortie enregistré avec succès', response);
         this.closeModal();

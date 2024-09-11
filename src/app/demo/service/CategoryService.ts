@@ -13,7 +13,8 @@ export class CategoryService {
   private baseUrl = 'http://localhost:8099/StockMnager/api/category';
   constructor(private http: HttpClient) { }
 
-
+  //nti hna ge3da tjib fi les category lkol , haka w le ?  eyy
+  
   getCategory(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.baseUrl}/all`);
   }
@@ -26,7 +27,7 @@ export class CategoryService {
    const url = `${this.baseUrl}/Update/${id}`;
   return this.http.put<Category>(url, category);
   }
-
+  // w hedhi win testa3mel feha ?
   retrieveCategory(id: any): Observable<Category> {
     return this.http.get<Category>(`${this.baseUrl}/retrieve-category/${id}`);
   }

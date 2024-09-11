@@ -15,10 +15,11 @@ export class BonSortieService {
   constructor(private http: HttpClient) { }
 
   saveBonSortie(bonSortieClient: BonSortieDto): Observable<BonSortieDto> {
-    return this.http.post<BonSortieDto>(`${this.baseUrl}/saveBS`, bonSortieClient);
+    return this.http.post<BonSortieDto>(`${this.baseUrl}/saveBSClient`, bonSortieClient);
   }
 
   saveBSClient(bonSortieClient: BonSortieDto): Observable<BonSortieDto> {
+    bonSortieClient.idMagasin = 1;
     return this.http.post<BonSortieDto>(`${this.baseUrl}/saveBSClient`, bonSortieClient);
   }
 
@@ -66,11 +67,6 @@ export class BonSortieService {
   }
   
 
-
-
-  saveBonSortieClient(bonSortie: BonSortieDto): Observable<BonSortieDto> {
-    return this.http.post<BonSortieDto>(`${this.baseUrl}/saveBSClient`, bonSortie);
-  }
 
 
 }

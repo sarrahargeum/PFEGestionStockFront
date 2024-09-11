@@ -128,34 +128,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     this.articleNotYetSelected = true;
   }
 
- 
-/*  enregistrerCommande(): void {
-    const commande = this.preparerCommande();
-  
-    if (this.origin === 'client') {
-      this.cmdCltFrsService.enregistrerCommandeClient(commande as BonSortieDto)
-        .subscribe(
-          cmd => {
-            this.toastr.success('Commandes client added successfully.', 'Success');
-            this.router.navigate(['commandesclient']);
-          },
-          error => {
-            this.toastr.error('Failed to add commandes client. Please try again.', 'Error');
-          }
-        );
-    } else if (this.origin === 'fournisseur') {
-      this.cmdCltFrsService.enregistrerCommandeFournisseur(commande as BonEntreeDto)
-        .subscribe(
-          cmd => {
-            this.toastr.success('Commandes fournisseur added successfully.', 'Success');
-            this.router.navigate(['commandesfournisseur']);
-          },
-          error => {
-            this.toastr.error('Failed to add commandes fournisseur. Please try again.', 'Error');
-          }
-        );
-    }
-  }*/
 
     enregistrerCommande(): void {
       const commande = this.preparerCommande();
@@ -221,7 +193,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     if (this.origin === 'client') {
       return  {
         client: this.selectedClientFournisseur,
-        code: this.codeCommande,
+        //code: this.codeCommande,
         dateCommande: new Date().getTime(),
         etatCommande: 'EN_PREPARATION',
         ligneSorties: this.lignesCommande
@@ -229,7 +201,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     } else if (this.origin === 'fournisseur') {
       return  {
         fournisseur: this.selectedClientFournisseur,
-        code: this.codeCommande,
+        //code: this.codeCommande,
         dateCommande: new Date().getTime(),
         etatCommande: 'EN_PREPARATION',
         ligneEntrees: this.lignesCommande

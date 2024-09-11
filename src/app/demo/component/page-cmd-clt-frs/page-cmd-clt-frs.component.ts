@@ -18,7 +18,8 @@ export class PageCmdCltFrsComponent implements OnInit {
   mapLignesCommande = new Map();
   mapPrixTotalCommande = new Map();
   listBonEntree:BonEntreeDto;
-  
+  codeCmd: string;
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -103,5 +104,6 @@ export class PageCmdCltFrsComponent implements OnInit {
     }
     return ['/']; 
   }
+
   
 }

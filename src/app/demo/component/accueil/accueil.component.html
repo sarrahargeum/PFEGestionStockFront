@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Navbar with dropdown</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <style>
-    .stock-epuise {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: rgb(233, 4, 4);
-      font-size: 24px;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-    }
-    .card-img-container {
-      position: relative;
-    }
-  </style>
-</head>
-<body>
+ 
   <div class="mynavbar">
     <br>
     <div class="mynavbar-left">
@@ -38,13 +7,13 @@
     <div class="mynavbar-right">
       <ul>
         <li><a>Home</a></li>
-        <li><a href="#">Se Connecter</a></li>
+        <li><a href="login">Se Connecter</a></li>
       </ul>
     </div>
   </div>
   <br><br><br>
-  <div>
-    <div class="row">
+  <div class="container">
+    <div class="row m-0">
       <div class="col-md-6 col-xl-4" *ngFor="let art of listArticle">
         <div class="card mb-3">
           <img class="card-img-top img-responsive" [src]="'http://localhost:8099/StockMnager/api/article/Imgarticles/' + art.id" style="height:200px;width:full-content" alt="Card image cap">
@@ -68,10 +37,10 @@
   <div *ngIf="showModal" class="modal" tabindex="-1" role="dialog" style="display: block; background: rgba(0, 0, 0, 0.5);">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-primary">
           <h5 class="modal-title">{{ modalTitle }}</h5>
-          <button type="button" class="close" (click)="closeModal()" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+          <button type="button" class="close btn " (click)="closeModal()" aria-label="Close">
+            <div aria-hidden="true" class="text-white" style="scale: 2;">&times;</div>
           </button>
         </div>
         <div class="modal-body">
@@ -125,13 +94,13 @@
               </div>
             </div>
            
-           
-           <button  (click)="onSubmit()">Submit</button>
-           <!--[disabled]="bonSortieForm.invalid"-->
+            <!--[disabled]="bonSortieForm.invalid"-->
           </form>  
         </div>
+        <div class="d-flex justify-content-end p-3">
+        <button class="btn btn-success" (click)="onSubmit()">Submit</button>
+       </div>
       </div>
     </div>
   </div> 
-</body>
-</html>
+ 

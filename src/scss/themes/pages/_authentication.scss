@@ -50,7 +50,7 @@
         background-size: auto 75%;
         background-position: left center;
         position: relative;
-        justify-content: space-between;
+        align-items: center;
         > * {
           position: relative;
           z-index: 5;
@@ -95,7 +95,7 @@
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
     }
   }
 }

@@ -121,6 +121,10 @@ strong {
 .modal-backdrop {
   z-index: 1071;
 }
+.modal-body {
+  max-height: 75vh;
+  overflow: auto;
+}
 
 /* Code snippets */
 .highlight {

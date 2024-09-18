@@ -3,7 +3,7 @@
     <div class="col-md-8 p-0">
       <h1>Commande {{origin}}s</h1>
     </div>
-    <div class="col-md-4 text-right">
+    <div class="col-md-4 p-0">
       <app-boutton-action
         [isImporterVisible]="false"
       (clickEvent)="nouvelleCommande()"
@@ -14,8 +14,8 @@
     </div>-->
   </div>
   <div class="col m-3" >
-    <div class="accordion" id="accordionExample" *ngFor="let cmd of listeCommandes">
-      <div class="card">
+    <div class="accordion " id="accordionExample" *ngFor="let cmd of listeCommandes">
+      <div class="card border border-info">
         <div class="card-body" id="headingOne">
           <button class="btn btn-block text-left" type="button" data-toggle="collapse"
                   [attr.data-target]="'#collapseOne'+cmd.id"
@@ -29,7 +29,7 @@
         </div>
         <div id="collapseOne{{cmd.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample"
              style="max-height: 300px;
-        overflow-y: scroll">
+        overflow-y: auto">
           <div class="card-body">
             <app-detail-cmd
             *ngFor="let ligne of mapLignesCommande.get(cmd.id)"

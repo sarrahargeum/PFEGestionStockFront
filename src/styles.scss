@@ -57,3 +57,20 @@ $pc-secondary: map-get($preset-colors, 'preset-1', 'secondary');
 //@import 'ngx-toastr/toastr-bs4-alert';
 // boostrap 5
 @import 'ngx-toastr/toastr-bs5-alert';
+
+
+.modal-header  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h5 {
+        color: white;
+    }
+}
+
+.nav-item {
+    &:hover,.active {
+        background-color: #e6e6e6;
+    }
+}

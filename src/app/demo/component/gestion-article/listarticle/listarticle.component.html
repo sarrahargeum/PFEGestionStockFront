@@ -1,108 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    .stock-epuise {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-    }
-    .card-img-container {
-      position: relative;
-    }
-  </style>
-</head>
-
-<body>
-
+<div class="d-flex wrap justify-content-between align-items-center">
+  <h4>Lite des Articles</h4>
 <div style="text-align: right">
   <button class="btn btn-success" (click)="openModal('add')">Ajouter Article</button>
 </div>
-<br>
-<div class="input-group input-group-alternative">
+ 
+
+</div>
+
+ 
+<div class="input-group input-group-alternative  my-3">
   <input class="form-control" placeholder="Recherche" type="text" [(ngModel)]="code" (input)="Search()">
 </div>
-<br>
-<br>
+<div class="px-3 py-4 h-100 bg-white  " style="border-radius:8px ;border: 1px solid lightgray;">
+  
 <div class="row">
-  <div class="col-md-6 col-xl-4" *ngFor="let art of listArticle">
-    <div class="card mb-3"  >
-      <img class="card-img-top img-responsive"
-        [src]="'http://localhost:8099/StockMnager/api/article/Imgarticles/' + art.id" 
+  <div class="col-md-6 col-xl-4 col-12" *ngFor="let art of listArticle" >
+    <div class="card mb-3" >
+      <img class="card-img-top img-responsive" 
+        [src]="'http://localhost:8099/StockMnager/api/article/Imgarticles/' + art.id"
         style="height:200px;width:full-content" alt="Card image cap">
 
       <div class="card-body">
         <div *ngIf="art?.stockDisponible === 0" class="stock-epuise">Stock épuisé</div>
         <h5 class="card-title">{{art.code}}</h5>
-        
+
         <p class="card-text">{{art.designation}}</p>
         <p class="card-text">Prix: {{art.prix}}.000 DT</p>
         <p class="card-text"><small class="text-muted">Taux de TVA: {{art.tauxTva}}</small></p>
+        <div class="d-flex align-items-center justify-content-end">
         <a (click)="openModal('edit', art.id)" style="color: blue;">
           <i class="fas fa-edit"></i>
         </a> &nbsp;
-        <a (click)="deleteClick(art.id)" style="color: red;">
+        <a (click)="deleteClick(art.id)" class="mx-2" style="color: red;">
           <i class="fas fa-trash-alt"></i>
         </a>
-   
-          <i class="fas fa-info-circle" (click)="viewStockDetails(art.id)" style="cursor: pointer; font-size: 20px"></i>
-               
 
+        <i class="fas fa-info-circle text-info" (click)="viewStockDetails(art.id)" style="cursor: pointer; font-size: 18px"></i>
+      </div>
+<div *ngIf="art?.stockDisponible === 0" class="stock-epuise">Stock épuisé</div>
       </div>
     </div>
   </div>
 </div>
-
+</div>
 <!-- Modal for adding/editing article -->
-<div *ngIf="showModal" class="modal" tabindex="-1" role="dialog" style="display: block; background: rgba(0, 0, 0, 0.5);">
+<div *ngIf="showModal" class="modal" tabindex="-1" role="dialog"
+  style="display: block; background: rgba(0, 0, 0, 0.5);">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-primary">
         <h5 class="modal-title">{{ modalTitle }}</h5>
-        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <button type="button" class="close btn" (click)="closeModal()" aria-label="Close">
+          <div aria-hidden="true" class="text-white" style="scale: 2;">&times;</div>
         </button>
       </div>
       <div class="modal-body">
         <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="code">Code</label>
-            <input type="text" class="form-control" id="code" formControlName="code" placeholder="Code" [ngClass]="{ 'is-invalid': submitted && f.code.errors }">
+            <input type="text" class="form-control" id="code" formControlName="code" placeholder="Code"
+              [ngClass]="{ 'is-invalid': submitted && f.code.errors }">
             <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
               <div *ngIf="f.code.errors.required">Code est obligatoire</div>
             </div>
           </div>
           <div class="form-group">
             <label for="prix">Prix</label>
-            <input type="number" step="0.01" class="form-control" id="prix" formControlName="prix" placeholder="Entrez le prix" [ngClass]="{ 'is-invalid': submitted && f.prix.errors }">
+            <input type="number" step="0.01" class="form-control" id="prix" formControlName="prix"
+              placeholder="Entrez le prix" [ngClass]="{ 'is-invalid': submitted && f.prix.errors }">
             <div *ngIf="submitted && f.prix.errors" class="invalid-feedback">
               <div *ngIf="f.prix.errors.required">Prix est obligatoire</div>
             </div>
           </div>
           <div class="form-group">
             <label for="tauxTva">Taux TVA</label>
-            <input type="number" step="0.01" class="form-control" id="tauxTva" formControlName="tauxTva" placeholder="Entrez le taux de TVA" [ngClass]="{ 'is-invalid': submitted && f.tauxTva.errors }">
+            <input type="number" step="0.01" class="form-control" id="tauxTva" formControlName="tauxTva"
+              placeholder="Entrez le taux de TVA" [ngClass]="{ 'is-invalid': submitted && f.tauxTva.errors }">
             <div *ngIf="submitted && f.tauxTva.errors" class="invalid-feedback">
               <div *ngIf="f.tauxTva.errors.required">Taux TVA est obligatoire</div>
             </div>
           </div>
           <div class="form-group">
             <label for="designation">Désignation</label>
-            <textarea class="form-control" id="designation" rows="3" formControlName="designation" [ngClass]="{ 'is-invalid': submitted && f.designation.errors }"></textarea>
+            <textarea class="form-control" id="designation" rows="3" formControlName="designation"
+              [ngClass]="{ 'is-invalid': submitted && f.designation.errors }"></textarea>
             <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
               <div *ngIf="f.designation.errors.required">Désignation est obligatoire</div>
             </div>
@@ -125,15 +106,12 @@
               <img [src]="imgURL" height="200" *ngIf="imgURL">
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
-            <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
-          </div>
         </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
       </div>
     </div>
   </div>
 </div>
-
-</body>
-</html>

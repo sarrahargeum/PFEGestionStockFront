@@ -45,7 +45,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let mvt of mvtStocks">
+      <tr *ngFor="let mvt of mvtStocks | paginate: { itemsPerPage: 5, currentPage: page }">
         <td>{{ mvt.dateMvt | date: 'dd.MM.yyyy' }}</td>
         <td>{{ mvt.quantite }}</td>
         <td>{{ mvt.typeMvt }}</td>
@@ -53,6 +53,10 @@
     </tbody>
   </table>
 </div>
+<div class="d-flex justify-content-end">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
+
 </div>
 
 <!-- Display a message if no data is available -->

@@ -17,7 +17,7 @@ import { MVTStockDto } from '../../modals/DTO/MVTStockDto';
 export class DetailMvtStkArticleComponent implements OnInit {
   mvtStocks: MVTStockDto[] = [];
   stockReel: number;
-
+  page: any = 1;
   constructor(
     private mvtStockService: StockService,
     private route: ActivatedRoute

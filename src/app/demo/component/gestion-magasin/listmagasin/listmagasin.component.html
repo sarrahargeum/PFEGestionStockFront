@@ -61,7 +61,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="magasinForm"   (ngSubmit)="save()">
+        <form [formGroup]="magasinForm"   >
           <div class="form-group">
             <label for="nom">Nom</label>
             <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Nom"
@@ -109,7 +109,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="submit" (click)="save()" class="btn btn-primary">Enregistrer</button>
         <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
       </div>
     </div>

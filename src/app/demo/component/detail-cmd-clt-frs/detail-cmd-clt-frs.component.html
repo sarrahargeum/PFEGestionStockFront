@@ -69,7 +69,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="modifierClick()">
+        <form >
           <div class="form-group">
             <label for="etatCommande">Etat Commande</label>
             <select [(ngModel)]="newEtatCommande" name="etatCommande" class="form-control">
@@ -79,7 +79,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="submit" (click)="modifierClick()" class="btn btn-primary">Enregistrer</button>
         <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
       </div>
     </div>

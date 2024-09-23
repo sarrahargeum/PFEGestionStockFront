@@ -73,11 +73,19 @@ export class ListarticleComponent implements OnInit {
       this.modalTitle = 'Ajouter Article';
       this.isEditMode = false;
     } else if (mode === 'edit' && articleId != null) {
+      console.log(articleId);
+      
       this.modalTitle = 'Modifier Article';
       this.isEditMode = true;
       this.id = articleId;
       this.articleService.retrieveArticle(articleId).subscribe(article => {
-        this.articleForm.patchValue(article);
+       console.log(articleId),
+        this.articleForm.patchValue({
+          code: article.code ,
+      prix: article.prix,
+      tauxTva: article.tauxTva,
+      designation: article.designation,
+        });
       });
     }
     this.showModal = true;

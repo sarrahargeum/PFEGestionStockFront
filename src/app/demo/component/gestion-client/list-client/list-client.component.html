@@ -58,7 +58,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="clientForm" (ngSubmit)="save()">
+          <form [formGroup]="clientForm" >
             <div class="form-group">
               <label for="nom">Nom</label>
               <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Nom" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
@@ -87,20 +87,16 @@
                 <div *ngIf="f.numTel.errors.required">Numéro Téléphone est obligatoire</div>
               </div>
             </div>
-           <!-- <div class="form-group">
-              <label >Mail</label>
-              <input type="email" class="form-control" id="mail" formControlName="mail" placeholder="mail" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }">
-              <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
-                <div *ngIf="f.mail.errors.required">mail est obligatoire</div>
-              </div>
-            </div>-->
+    
           </form>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Enregistrer</button>
+          <button type="submit" (click)="save()" class="btn btn-primary">Enregistrer</button>
           <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
         </div>
       </div>
     </div>
+
+    
   </div>
  

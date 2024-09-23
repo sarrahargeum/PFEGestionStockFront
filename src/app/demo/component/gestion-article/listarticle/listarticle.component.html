@@ -55,7 +55,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="articleForm" >
           <div class="form-group">
             <label for="code">Code</label>
             <input type="text" class="form-control" id="code" formControlName="code" placeholder="Code"
@@ -109,7 +109,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary">Enregistrer</button>
         <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
       </div>
     </div>

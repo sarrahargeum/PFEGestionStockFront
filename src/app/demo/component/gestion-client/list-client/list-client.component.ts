@@ -27,6 +27,7 @@ export class ListClientComponent  implements OnInit {
   id: number | null = null;
   listeMagasin: Array<Magasin> = [];
   
+  
 
   constructor(
     private clientService: ClientService,
@@ -43,7 +44,6 @@ export class ListClientComponent  implements OnInit {
       adresse: ['', Validators.required],
       numTel: ['', [Validators.required, Validators.minLength(5)]],
       magasinId: ['', Validators.required],
-     // mail: ['', [Validators.required, Validators.email]],
     });
     this.refrechClientList();
   }
@@ -59,7 +59,7 @@ export class ListClientComponent  implements OnInit {
   }
 
   deleteClick(id: number) {
-    if (confirm('Are you sure to delete this project')) {
+    if (confirm('Are you sure to delete this client')) {
       this.clientService.deleteclient(id).subscribe(() => {
         this.refrechClientList();
         this.toastr.success('client delete successfully.', 'Success'); 
@@ -96,8 +96,7 @@ export class ListClientComponent  implements OnInit {
           prenom: client.prenom,
           adresse: client.adresse,
           numTel: client.numTel,
-         // mail: client.mail,
-       //  magasinId: client.idMagasin  
+        
         });
       });
     }
@@ -116,7 +115,7 @@ export class ListClientComponent  implements OnInit {
     this.submitted = true;
 
     const clientForm = {
-      id: this.isEditMode ? this.id : undefined, // Set 'id' as undefined when adding a new client
+      id: this.isEditMode ? this.id : undefined, 
 
       nom: this.f.nom.value,
       prenom: this.f.prenom.value,

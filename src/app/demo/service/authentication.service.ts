@@ -13,7 +13,7 @@ import { User } from '../modals/user';
 })
 export class AuthenticationService {
 
-  private baseUrl = 'http://192.168.1.13:8099/StockMnager/api/auth';
+  private baseUrl = 'http://localhost:8099/StockMnager/api/auth';
 
   constructor(private http: HttpClient,
           private router: Router

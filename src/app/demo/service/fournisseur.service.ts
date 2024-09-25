@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Fournisseur } from '../modals/fournisseur';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FournisseurService {
-  private baseUrl = 'http://localhost:8099/StockMnager/api/fournisseur';
+  private baseUrl = 'http://'+environment.urlBack+':8099/StockMnager/api/fournisseur';
 
   constructor(private http: HttpClient) { }
 

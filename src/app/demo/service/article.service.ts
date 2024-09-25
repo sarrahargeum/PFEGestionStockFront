@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Article } from '../modals/article';
 import { ArticleDto } from '../modals/DTO/ArticleDto';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +12,7 @@ export class ArticleService {
   
 
   constructor(private http: HttpClient) { }
-  private baseUrl = 'http://localhost:8099/StockMnager/api/article';
+  private baseUrl = 'http://'+environment.urlBack+':8099/StockMnager/api/article';
 
   getArticle(): Observable<ArticleDto[]>{
     return this.http.get<ArticleDto[]>(`${this.baseUrl}/allArticle`);

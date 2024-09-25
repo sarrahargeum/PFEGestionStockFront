@@ -11,6 +11,7 @@ import { ArticleService } from 'src/app/demo/service/article.service';
 import { BonEntreService } from 'src/app/demo/service/bon-entre.service';
 import { MagasinService } from 'src/app/demo/service/magasin.service';
 import { StockService } from 'src/app/demo/service/stock.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-listarticle',
@@ -32,6 +33,8 @@ export class ListarticleComponent implements OnInit {
   id: number | null = null;
   code:string;
   userFile;
+  path='http://'+environment.urlBack+':8099/StockMnager/api/article/Imgarticles/'
+
   public imagePath;
   art;
   public message:string;

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Category } from '../modals/category';
 import { Observable } from 'rxjs';
 import { AuthenticationResponse } from '../modals/AuthenticationResponse';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { AuthenticationResponse } from '../modals/AuthenticationResponse';
 })
 export class CategoryService {
 
-  private baseUrl = 'http://localhost:8099/StockMnager/api/category';
+  private baseUrl = 'http://'+environment.urlBack+':8099/StockMnager/api/category';
   constructor(private http: HttpClient) { }
 
   //nti hna ge3da tjib fi les category lkol , haka w le ?  eyy

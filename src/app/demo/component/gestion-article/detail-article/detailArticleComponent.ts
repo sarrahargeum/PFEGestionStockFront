@@ -8,6 +8,7 @@ import { Article } from 'src/app/demo/modals/article';
 import { CategoryService } from 'src/app/demo/service/CategoryService';
 import { ArticleService } from 'src/app/demo/service/article.service';
 import { MagasinService } from 'src/app/demo/service/magasin.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class DetailArticleComponent implements OnInit {
   isEditMode = false;
   modalTitle;
   id: number | null = null;
-
+path='http://'+environment.urlBack+':8099/StockMnager/api/article/Imgarticles/'
   constructor(
     private router: Router,
     private articleService: ArticleService,

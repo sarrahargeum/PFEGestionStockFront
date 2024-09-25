@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Client } from '../modals/Client';
 import { Observable } from 'rxjs';
 import { ClientDto } from '../modals/DTO/ClientDto';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
 
-  private baseUrl = 'http://localhost:8099/StockMnager/api/client';
+  private baseUrl = 'http://'+environment.urlBack+':8099/StockMnager/api/client';
 
   constructor(private http: HttpClient) { }
 

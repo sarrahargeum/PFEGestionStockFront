@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { EtatCommande } from '../modals/EtatCommande';
 import { BonSortieDto } from '../modals/DTO/BonSortieDto';
 import { BonSortie } from '../modals/BonSortie';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BonSortieService {
 
-  private baseUrl = 'http://localhost:8099/StockMnager/api/BonSortie';
+  private baseUrl = 'http://'+environment.urlBack+':8099/StockMnager/api/BonSortie';
 
   constructor(private http: HttpClient) { }
 

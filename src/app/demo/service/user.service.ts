@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../modals/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = 'http://localhost:8099/StockMnager/api/user';
+  private baseUrl = 'http://'+environment.urlBack+':8099/StockMnager/api/user';
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +31,7 @@ export class UserService {
   }
 
   active(userId: number, activated: boolean){
-    return this.http.put("http://localhost:8099/StockMnager/api/auth/admin/activated",  { id: userId, activated: activated });
+    return this.http.put('http://'+environment.urlBack+':8099/StockMnager/api/auth/admin/activated',  { id: userId, activated: activated });
   }
 
 

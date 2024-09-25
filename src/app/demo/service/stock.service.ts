@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { MvtStk } from '../modals/mvtStock';
 import { Observable } from 'rxjs';
 import { MVTStockDto } from '../modals/DTO/MVTStockDto';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockService {
 
-  private baseUrl = 'http://localhost:8099/StockMnager/api/mvtstock';
+  private baseUrl = 'http://'+environment.urlBack+':8099/StockMnager/api/mvtstock';
 
   constructor(private http: HttpClient) { }
 

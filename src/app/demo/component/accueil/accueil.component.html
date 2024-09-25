@@ -16,7 +16,7 @@
     <div class="row m-0">
       <div class="col-md-6 col-xl-4" *ngFor="let art of listArticle">
         <div class="card mb-3">
-          <img class="card-img-top img-responsive" [src]="'http://localhost:8099/StockMnager/api/article/Imgarticles/' + art.id" style="height:200px;width:full-content" alt="Card image cap">
+          <img class="card-img-top img-responsive" [src]="path+art.id" style="height:200px;width:full-content" alt="Card image cap">
           <div class="card-body">
             <div *ngIf="art?.stockDisponible === 0" class="stock-epuise">Stock épuisé</div>
             <h5 class="card-title">{{art.code}}</h5>

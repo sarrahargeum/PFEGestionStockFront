@@ -7,13 +7,14 @@ import { Router } from '@angular/router';
 import { AuthenticationResponse } from '../modals/AuthenticationResponse';
 import { AuthenticationRequest } from '../modals/AuthenticationRequest';
 import { User } from '../modals/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private baseUrl = 'http://192.168.1.13:8099/StockMnager/api/auth';
+private baseUrl = 'http://'+environment.urlBack+':8099/StockMnager/api/auth';
 
   constructor(private http: HttpClient,
           private router: Router
@@ -38,7 +39,7 @@ export class AuthenticationService {
  
 
     getRoles(): Observable<Roles[]>{
-      return this.http.get<Roles[]>("http://localhost:8099/StockMnager/api/roles/names");
+      return this.http.get<Roles[]>("http://"+environment.urlBack+":8099/StockMnager/api/roles/names");
       
     }
     

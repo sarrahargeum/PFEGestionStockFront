@@ -3,6 +3,7 @@ import * as Stomp from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { log } from 'console';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class WebSocketService {
 
   constructor() {
     // Initialize the Stomp client with the appropriate settings
-    const socket = new SockJS('http://localhost:8099/StockMnager/ws');
+    const socket = new SockJS('http://'+environment.urlBack+':8099/StockMnager/ws');
     this.stompClient = Stomp.Stomp.over(socket);
     this.stompClient.reconnectDelay = 5000;
     this.stompClient.debug = (str) => { 

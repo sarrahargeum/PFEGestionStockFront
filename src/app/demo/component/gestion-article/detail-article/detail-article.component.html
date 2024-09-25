@@ -1,7 +1,7 @@
 <div class="row mb-1 mr-0 custom-border" *ngFor="let art of listArticle">
     <!-- Image de l'article -->
     <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1">
-      <img [src]="'http://localhost:8099/StockMnager/api/article/Imgarticles/' + art.id" width="100px" height="100px">
+      <img [src]="path + art.id" width="100px" height="100px">
     </div>
   
     <!-- Détails de l'article -->

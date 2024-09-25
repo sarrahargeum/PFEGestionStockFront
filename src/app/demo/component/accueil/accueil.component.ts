@@ -12,6 +12,7 @@ import { ClientService } from '../../service/client.service';
 import { BonSortieDto } from '../../modals/DTO/BonSortieDto';
 import { ClientDto } from '../../modals/DTO/ClientDto';
 import { EtatCommande } from '../../modals/EtatCommande';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-accueil',
@@ -30,6 +31,7 @@ export class AccueilComponent implements OnInit {
   submitted = false;
   modalTitle = 'Commander';
   selectedArticleId:number;
+  path='http://'+environment.urlBack+':8099/StockMnager/api/article/Imgarticles/'
   constructor(
     private formBuilder: FormBuilder,
     private articleService: ArticleService,

@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../../service/article.service';
-import { Article } from '../../modals/article';
-import { ArticleDto } from '../../modals/DTO/ArticleDto';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { StockService } from '../../service/stock.service';
 import { MVTStockDto } from '../../modals/DTO/MVTStockDto';

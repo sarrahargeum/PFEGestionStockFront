@@ -25,7 +25,8 @@ export class DetailCmdCltFrsComponent implements OnInit {
   newEtatCommande: EtatCommande;
   showModal: boolean = false;
   etatsCommande: EtatCommande[] = [ EtatCommande.VALIDE, EtatCommande.LIVREE]; 
-
+  dataJson:any
+  datauser:any
   constructor(private cmdcltfrs: CmdcltfrsService,
     private bonEntreeService:BonEntreService,
     private bonSortieService:BonSortieService,
@@ -33,6 +34,9 @@ export class DetailCmdCltFrsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.datauser=localStorage.getItem("datauser")
+    this.dataJson=JSON.parse(this.datauser)
+   console.log(this.dataJson);
     this.extractClientFournisseur();
     
  

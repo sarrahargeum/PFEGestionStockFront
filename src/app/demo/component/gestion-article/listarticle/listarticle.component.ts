@@ -34,7 +34,8 @@ export class ListarticleComponent implements OnInit {
   code:string;
   userFile;
   path='http://'+environment.urlBack+':8099/StockMnager/api/article/Imgarticles/'
-
+  dataJson:any
+  datauser:any
   public imagePath;
   art;
   public message:string;
@@ -59,6 +60,9 @@ export class ListarticleComponent implements OnInit {
       magasinId: ['', Validators.required]
     });
     this.refreshArticleList();
+    this.datauser=localStorage.getItem("datauser")
+    this.dataJson=JSON.parse(this.datauser)
+   
   }
 
 

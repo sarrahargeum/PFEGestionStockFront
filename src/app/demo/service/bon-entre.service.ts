@@ -60,7 +60,9 @@ export class BonEntreService {
     return this.http.get<BonEntreeDto[]>(`${this.baseUrl}/lignesCommande/${idCommande}`);
   }
  
-
+  getBonEntreeByMonth(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/monthly-bon-data`);
+  }
  
  
 }

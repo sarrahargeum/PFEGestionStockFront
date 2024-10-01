@@ -25,7 +25,6 @@ export class ListuserComponent  implements OnInit {
   userForm: FormGroup;
   firstname: string;
   id: number | null = null;
-
   constructor(
     private fb: FormBuilder,
     private userService: UserService,

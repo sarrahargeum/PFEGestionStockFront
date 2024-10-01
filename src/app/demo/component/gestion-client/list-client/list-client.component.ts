@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrService } from 'ngx-toastr';
 import { Client } from 'src/app/demo/modals/Client';
 import { Magasin } from 'src/app/demo/modals/magasin';
@@ -11,7 +12,7 @@ import { MagasinService } from 'src/app/demo/service/magasin.service';
 @Component({
   selector: 'app-list-client',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule,NgxPaginationModule],
 
   templateUrl: './list-client.component.html',
   styleUrl: './list-client.component.scss'
@@ -26,7 +27,7 @@ export class ListClientComponent  implements OnInit {
   modalTitle = 'Ajouter Client';
   id: number | null = null;
   listeMagasin: Array<Magasin> = [];
-  
+  page: any = 1;
   
 
   constructor(

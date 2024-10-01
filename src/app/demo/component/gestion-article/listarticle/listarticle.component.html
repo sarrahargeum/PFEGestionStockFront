@@ -31,7 +31,8 @@
         <a (click)="openModal('edit', art.id)" style="color: blue;">
           <i class="fas fa-edit"></i>
         </a> &nbsp;
-        <a (click)="deleteClick(art.id)" class="mx-2" style="color: red;">
+        <a (click)="deleteClick(art.id)" class="mx-2" style="color: red;"
+        *ngIf=" dataJson?.roles.id==1 || dataJson?.roles.id==3">
           <i class="fas fa-trash-alt"></i>
         </a>
 

@@ -17,10 +17,7 @@ export class NavRightComponent implements OnInit {
   constructor(private router: Router,
     private socketService : WebSocketService,
     private notificationService: NotificationService
-
-
   ) {}
-
   // public method
   profile = [];
 
@@ -28,24 +25,32 @@ export class NavRightComponent implements OnInit {
   this.datauser=JSON.parse(localStorage.getItem("datauser"))
   this.nameuser=this.datauser.user.firstname+' '+this.datauser.user.lastname
 //notif
-
-
   this.socketService.connect(this.datauser.roles.nomRole);
 
   // Subscribe to incoming messages
    this.socketService.getMessages().subscribe((message) => {
-    console.log(message);
-    if(message){
+    if (this.datauser.roles.nomRole === 'ChefMagasin') {
+      this.loadNotificationsByType('Validation'); 
+    } else if (this.datauser.roles.nomRole === 'admin') { 
+      this.loadNotificationsByType('OutOfStock'); 
+    }    if(message){
       this.notifications?.push(message);
-    }
-
-    
+    }   
   });
 
-
-  
-  
+ 
  }
+
+ loadNotificationsByType(type: string): void {
+  this.notificationService.getNotificationsByType(type).subscribe(
+      (data: Notification[]) => {
+          this.notifications = data; 
+      },
+      (error) => {
+          console.error('Failed to load notifications', error);
+      }
+  );
+}
   navigateTo(route: string) {
     this.router.navigate([route]);
   }
@@ -58,14 +63,6 @@ export class NavRightComponent implements OnInit {
     this.router.navigate(['login'])
     localStorage.clear();
   }
-/*loadNotifications(): void {
-    this.notificationService.getAllNotifications().subscribe(
-      (data: Notification[]) => {
-        this.notifications = data;
-      },
-      (error) => {
-        console.error('Failed to load notifications', error);
-      }
-    );
-  }*/
+  
+
 }

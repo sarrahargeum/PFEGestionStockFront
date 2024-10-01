@@ -9,11 +9,12 @@ import { RouterModule } from '@angular/router';
 import { Fournisseur } from 'src/app/demo/modals/fournisseur';
 import { FournisseurService } from 'src/app/demo/service/fournisseur.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-listfournisseur',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule,NgxPaginationModule],
   templateUrl: './listfournisseur.component.html',
   styleUrls: ['./listfournisseur.component.scss']
 })
@@ -27,11 +28,11 @@ export class ListfournisseurComponent   implements OnInit {
   modalTitle = 'Ajouter Fournisseur';
   id: number | null = null;
   listeMagasin: Array<Magasin> = [];
+  page: any = 1;
   
 
   constructor(
     private fournisseurService: FournisseurService,
-    private router: Router,
     private formBuilder: FormBuilder,
     private magasinService: MagasinService,
     private toastr: ToastrService

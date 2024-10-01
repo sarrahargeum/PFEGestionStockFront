@@ -31,6 +31,7 @@ export class AccueilComponent implements OnInit {
   submitted = false;
   modalTitle = 'Commander';
   selectedArticleId:number;
+  selectedPrix:number;
   path='http://'+environment.urlBack+':8099/StockMnager/api/article/Imgarticles/'
   constructor(
     private formBuilder: FormBuilder,
@@ -61,9 +62,9 @@ export class AccueilComponent implements OnInit {
 
  
 
-  openModal(articleId: number): void {
+  openModal(articleId: number, prix:number): void {
     this.selectedArticleId = articleId;
-    console.log('Article ID:', articleId);
+    this.selectedPrix=prix;
     this.submitted = false;
     this.bonSortieForm.reset();
     this.modalTitle = 'Commander';
@@ -90,8 +91,10 @@ export class AccueilComponent implements OnInit {
       ligneSorties: [
         {
           article: {
-          id: this.selectedArticleId   
+          id: this.selectedArticleId,
           },
+          prixUnitaire: this.selectedPrix  ,
+
           quantite: this.bonSortieForm.value.quantity,
         }
       ]

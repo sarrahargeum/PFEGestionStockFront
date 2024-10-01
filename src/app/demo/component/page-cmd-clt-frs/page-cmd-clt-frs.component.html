@@ -9,52 +9,57 @@
       (clickEvent)="nouvelleCommande()"
       ></app-boutton-action>
     </div>
-  <!--  <div class="input-group input-group-alternative">
-      <input class="form-control" placeholder="Recherche" type="text" [(ngModel)]="codeCmd" (input)="Search()">
-    </div>-->
+    <!-- <div class="input-group input-group-alternative mb-3">
+      <input
+        class="form-control"
+        placeholder="Recherche"
+        type="text"
+        [(ngModel)]="codeCmd"
+        (input)="search()"
+      />
+    </div> -->
+    
   </div>
-  <div class="col m-3" >
-    <div class="accordion " id="accordionExample" *ngFor="let cmd of listeCommandes">
-      <div class="card border border-info">
-        <div class="card-body" id="headingOne">
-          <button class="btn btn-block text-left" type="button" data-toggle="collapse"
-                  [attr.data-target]="'#collapseOne'+cmd.id"
-                  aria-expanded="true"
-                  aria-controls="collapseOne">
-            <app-detail-cmd-clt-frs
-              [commande]="cmd"
-              [origin]="origin"
-            ></app-detail-cmd-clt-frs>
-          </button>
-        </div>
-        <div id="collapseOne{{cmd.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample"
-             style="max-height: 300px;
-        overflow-y: auto">
-          <div class="card-body">
-            <app-detail-cmd
-            *ngFor="let ligne of mapLignesCommande.get(cmd.id)"
-            [ligneCommande]="ligne"
-            ></app-detail-cmd>
+
+    
+    <div class="col m-3">
+      <div class="accordion" id="accordionExample" *ngFor="let cmd of filteredCommandes">
+        <div class="card border border-info">
+          <div class="card-body" id="headingOne">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse"
+                    [attr.data-target]="'#collapseOne'+cmd.id"
+                    aria-expanded="true"
+                    aria-controls="collapseOne">
+              <app-detail-cmd-clt-frs
+                [commande]="cmd"
+                [origin]="origin"
+              ></app-detail-cmd-clt-frs>
+            </button>
           </div>
-        </div>
+          <div id="collapseOne{{cmd.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample"
+               style="max-height: 300px; overflow-y: auto">
+            <div class="card-body">
+              <app-detail-cmd
+                *ngFor="let ligne of mapLignesCommande.get(cmd.id)"
+                [ligneCommande]="ligne"
+              ></app-detail-cmd>
+            </div>
+          </div>
           <div class="card-footer">
             <div class="row">
               <div class="col-md-6 text-left">
                 <h5>{{ (mapLignesCommande.get(cmd.id)?.length || 0) }} lignes de commande</h5>
               </div>
-             
-                <div class="col-md-6 text-right">
-                  <h5>Total Somme commande: {{ calculerTotalCommande(cmd.id) }}</h5>
-               
-                  <button [routerLink]="getFactureRoute(cmd.id)" class="btn btn-primary">Afficher Facture</button>
-                </div>
-              
-              
-              
+              <div class="col-md-6 text-right">
+                <h5>Total Somme commande: {{ calculerTotalCommande(cmd.id) }}</h5>
+                <button [routerLink]="getFactureRoute(cmd.id)" class="btn btn-primary">Afficher Facture</button>
+              </div>
             </div>
           </div>
+        </div>
       </div>
-    </div>
+   
+    
   </div>
   <div class="row mb-3" *ngIf="listeCommandes?.length">
     

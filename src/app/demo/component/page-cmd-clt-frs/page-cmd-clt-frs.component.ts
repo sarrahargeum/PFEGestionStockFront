@@ -15,6 +15,8 @@ export class PageCmdCltFrsComponent implements OnInit {
 
   origin = '';
   listeCommandes: any[] = [];
+  filteredCommandes: any[] = []; // The list after filtering
+
   mapLignesCommande = new Map();
   mapPrixTotalCommande = new Map();
   listBonEntree:BonEntreeDto;
@@ -33,21 +35,25 @@ export class PageCmdCltFrsComponent implements OnInit {
       this.origin = data.origin;
     });
     this.findAllCommandes();
+    this.filteredCommandes = this.listeCommandes; // Initialize filteredCommandes
   }
+  
 
   findAllCommandes(): void {
     if (this.origin === 'client') {
       this.cmdCltFrsService.findAllCommandesClient()
-      .subscribe(cmd => {
-        this.listeCommandes = cmd;
-        this.findAllLignesCommande();
-      });
+        .subscribe(cmd => {
+          this.listeCommandes = cmd;
+          this.filteredCommandes = [...this.listeCommandes]; // Initialize filteredCommandes
+          this.findAllLignesCommande();
+        });
     } else if (this.origin === 'fournisseur') {
       this.cmdCltFrsService.findAllCommandesFournisseur()
-      .subscribe(cmd => {
-        this.listeCommandes = cmd;
-        this.findAllLignesCommande();
-      });
+        .subscribe(cmd => {
+          this.listeCommandes = cmd;
+          this.filteredCommandes = [...this.listeCommandes]; // Initialize filteredCommandes
+          this.findAllLignesCommande();
+        });
     }
   }
 
@@ -104,6 +110,14 @@ export class PageCmdCltFrsComponent implements OnInit {
     }
     return ['/']; 
   }
-
+  // search() {
+  //   if (this.codeCmd && this.codeCmd.trim()) {
+  //     this.filteredCommandes = this.listeCommandes.filter(cmd =>
+  //       cmd.codeCommande && cmd.codeCommande.toLowerCase().includes(this.codeCmd.toLowerCase())
+  //     );
+  //   } else {
+  //     this.filteredCommandes = [...this.listeCommandes]; // Reset the list if no search term
+  //   }
+  
   
 }

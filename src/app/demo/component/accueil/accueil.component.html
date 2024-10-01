@@ -23,7 +23,7 @@
             <p class="card-text">{{art.designation}}</p>
             <p class="card-text">Prix: {{art.prix}}.000 DT</p>
             <p class="card-text"><small class="text-muted">Taux de TVA: {{art.tauxTva}}</small></p>
-          <button class="btn btn-success" data-toggle="modal" data-target="#commandeModal" (click)="openModal(art.id)">Commander</button>
+          <button class="btn btn-success" data-toggle="modal" data-target="#commandeModal" (click)="openModal(art.id,art.prix)">Commander</button>
 
         </div>
         </div>

@@ -10,6 +10,5 @@ export class LigneEntree{
   prixUnitaire: number;
   article: Article;
   bonEntree: BonEntree;
-  etatCommande: EtatCommande;
   idMagasin: number;
 }

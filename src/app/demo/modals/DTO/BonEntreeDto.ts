@@ -1,6 +1,6 @@
 import { EtatCommande } from "../EtatCommande";
 import { FournisseurDto } from "./FournisseurDto";
-import { LigneEntree } from "../ligneEntree";
+import { LigneEntreeDto } from "./LigneEntreeDto";
 
 export interface BonEntreeDto {
     id?: number;
@@ -9,7 +9,7 @@ export interface BonEntreeDto {
     etatCommande?: EtatCommande;
     fournisseur?: FournisseurDto;
     idMagasin?: number;
-    ligneEntrees?: Array<LigneEntree>;
+    ligneEntrees?: Array<LigneEntreeDto>;
     commandeLivree?: boolean;
   }
 

@@ -59,7 +59,9 @@ export class BonEntreService {
  findAllLignesCommandesFournisseurByCommandeFournisseurId(idCommande:number): Observable<BonEntreeDto[]> {
     return this.http.get<BonEntreeDto[]>(`${this.baseUrl}/lignesCommande/${idCommande}`);
   }
+ 
 
+ 
  
 }
 

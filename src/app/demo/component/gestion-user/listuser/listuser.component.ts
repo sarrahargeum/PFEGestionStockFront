@@ -2,18 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/demo/modals/user';
 import { AuthenticationService } from 'src/app/demo/service/authentication.service';
 import { MagasinService } from 'src/app/demo/service/magasin.service';
-import { RoleService } from 'src/app/demo/service/role.service';
 import { UserService } from 'src/app/demo/service/user.service';
-import { WebSocketService } from 'src/app/demo/service/web-Socket.service';
 
 @Component({
   selector: 'app-listuser',
   standalone: true,
-  imports: [CommonModule,RouterModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,RouterModule,FormsModule,ReactiveFormsModule,NgxPaginationModule],
   templateUrl: './listuser.component.html',
   styleUrl: './listuser.component.scss'
 })
@@ -25,6 +23,8 @@ export class ListuserComponent  implements OnInit {
   userForm: FormGroup;
   firstname: string;
   id: number | null = null;
+  page: any = 1;
+
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
@@ -75,7 +75,6 @@ export class ListuserComponent  implements OnInit {
     } else {
       this.id = null;
       this.userForm.reset();
-      //this.userForm.controls['activated'].setValue(1);
     }
   }
 

@@ -41,14 +41,10 @@ export class NavContentComponent implements OnInit {
 
     this.datauser=localStorage.getItem("datauser")
     this.dataJson=JSON.parse(this.datauser)
-   console.log(this.dataJson);
 
    
     this.infoUser=JSON.parse(localStorage.getItem("datauser"))
-   
-    console.log(this.infoUser.roles.id)
-
-    if(this.infoUser?.roles.id==1){
+       if(this.infoUser?.roles.id==1){
    
       this.listTitles = ChefMagasin.filter(listTitle =>
         listTitle

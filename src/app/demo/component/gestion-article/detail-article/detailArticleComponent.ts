@@ -103,28 +103,26 @@ path='http://'+environment.urlBack+':8099/StockMnager/api/article/Imgarticles/'
     formData.append('categoryId', article.categoryId);
     formData.append('magasinId', article.magasinId);
   
-    console.log(formData.get);
   
 
     if (!this.isEditMode) {
       this.articleService.ajoutArticle(formData).subscribe(() => {
         this.fetchData();
         this.closeModal();
-        this.toastr.success('article added successfully.', 'Success'); // Success toast notification
+        this.toastr.success('article added successfully.', 'Success'); 
               }, error => {
-                this.toastr.error('Failed to added article. Please try again.', 'Error'); // Error toast notification
+                this.toastr.error('Failed to added article. Please try again.', 'Error'); 
               });
             
     } else if (this.id != null) {
 
-      console.log(this.articleForm.value);
 
       this.articleService.updateArticle(this.id, this.articleForm.value).subscribe(() => {
         this.fetchData();
         this.closeModal();
-        this.toastr.success('article update successfully.', 'Success'); // Success toast notification
+        this.toastr.success('article update successfully.', 'Success');
       }, error => {
-        this.toastr.error('Failed to update article. Please try again.', 'Error'); // Error toast notification
+        this.toastr.error('Failed to update article. Please try again.', 'Error'); 
       });
     }
   }

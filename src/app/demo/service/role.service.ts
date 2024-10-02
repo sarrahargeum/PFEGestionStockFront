@@ -15,7 +15,6 @@ export class RoleService {
   findAllRole(){
     return this.http.get('http://'+environment.urlBack+':8099/StockMnager/api/roles/all').pipe(
       tap(res=>{
-        console.log('res', res);
       })
     );
   }

@@ -68,7 +68,9 @@ export class BonSortieService {
   }
   
 
-
+  getBonSortieByMonth(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/monthly-bon-data`);
+  }
 
 }
 

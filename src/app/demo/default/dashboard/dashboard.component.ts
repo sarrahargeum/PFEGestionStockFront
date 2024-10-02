@@ -20,6 +20,8 @@ import {
 } from 'ng-apexcharts';
 import { DashbordService } from '../../service/dashbord.service';
 import { BonEntreService } from '../../service/bon-entre.service';
+import { BonSortieService } from '../../service/bon-sortie.service';
+import { forkJoin } from 'rxjs';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -58,7 +60,9 @@ export default class DashboardComponent implements OnInit {
 
   // constructor
   constructor( private dashbordService:DashbordService,
-    private bonEntree:BonEntreService ){}
+    private bonEntree:BonEntreService,
+    private bonSortie:BonSortieService
+  ){}
 
   // life cycle event
   ngOnInit(): void {
@@ -69,23 +73,48 @@ export default class DashboardComponent implements OnInit {
   }
 
   loadBonData(): void {
-    this.bonEntree.getBonEntreeByMonth().subscribe(
-      (response) => {
-        console.log(response); // Log the response
-        // Proceed if the response is an array
-        if (Array.isArray(response)) {
-          const bonEntreeData = response.map(item => item.value); // Adjust based on your data structure
+    forkJoin({
+      bonEntree: this.bonEntree.getBonEntreeByMonth(),
+      bonSortie: this.bonSortie.getBonSortieByMonth(),
+    }).subscribe(
+      ({ bonEntree, bonSortie }) => {
+        console.log("Bon Entrée Response:", bonEntree); // Log response
+        console.log("Bon Sortie Response:", bonSortie); // Log response
+        
+        // Ensure response is of object type and not null or array
+        if (typeof bonEntree === 'object' && bonEntree !== null && !Array.isArray(bonEntree)) {
+          // Extract values (counts) and months from the Bon Entree data
+          const bonEntreeData = Object.values(bonEntree).map(value => Number(value));
+          const bonSortieData = Object.values(bonSortie).map(value => Number(value));
+          const bonEntreeMonths = Object.keys(bonEntree).map(month => `Month ${month}`);
+
+          console.log("Bon Entrée Data:", bonEntreeData); 
+          console.log("Bon Sortie Data:", bonSortieData); 
+          console.log("Bon Entrée Months:", bonEntreeMonths); 
+
+          // Define chart options dynamically based on fetched data
           this.chartOptions_6 = {
+            chart: {
+              type: 'bar',
+              height: 350,
+            },
             series: [
               {
                 name: "Bon Entrée",
-                data: bonEntreeData,
+                data: bonEntreeData, 
+              },
+              {
+                name: "Bon Sortie",
+                data: bonSortieData,
               },
             ],
-            // ... other chart options
+            xaxis: {
+              categories: ["janv","fev","mars","avril","mai","juin","juillet","aout","september","october","nouv","december"],
+            },
+           
           };
         } else {
-          console.error("Expected an array but received:", response);
+          console.error("Expected an object but received:", bonEntree);
         }
       },
       (error) => {
@@ -93,6 +122,7 @@ export default class DashboardComponent implements OnInit {
       }
     );
   }
+  
   
   
 

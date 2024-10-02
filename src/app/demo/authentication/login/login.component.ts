@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit{
   onSubmit() {
     this.authenticationService.authenticate(this.authenticationRequest).subscribe(
       (data) => {
-        console.log("User is logged in");
         localStorage.setItem('datauser', JSON.stringify(data));
 
         if (data.roles.id === 1) {

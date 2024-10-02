@@ -80,13 +80,11 @@ export class ListarticleComponent implements OnInit {
       this.modalTitle = 'Ajouter Article';
       this.isEditMode = false;
     } else if (mode === 'edit' && articleId != null) {
-      console.log(articleId);
       
       this.modalTitle = 'Modifier Article';
       this.isEditMode = true;
       this.id = articleId;
       this.articleService.retrieveArticle(articleId).subscribe(article => {
-       console.log(articleId),
         this.articleForm.patchValue({
           code: article.code ,
       prix: article.prix,
@@ -125,27 +123,25 @@ export class ListarticleComponent implements OnInit {
     formData.append('categoryId', article.categoryId);
     formData.append('magasinId', article.magasinId);
   
-    console.log(formData.get);
   
 
     if (!this.isEditMode) {
       this.articleService.ajoutArticle(formData).subscribe(() => {
         this.refreshArticleList();
-        this.closeModal();   this.toastr.success('Article added successfully.', 'Success'); // Success toast notification
+        this.closeModal();   this.toastr.success('Article added successfully.', 'Success'); 
       }, error => {
-        this.toastr.error('Failed to added article. Please try again.', 'Error'); // Error toast notification
+        this.toastr.error('Failed to added article. Please try again.', 'Error');
       });
     
     } else if (this.id != null) {
 
-      console.log(this.articleForm.value);
 
       this.articleService.updateArticle(this.id, this.articleForm.value).subscribe(() => {
         this.refreshArticleList();
                 this.closeModal();
-                this.toastr.success('Article updated successfully.', 'Success'); // Success toast notification
+                this.toastr.success('Article updated successfully.', 'Success'); 
               }, error => {
-                this.toastr.error('Failed to update article. Please try again.', 'Error'); // Error toast notification
+                this.toastr.error('Failed to update article. Please try again.', 'Error'); 
               });
             }
    
@@ -174,9 +170,9 @@ export class ListarticleComponent implements OnInit {
     if (confirm('Are you sure to delete this article?')) {
       this.articleService.deleteArticle(id).subscribe(() => {
         this.refreshArticleList();
-        this.toastr.success('article delete successfully.', 'Success'); // Success toast notification
+        this.toastr.success('article delete successfully.', 'Success');
       }, error => {
-        this.toastr.error('Failed to delet article. Please try again.', 'Error'); // Error toast notification
+        this.toastr.error('Failed to delet article. Please try again.', 'Error');
       });
     }
 

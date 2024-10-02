@@ -18,7 +18,6 @@ export class WebSocketService {
     this.stompClient = Stomp.Stomp.over(socket);
     this.stompClient.reconnectDelay = 5000;
     this.stompClient.debug = (str) => { 
-//console.log(str);
     };
   }
 

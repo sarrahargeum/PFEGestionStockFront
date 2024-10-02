@@ -35,11 +35,7 @@ export class DetailMvtStkArticleComponent implements OnInit {
     this.mvtStockService.mvtStkArticle(idArticle).subscribe(
       (data: MVTStockDto[]) => {
         this.mvtStocks = data;
-        console.log(data);
       },
-      error => {
-        console.error('Error loading stock movements:', error);
-      }
     );
   }
 

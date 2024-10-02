@@ -101,13 +101,10 @@ export class AccueilComponent implements OnInit {
     };
 
     this.bonSortieService.saveBSClient(bonSortie).subscribe(
-      (response) => {
-        console.log('Bon de sortie enregistré avec succès', response);
+      () => {
         this.closeModal();
       },
-      (error) => {
-        console.error('Erreur lors de l\'enregistrement du bon de sortie', error);
-      }
+     
     );
   }
   get f() {

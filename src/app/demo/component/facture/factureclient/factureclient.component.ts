@@ -28,7 +28,6 @@ export class FactureclientComponent implements OnInit {
     if (id) {
       this.bonSortieService.findById(id).subscribe((data: BonSortieDto) => {
         this.listBonSortie = data;
-        console.log(data)
       });
 
     }

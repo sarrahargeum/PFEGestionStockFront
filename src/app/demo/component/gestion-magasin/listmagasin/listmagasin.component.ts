@@ -50,7 +50,6 @@ export class ListmagasinComponent implements OnInit {
   refrechMgList() {
     this.magasinService.getMagasin().subscribe(data => {
       this.listMagasin = data;
-      console.log(this.listMagasin);
     });
   }
 
@@ -112,7 +111,6 @@ export class ListmagasinComponent implements OnInit {
     }
 
     if (!this.isEditMode) {
-      // Add new category
       this.magasinService.postMagasin(this.magasinForm.value).subscribe(() => {
         this.refrechMgList();
         this.closeModal();

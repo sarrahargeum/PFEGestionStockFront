@@ -36,7 +36,6 @@ export class DetailCmdCltFrsComponent implements OnInit {
   ngOnInit(): void {
     this.datauser=localStorage.getItem("datauser")
     this.dataJson=JSON.parse(this.datauser)
-   console.log(this.dataJson);
     this.extractClientFournisseur();
     
  

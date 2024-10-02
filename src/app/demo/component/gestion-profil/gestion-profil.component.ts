@@ -31,9 +31,7 @@ constructor(
 ) { }
 ngOnInit(): void {
 
-//   this.datauser=localStorage.getItem("datauser")
-//   this.dataJson=JSON.parse(this.datauser)
-//  console.log(this.dataJson); 
+
 
   this.datauser=JSON.parse(localStorage.getItem("datauser"))
    this.loading = true;
@@ -50,10 +48,8 @@ ngOnInit(): void {
         this.router.navigateByUrl('/listuser');
      }else{
        this.id = paramMap.get('id');
-       console.log('id', this.id);
        this.userService.retrieveUser(this.id).subscribe(res=>{
          this.user = res;
-         console.log(this.user);
 
          this.form= new FormGroup({
           firstname : new FormControl( this.user.firstname),
@@ -75,11 +71,9 @@ ngOnInit(): void {
  save(){
   this.userService.updateUser(this.id, this.form.value).subscribe(
     (res:any)=>{
-      //console.log(res);
-      // localStorage.setItem('datauser', JSON.stringify(data));
+     
       this.datauser.user=res
       localStorage.setItem('datauser', JSON.stringify(this.datauser));
-     // console.log(JSON.parse(localStorage.getItem("datauser")));
       this.router.navigateByUrl('/listuser');
       setTimeout(() => {
         location.reload();

@@ -52,8 +52,7 @@
       *ngIf=" dataJson?.roles.id==1 || dataJson?.roles.id==3">
         <button class="btn btn-link" (click)="openModal()" [disabled]="commande.etatCommande === 'LIVREE'">Modifier</button>
       </div>
-      <div class="col-md-6 text-center d-flex justify-content-center align-items-center"
-      *ngIf=" dataJson?.roles.id==1 || dataJson?.roles.id==3">
+      <div class="col-md-6 text-center d-flex justify-content-center align-items-center">
         <button type="button" class="btn btn-link" (click)="deleteBonEntree(commande.id)">
         
        Supprimer

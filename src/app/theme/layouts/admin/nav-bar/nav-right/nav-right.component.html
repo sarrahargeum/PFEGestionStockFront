@@ -2,9 +2,9 @@
 <ul class="list-unstyled">
 
   <li class="dropdown pc-h-item" ngbDropdown>
-    <a class="pc-head-link dropdown-toggle arrow-none me-0" ngbDropdownToggle>
+    <a class="pc-head-link dropdown-toggle arrow-none me-0" ngbDropdownToggle (click)="updateStatudNotification()">
       <i class="ti ti-bell"></i>
-      <span class="badge bg-success pc-h-badge">{{notifications?.length}}</span>
+      <span class="badge bg-success pc-h-badge">{{unreadNotifications?.length}}</span>
     </a>
     <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown" ngbDropdownMenu>
       <div class="dropdown-header d-flex align-items-center justify-content-between">
@@ -16,7 +16,7 @@
         <div class="dropdown-header px-0 text-wrap header-notification-scroll">
           <div class="list-group list-group-flush w-100">
            
-            <li *ngFor="let notification of notifications">
+            <li class="notif-item" *ngFor="let notification of notifications">
               {{ notification.message }} 
             </li>
           </div>

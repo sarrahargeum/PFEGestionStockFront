@@ -13,8 +13,10 @@ export class NotificationService {
   constructor(private http: HttpClient) {}
 
   getNotificationsByType(type: string): Observable<Notification[]> {
-    return this.http.get<Notification[]>(`${this.apiUrl}/not`, { params: { type }});
-
-    
+    return this.http.get<Notification[]>(`${this.apiUrl}/not`, { params: { type }});   
   }
+  markAllAsRead() {
+    return this.http.put(`${this.apiUrl}/mark-all-as-read`, {});
+  }
+ 
 }

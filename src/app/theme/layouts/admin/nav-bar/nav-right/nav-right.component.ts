@@ -13,6 +13,7 @@ export class NavRightComponent implements OnInit {
   datauser:any
   nameuser:string
   notifications: any = [];
+  unreadNotifications: any;
 
   constructor(private router: Router,
     private socketService : WebSocketService,
@@ -24,32 +25,46 @@ export class NavRightComponent implements OnInit {
  ngOnInit(){
   this.datauser=JSON.parse(localStorage.getItem("datauser"))
   this.nameuser=this.datauser.user.firstname+' '+this.datauser.user.lastname
-//notif
+
+  //notif
   this.socketService.connect(this.datauser.roles.nomRole);
 
   // Subscribe to incoming messages
-   this.socketService.getMessages().subscribe((message) => {
+  this.socketService.getMessages().subscribe((message) => {
     if (this.datauser.roles.nomRole === 'ChefMagasin') {
       this.loadNotificationsByType('Validation'); 
     } else if (this.datauser.roles.nomRole === 'admin') { 
       this.loadNotificationsByType('OutOfStock'); 
     }    if(message){
       this.notifications?.push(message);
+      this.unreadNotifications?.push(message);
     }   
   });
-
- 
  }
 
  loadNotificationsByType(type: string): void {
   this.notificationService.getNotificationsByType(type).subscribe(
       (data: Notification[]) => {
           this.notifications = data; 
+          this.unreadNotifications = this.notifications.filter(i => i?.etatNotification === false);
       },
       (error) => {
           console.error('Failed to load notifications', error);
       }
   );
+}
+updateStatudNotification(){
+this.notificationService.markAllAsRead().subscribe(
+  response => {
+    console.log("update");
+
+    console.log('All notifications marked as read:', response);
+  },
+  error => {
+    console.error('Error marking notifications as read:', error);
+  }
+);
+  
 }
   navigateTo(route: string) {
     this.router.navigate([route]);

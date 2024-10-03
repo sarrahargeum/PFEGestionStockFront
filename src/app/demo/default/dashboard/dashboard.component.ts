@@ -22,6 +22,7 @@ import { DashbordService } from '../../service/dashbord.service';
 import { BonEntreService } from '../../service/bon-entre.service';
 import { BonSortieService } from '../../service/bon-sortie.service';
 import { forkJoin } from 'rxjs';
+import { BonSortie } from '../../modals/BonSortie';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -78,19 +79,11 @@ export default class DashboardComponent implements OnInit {
       bonSortie: this.bonSortie.getBonSortieByMonth(),
     }).subscribe(
       ({ bonEntree, bonSortie }) => {
-        console.log("Bon Entrée Response:", bonEntree); // Log response
-        console.log("Bon Sortie Response:", bonSortie); // Log response
-        
+       
         // Ensure response is of object type and not null or array
         if (typeof bonEntree === 'object' && bonEntree !== null && !Array.isArray(bonEntree)) {
           // Extract values (counts) and months from the Bon Entree data
-          const bonEntreeData = Object.values(bonEntree).map(value => Number(value));
-          const bonSortieData = Object.values(bonSortie).map(value => Number(value));
-          const bonEntreeMonths = Object.keys(bonEntree).map(month => `Month ${month}`);
-
-          console.log("Bon Entrée Data:", bonEntreeData); 
-          console.log("Bon Sortie Data:", bonSortieData); 
-          console.log("Bon Entrée Months:", bonEntreeMonths); 
+         
 
           // Define chart options dynamically based on fetched data
           this.chartOptions_6 = {
@@ -101,11 +94,11 @@ export default class DashboardComponent implements OnInit {
             series: [
               {
                 name: "Bon Entrée",
-                data: bonEntreeData, 
+                data: bonEntree['bonEntree'], 
               },
               {
                 name: "Bon Sortie",
-                data: bonSortieData,
+                data: bonSortie['bonSortie'],
               },
             ],
             xaxis: {

@@ -3,17 +3,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { AuthenticationService } from '../../service/authentication.service';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
+
 import { AuthenticationRequest } from '../../modals/AuthenticationRequest';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,RouterModule, FormsModule],
+  imports: [ReactiveFormsModule,RouterModule, FormsModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit{
   errorMessage = '';
   datauser:any;
 
-  dataJson
+  
 
   constructor(
     private router: Router,
@@ -35,8 +34,7 @@ export class LoginComponent implements OnInit{
 
 
   ngOnInit(): void {
-    // this.datauser=localStorage.getItem("datauser")
-    // this.dataJson=JSON.parse(this.datauser)
+
    this.datauser=JSON.parse(localStorage.getItem("datauser"))
 
   }
@@ -48,16 +46,16 @@ export class LoginComponent implements OnInit{
         if (data.roles.id === 1) {
           this.router.navigate(['listarticle']);
         } else if (data.roles.id === 2) {
-          this.router.navigate(['listcategory']);
+          this.router.navigate(['listarticle']);
         } else if (data.roles.id === 3) {
-          this.router.navigate(['listuser']);
+          this.router.navigate(['dashboard/default']);
         } else {
           alert(data.errorMessage || 'Unknown role');
         }
       },
       (error) => {
         console.error('Authentication error:', error);
-        alert('An error occurred during authentication');
+        this.errorMessage = 'Incorrect email or password';
       }
     );
   }

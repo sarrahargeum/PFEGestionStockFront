@@ -1,5 +1,7 @@
 // angular import
 import { Component } from '@angular/core';
+import * as packageJson from 'package.json';
+
 
 @Component({
   selector: 'app-admin',
@@ -7,6 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
+  version: string = (packageJson as any).version;
   // public props
   navCollapsed: boolean;
   navCollapsedMob: boolean = false;

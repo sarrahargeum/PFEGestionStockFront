@@ -1,7 +1,7 @@
 // Angular import
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Location, LocationStrategy } from '@angular/common';
-
+import packageJson from 'package.json';
 // project import
 import { Admin, ChefMagasin, Magasinier } from '../navigation';
 import { environment } from 'src/environments/environment';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav-content.component.scss']
 })
 export class NavContentComponent implements OnInit {
-
+  version: string = (packageJson as any).version;
   infoUser:any=null
   public listTitles: any[];
   public isCollapsed = true;

@@ -1,0 +1,15 @@
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .navbar-content {
+    flex-grow: 1;
+  }
+  
+  .sidebar-footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f8f9fa; /* Optional: to differentiate the footer */
+  }
+  

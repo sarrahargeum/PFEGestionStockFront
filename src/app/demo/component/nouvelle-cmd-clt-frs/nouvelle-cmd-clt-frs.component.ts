@@ -72,17 +72,23 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   findAllArticles(): void {
     this.articleService.getArticle()
     .subscribe(articles => {
-      this.listArticle = articles;
+      this.listArticle = articles.filter(article => article.stockDisponible > 0);
     });
   }
 
   filtrerArticle(): void {
-    if (this.codeArticle.length === 0) {
+    if (this.codeArticle) {
+      // Filter the list of articles based on the codeArticle input
+      this.listArticle = this.listArticle.filter(article => 
+        article.code.includes(this.codeArticle) || 
+        article.designation.includes(this.codeArticle)
+      );
+    } else {
+      // If input is empty, retrieve all articles again
       this.findAllArticles();
     }
-    this.listArticle = this.listArticle
-    .filter(art => art.code?.includes(this.codeArticle) || art.designation?.includes(this.codeArticle));
   }
+  
 
   ajouterLigneCommande(): void {
     this.checkLigneCommande();
@@ -132,7 +138,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     enregistrerCommande(): void {
       const commande = this.preparerCommande();
     
-      // Function to check stock availability for all articles in the order
       const checkStockAvailability = (): boolean => {
         let stockIsSufficient = true;
     
@@ -162,7 +167,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
         return stockIsSufficient;
       };
     
-      // Check if stock is sufficient before proceeding with saving the command
       if (checkStockAvailability()) {
         if (this.origin === 'client') {
           this.cmdCltFrsService.enregistrerCommandeClient(commande as BonSortieDto)
@@ -193,7 +197,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     if (this.origin === 'client') {
       return  {
         client: this.selectedClientFournisseur,
-        //code: this.codeCommande,
         dateCommande: new Date().getTime(),
         etatCommande: 'EN_PREPARATION',
         ligneSorties: this.lignesCommande
@@ -201,7 +204,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     } else if (this.origin === 'fournisseur') {
       return  {
         fournisseur: this.selectedClientFournisseur,
-        //code: this.codeCommande,
         dateCommande: new Date().getTime(),
         etatCommande: 'EN_PREPARATION',
         ligneEntrees: this.lignesCommande

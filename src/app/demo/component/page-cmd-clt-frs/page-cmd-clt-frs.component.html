@@ -52,7 +52,7 @@
               </div>
               <div class="col-md-6 text-right">
                 <h5>Total Somme commande: {{ calculerTotalCommande(cmd.id) }}</h5>
-                <button [routerLink]="getFactureRoute(cmd.id)" class="btn btn-primary"  [disabled]="cmd.etatCommande != 'LIVREE'">Afficher Facture</button>
+                <button [routerLink]="getFactureRoute(cmd.id)" class="btn btn-primary"  [disabled]="cmd.etatCommande != 'VALIDEE'">Afficher Facture</button>
               </div>
             </div>
           </div>

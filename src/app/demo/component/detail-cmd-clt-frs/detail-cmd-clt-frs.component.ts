@@ -24,7 +24,7 @@ export class DetailCmdCltFrsComponent implements OnInit {
   listeCommandes =[];
   newEtatCommande: EtatCommande;
   showModal: boolean = false;
-  etatsCommande: EtatCommande[] = [ EtatCommande.VALIDE, EtatCommande.LIVREE]; 
+  etatsCommande: EtatCommande[] = [ EtatCommande.VALIDE]; 
   dataJson:any
   datauser:any
   constructor(private cmdcltfrs: CmdcltfrsService,
@@ -94,7 +94,7 @@ deleteBonEntree(id: number): void {let message = '';
   if (message && confirm(message)) {
     deleteObservable.subscribe(
       response => {
-        window.location.reload(); // Refresh the page or navigate to another route
+        window.location.reload(); 
         this.toastr.success('Bon entree delete successfully.', 'Success'); 
         error => {
          this.toastr.error('Failed to delete bon entree. Please try again.', 'Error'); 
@@ -110,7 +110,32 @@ deleteBonEntree(id: number): void {let message = '';
       this.cltFrs = this.commande.fournisseur;
     }
   }
+ 
 
+validerCommande(commandeId: number): void {
+  const etatCommande = EtatCommande.VALIDE;
 
+  if (this.origin === 'fournisseur') {
+    this.bonEntreeService.updateEtatCommande(commandeId, etatCommande)
+      .subscribe(
+        response => {
+          window.location.reload(); 
+          this.toastr.success('Commande validée avec succès.', 'Succès');
+        },
+        error => {
+          this.toastr.error('Erreur lors de la validation de la commande.', 'Erreur');
+        }
+      );
+  } else if (this.origin === 'client') {
+    this.bonSortieService.updateEtatCommande(commandeId, etatCommande)
+      .subscribe(
+        response => {
+          window.location.reload(); 
 
-}
+          this.toastr.success('Commande validée avec succès.', 'Succès');
+        },
+        error => {
+          this.toastr.error('Erreur lors de la validation de la commande.', 'Erreur');
+        }
+      );
+  }}}

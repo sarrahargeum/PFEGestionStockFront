@@ -37,7 +37,7 @@ export class NavRightComponent implements OnInit {
       }
       if (message) {
         this.notifications?.push(message);
-        this.unreadNotifications?.push(message);
+        //this.unreadNotifications?.push(message);
       }
     });
   }

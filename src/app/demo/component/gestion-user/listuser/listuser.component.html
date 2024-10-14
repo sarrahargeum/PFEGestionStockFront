@@ -70,40 +70,61 @@
           <div class="form-group">
             <label for="firstname">First Name*</label>
             <input type="text" class="form-control" id="firstname" placeholder="First Name" formControlName="firstname" />
+            <div *ngIf="f.firstname.invalid && (f.firstname.dirty || f.firstname.touched)" class="invalid-feedback">
+              <div *ngIf="f.firstname.errors.required">First Name is required.</div>
+            </div>
           </div>
+          
           <div class="form-group">
             <label for="lastname">Last Name*</label>
             <input type="text" class="form-control" id="lastname" placeholder="Last Name" formControlName="lastname" />
+            <div *ngIf="f.lastname.invalid && (f.lastname.dirty || f.lastname.touched)" class="invalid-feedback">
+              <div *ngIf="f.lastname.errors.required">Last Name is required.</div>
+            </div>
           </div>
+          
           <div class="form-group">
             <label for="email">Email Address*</label>
             <input type="email" class="form-control" id="email" placeholder="Email Address" formControlName="email" />
+            <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email Address is required.</div>
+              <div *ngIf="f.email.errors.email">Invalid email format.</div>
+            </div>
           </div>
+          
           <div *ngIf="!isEditMode">
             <div class="form-group">
               <label for="password">Password</label>
               <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password" />
+              <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required.</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="roleId">Role</label>
               <select class="form-control" formControlName="roleId">
                 <option [value]="1">ChefMagasin</option>
                 <option [value]="2">Magasinier</option>
-               <!--  <option [value]="3">Client</option> -->
               </select>
+              <div *ngIf="f.roleId.invalid && (f.roleId.dirty || f.roleId.touched)" class="invalid-feedback">
+                <div *ngIf="f.roleId.errors.required">Role is required.</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="magasinId">Magasin</label>
               <select class="form-control" formControlName="magasinId">
                 <option *ngFor="let mg of listeMagasins" [value]="mg.id">{{ mg.nom }}</option>
               </select>
+              <div *ngIf="f.magasinId.invalid && (f.magasinId.dirty || f.magasinId.touched)" class="invalid-feedback">
+                <div *ngIf="f.magasinId.errors.required">Magasin is required.</div>
+              </div>
             </div>
           </div>
         
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" (click)="onSubmit()" class="btn btn-primary">{{ isEditMode ? 'Modifier' : 'Ajouter' }}</button>
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary" [disabled]="userForm.invalid">{{ isEditMode ? 'Modifier' : 'Ajouter' }}</button>
         <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
       </div>
     </div>

@@ -1,16 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Article } from 'src/app/demo/modals/article';
 import { CategoryService } from 'src/app/demo/service/CategoryService';
 import { ArticleService } from 'src/app/demo/service/article.service';
-import { BonEntreService } from 'src/app/demo/service/bon-entre.service';
 import { MagasinService } from 'src/app/demo/service/magasin.service';
-import { StockService } from 'src/app/demo/service/stock.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -46,7 +42,6 @@ export class ListarticleComponent implements OnInit {
     private magasinService: MagasinService,
     private toastr : ToastrService,
     private router: Router,
-    private mvtStockService: StockService
   ) { }
 
   ngOnInit(): void {

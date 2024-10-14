@@ -13,6 +13,7 @@ import { BonSortieDto } from '../../modals/DTO/BonSortieDto';
 import { ClientDto } from '../../modals/DTO/ClientDto';
 import { EtatCommande } from '../../modals/EtatCommande';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-accueil',
@@ -36,7 +37,7 @@ export class AccueilComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private articleService: ArticleService,
- 
+    private toastr : ToastrService,
     private bonSortieService: BonSortieService,
   ) {}
 
@@ -102,11 +103,11 @@ export class AccueilComponent implements OnInit {
 
     this.bonSortieService.saveBSClient(bonSortie).subscribe(
       () => {
-        this.closeModal();
-      },
-     
-    );
-  }
+        this.closeModal(); this.toastr.success('Commande addessuccessfully.', 'Success'); 
+      }, error => {
+        this.toastr.error('Failed to added article. Please try again.', 'Error'); 
+      });
+    }
   get f() {
     return this.bonSortieForm.controls;
   }

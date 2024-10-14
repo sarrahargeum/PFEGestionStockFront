@@ -9,4 +9,6 @@ export class ArticleDto {
     image?: string;
     category?: Category;
     idMagasin?: number;
+    stockDisponible?:number;
+
 }

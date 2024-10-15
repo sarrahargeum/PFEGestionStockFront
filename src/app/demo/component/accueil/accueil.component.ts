@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ArticleService } from '../../service/article.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { CategoryService } from '../../service/CategoryService';
-import { MagasinService } from '../../service/magasin.service';
+
 import { BonSortieService } from '../../service/bon-sortie.service';
-import { ClientService } from '../../service/client.service';
-import { BonSortieDto } from '../../modals/DTO/BonSortieDto';
-import { ClientDto } from '../../modals/DTO/ClientDto';
+
 import { EtatCommande } from '../../modals/EtatCommande';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';

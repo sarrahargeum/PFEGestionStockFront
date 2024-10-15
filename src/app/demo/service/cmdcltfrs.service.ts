@@ -22,8 +22,7 @@ export class CmdcltfrsService {
   ) { }
 
   enregistrerCommandeClient(bonSortie: BonSortieDto): Observable<BonSortieDto> {
-   /* bonSortie.idMagasin = this.authenticationService.getConnectedUser().magasin?.id;
-    return this.bonSortieService.saveBonSortie(bonSortie);*/
+  
     bonSortie.idMagasin = 1;
 
    return this.bonSortieService.saveBonSortie(bonSortie);

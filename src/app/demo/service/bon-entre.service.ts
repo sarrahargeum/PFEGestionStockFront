@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BonEntree} from '../modals/BonEntree';
 import { Observable } from 'rxjs';
 import { EtatCommande } from '../modals/EtatCommande';
 import { BonEntreeDto } from '../modals/DTO/BonEntreeDto';

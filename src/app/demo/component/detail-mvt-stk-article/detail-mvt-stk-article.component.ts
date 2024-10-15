@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { StockService } from '../../service/stock.service';
 import { MVTStockDto } from '../../modals/DTO/MVTStockDto';
 

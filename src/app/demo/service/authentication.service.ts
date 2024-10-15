@@ -5,7 +5,6 @@ import { Roles } from '../modals/roles';
 
 import { Router } from '@angular/router';
 import { AuthenticationResponse } from '../modals/AuthenticationResponse';
-import { AuthenticationRequest } from '../modals/AuthenticationRequest';
 import { User } from '../modals/user';
 import { environment } from 'src/environments/environment';
 

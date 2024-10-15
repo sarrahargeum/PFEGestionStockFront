@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Client } from '../modals/Client';
 import { Observable } from 'rxjs';
-import { ClientDto } from '../modals/DTO/ClientDto';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

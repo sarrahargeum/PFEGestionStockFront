@@ -1,4 +1,3 @@
-// angular import
 import { Component, OnInit } from '@angular/core';
 import { WebSocketService } from './demo/service/web-Socket.service';
 

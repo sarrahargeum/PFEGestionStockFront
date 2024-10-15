@@ -1,4 +1,3 @@
-// angular import
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';

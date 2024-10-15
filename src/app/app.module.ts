@@ -62,7 +62,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   imports: [BrowserModule, AppRoutingModule,SharedModule, BrowserAnimationsModule ,CommonModule,
     FormsModule,ReactiveFormsModule, HttpClientModule,DialogModule,RouterModule, NgbModule,NgxPaginationModule,
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(), 
 
     
 
@@ -70,7 +70,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     providers: [
       AuthenticationService,
       WebSocketService,
-      provideToastr(), // Toastr providers
+      provideToastr(), 
 
     ],
    

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MagasinService } from 'src/app/demo/service/magasin.service';
 import { Magasin } from 'src/app/demo/modals/magasin';
 import { CommonModule } from '@angular/common';
@@ -128,7 +127,6 @@ export class ListfournisseurComponent   implements OnInit {
     };
 
     if (!this.isEditMode) {
-        // Create a new Fournisseur
         this.fournisseurService.postFournisseur(fournisseurForm).subscribe(() => {
             this.refrechFournisseurList();
             this.closeModal();
@@ -137,7 +135,6 @@ export class ListfournisseurComponent   implements OnInit {
             this.toastr.error('Failed to add Fournisseur. Please try again.', 'Error');
         });
     } else if (this.id != null) {
-        // Update an existing Fournisseur
         this.fournisseurService.updateFournisseur(this.id,this.fournisseurForm.value).subscribe(() => {
             this.refrechFournisseurList();
             this.closeModal();

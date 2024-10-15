@@ -1,14 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
-import { Article } from '../../modals/article';
 import { CltFrsService } from '../../service/clt-frs.service';
 import { ArticleService } from '../../service/article.service';
 import { CmdcltfrsService } from '../../service/cmdcltfrs.service';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Category } from '../../modals/category';
 import { ArticleDto } from '../../modals/DTO/ArticleDto';
-import { BonEntree } from '../../modals/BonEntree';
 import { LigneSortieDto } from '../../modals/DTO/ligneSortieDto';
 import { BonEntreeDto } from '../../modals/DTO/BonEntreeDto';
 import { BonSortieDto } from '../../modals/DTO/BonSortieDto';
@@ -78,13 +73,11 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
 
   filtrerArticle(): void {
     if (this.codeArticle) {
-      // Filter the list of articles based on the codeArticle input
       this.listArticle = this.listArticle.filter(article => 
         article.code.includes(this.codeArticle) || 
         article.designation.includes(this.codeArticle)
       );
     } else {
-      // If input is empty, retrieve all articles again
       this.findAllArticles();
     }
   }

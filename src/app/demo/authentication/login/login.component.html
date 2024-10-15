@@ -11,7 +11,6 @@
         <div class="card-body">
           <form (keydown.enter)="onSubmit()">
 
-            <!-- Error Message -->
             <div *ngIf="errorMessage" class="alert alert-danger">
               {{ errorMessage }}
             </div>

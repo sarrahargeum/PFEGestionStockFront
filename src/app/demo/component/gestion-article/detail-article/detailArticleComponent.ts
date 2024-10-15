@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -99,7 +98,6 @@ path='http://'+environment.urlBack+':8099/StockMnager/api/article/Imgarticles/'
      
     ));
     
-    //formData.append('file',this.userFile);
     formData.append('categoryId', article.categoryId);
     formData.append('magasinId', article.magasinId);
   
@@ -131,9 +129,9 @@ path='http://'+environment.urlBack+':8099/StockMnager/api/article/Imgarticles/'
     if (confirm('Are you sure to delete this article?')) {
       this.articleService.deleteArticle(id).subscribe(() => {
         this.fetchData();
-        this.toastr.success('article delete successfully.', 'Success'); // Success toast notification
+        this.toastr.success('article delete successfully.', 'Success'); 
       }, error => {
-        this.toastr.error('Failed to delete article. Please try again.', 'Error'); // Error toast notification
+        this.toastr.error('Failed to delete article. Please try again.', 'Error'); 
       });
     
     }

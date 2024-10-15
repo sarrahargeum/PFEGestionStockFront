@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { catchError } from 'rxjs';
 import { Category } from 'src/app/demo/modals/category';
 import { CategoryService } from 'src/app/demo/service/CategoryService';
 
@@ -51,11 +50,11 @@ export class ListcategoryComponent implements OnInit {
       this.categoryService.deleteCategory(id).subscribe(
         () => {
           this.refreshCategoryList();
-          this.toastr.success('Category deleted successfully.', 'Success'); // Success toast notification
+          this.toastr.success('Category deleted successfully.', 'Success'); 
         },
         error => {
-          this.toastr.error('Failed to delete category have one or many article. Please try again.', 'Error'); // Error toast notification
-          console.error('Error deleting category:', error); // Log the error for debugging
+          this.toastr.error('Failed to delete category have one or many article. Please try again.', 'Error'); 
+          console.error('Error deleting category:', error); 
         }
       );
     }
@@ -81,7 +80,6 @@ export class ListcategoryComponent implements OnInit {
       this.isEditMode = true;
       this.id = categoryId;
 
-      // Fetch category details to pre-fill the form
       this.categoryService.retrieveCategory(categoryId).subscribe(category => {
         this.categoryForm.patchValue({
           code: category.code,
@@ -107,22 +105,20 @@ export class ListcategoryComponent implements OnInit {
     }
 
     if (!this.isEditMode) {
-      // Add new category
       this.categoryService.postCategory(this.categoryForm.value).subscribe(() => {
         this.refreshCategoryList();
         this.closeModal();
-        this.toastr.success('Category added successfully.', 'Success'); // Success toast notification
+        this.toastr.success('Category added successfully.', 'Success'); 
       }, error => {
-        this.toastr.error('Failed to add category. Please try again.', 'Error'); // Error toast notification
+        this.toastr.error('Failed to add category. Please try again.', 'Error'); 
       });
     } else {
-      // Update existing category
       this.categoryService.updateCategory(this.id!, this.categoryForm.value).subscribe(() => {
         this.refreshCategoryList();
         this.closeModal();
-         this.toastr.success('Category updated successfully.', 'Success'); // Success toast notification
+         this.toastr.success('Category updated successfully.', 'Success'); 
       }, error => {
-        this.toastr.error('Failed to update category. Please try again.', 'Error'); // Error toast notification
+        this.toastr.error('Failed to update category. Please try again.', 'Error'); 
       });
     }
   }

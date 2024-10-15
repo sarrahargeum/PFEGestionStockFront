@@ -1,18 +1,15 @@
 <div class="d-flex wrap justify-content-between align-items-center">
   <h4>Liste des Fournisseurs</h4>
-  <!-- Button for adding supplier -->
   <div style="text-align: right">
     <button class="btn btn-success" (click)="openModal('add')">Ajouter Fournisseur</button>
   </div>
   </div>
 
-  <!-- Supplier search input -->
   <div class="input-group input-group-alternative mt-3">
     <input class="form-control" placeholder="Recherche" type="text" [(ngModel)]="nom" (input)="Search()">
   </div>
    
 
-  <!-- Supplier table -->
   <div class="px-3 py-4 h-100 bg-white mt-3 " style="border-radius:8px ;border: 1px solid lightgray;">
     <table class="table table-striped table-hover">
       <thead class="bg-primary">
@@ -22,7 +19,6 @@
         <th scope="col"  class="text-white">Adresse</th>
         <th scope="col"  class="text-white">Numéro teléphone</th>
         <th scope="col"  class="text-white">Mail</th>
-       <!--<th scope="col">Magasin</th>-->
         <th  class="text-white"></th>
       </tr>
     </thead>
@@ -33,7 +29,6 @@
         <td>{{four.adresse}}</td>
         <td>{{four.numTel}}</td>
         <td>{{four.mail}}</td>
-       <!-- <td>{{four.magasin.nom}}</td>-->
         <td>
           <div class="d-flex justify-content-end">
           <a (click)="openModal('edit', four.id)" class="btn btn-sm mr-2"  >

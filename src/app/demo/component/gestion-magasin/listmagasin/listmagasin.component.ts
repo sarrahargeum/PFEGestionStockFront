@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MagasinService } from 'src/app/demo/service/magasin.service';
 import { Magasin } from 'src/app/demo/modals/magasin';
 import { CommonModule } from '@angular/common';

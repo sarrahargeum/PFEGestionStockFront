@@ -72,7 +72,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   findAllArticles(): void {
     this.articleService.getArticle()
     .subscribe(articles => {
-      this.listArticle = articles.filter(article => article.stockDisponible > 0);
+      this.listArticle = articles;
     });
   }
 

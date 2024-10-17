@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { log } from 'console';
 import { NotificationService } from 'src/app/demo/service/notification.service';
 import { WebSocketService } from 'src/app/demo/service/web-Socket.service';
 
@@ -11,6 +12,7 @@ import { WebSocketService } from 'src/app/demo/service/web-Socket.service';
 export class NavRightComponent implements OnInit {
   datauser: any;
   nameuser: string;
+  roleuser:string;
   notifications: any = [];
   unreadNotifications: any;
   not: any;
@@ -40,6 +42,8 @@ export class NavRightComponent implements OnInit {
         //this.unreadNotifications?.push(message);
       }
     });
+    this.roleuser = this.datauser.roles.nomRole;
+  console.log(this.roleuser)
   }
 
   loadNotificationsByType(type: string): void {
